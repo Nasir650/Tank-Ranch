@@ -1,16 +1,12 @@
 ---
-import fs from 'node:fs';
-import path from 'node:path';
 import { parse } from 'csv-parse/sync';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import csvRaw from '../../data/postcards.csv?raw';
+
+export const prerender = true;
 
 export async function getStaticPaths() {
-  const csvPath = path.resolve('./src/data/postcards.csv');
-  if (!fs.existsSync(csvPath)) {
-    return [];
-  }
-  const fileContent = fs.readFileSync(csvPath, 'utf-8');
-  const records = parse(fileContent, {
+  const records = parse(csvRaw, {
     columns: true,
     skip_empty_lines: true,
     trim: true,
