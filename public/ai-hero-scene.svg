@@ -1,0 +1,493 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 640" width="600" height="640" role="img" aria-labelledby="t d">
+  <title id="t">Example: AI search recommends a local septic company</title>
+  <desc id="d">A homeowner asks an AI assistant who pumps septic tanks nearby. The AI recommends Your Septic &amp; Excavation Co., and a new customer call comes in while a pump truck services a home.</desc>
+
+  <defs>
+    <!-- Sky + ground -->
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#DCE7FF"/>
+      <stop offset="0.55" stop-color="#EEF3FF"/>
+      <stop offset="1" stop-color="#FFF6EA"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.82" cy="0.62" r="0.45">
+      <stop offset="0" stop-color="#FFE3B0" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#FFE3B0" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="hillBack" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#A9CFA0"/>
+      <stop offset="1" stop-color="#8DBB84"/>
+    </linearGradient>
+    <linearGradient id="hillFront" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7DB36F"/>
+      <stop offset="1" stop-color="#4E8A45"/>
+    </linearGradient>
+    <linearGradient id="drive" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#C9C4BC"/>
+      <stop offset="1" stop-color="#A9A39A"/>
+    </linearGradient>
+
+    <!-- House -->
+    <linearGradient id="siding" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#F4EEE4"/>
+      <stop offset="1" stop-color="#DDD3C3"/>
+    </linearGradient>
+    <linearGradient id="roof" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5A6272"/>
+      <stop offset="1" stop-color="#3A404C"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#BFD6F2"/>
+      <stop offset="0.5" stop-color="#8FB0D9"/>
+      <stop offset="1" stop-color="#6E8FBC"/>
+    </linearGradient>
+
+    <!-- Truck -->
+    <linearGradient id="tank" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.18" stop-color="#E9EDF3"/>
+      <stop offset="0.55" stop-color="#C3CBD6"/>
+      <stop offset="0.85" stop-color="#8E99A8"/>
+      <stop offset="1" stop-color="#6D7787"/>
+    </linearGradient>
+    <linearGradient id="cab" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4C7BFF"/>
+      <stop offset="0.6" stop-color="#2F5BEA"/>
+      <stop offset="1" stop-color="#1E3FAF"/>
+    </linearGradient>
+    <linearGradient id="cabGlass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E3EEFF"/>
+      <stop offset="0.45" stop-color="#9DB7DE"/>
+      <stop offset="1" stop-color="#5E7BA8"/>
+    </linearGradient>
+    <radialGradient id="tire" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0.55" stop-color="#2B2F36"/>
+      <stop offset="0.9" stop-color="#16181C"/>
+      <stop offset="1" stop-color="#0D0E10"/>
+    </radialGradient>
+    <radialGradient id="hub" cx="0.4" cy="0.35" r="0.7">
+      <stop offset="0" stop-color="#F2F4F7"/>
+      <stop offset="1" stop-color="#8A93A0"/>
+    </radialGradient>
+
+    <!-- UI -->
+    <linearGradient id="cobalt" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4C7BFF"/>
+      <stop offset="1" stop-color="#2447D6"/>
+    </linearGradient>
+    <linearGradient id="avatar" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#10B981"/>
+      <stop offset="1" stop-color="#2F5BEA"/>
+    </linearGradient>
+    <linearGradient id="firmGlow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#E8EEFF"/>
+      <stop offset="1" stop-color="#F3F6FF"/>
+    </linearGradient>
+
+    <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#1B2A55" flood-opacity="0.18"/>
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#1B2A55" flood-opacity="0.08"/>
+    </filter>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#0F172A" flood-opacity="0.2"/>
+    </filter>
+    <filter id="groundShadow" x="-20%" y="-50%" width="140%" height="200%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+    <filter id="blur2"><feGaussianBlur stdDeviation="2"/></filter>
+
+    <clipPath id="frame"><rect width="600" height="640" rx="28"/></clipPath>
+
+    <!-- typing reveal -->
+    <clipPath id="typeClip">
+      <rect x="248" y="96" height="30" width="0">
+        <animate attributeName="width" dur="12s" repeatCount="indefinite"
+                 keyTimes="0;0.05;0.19;0.93;1" values="0;0;270;270;0"/>
+      </rect>
+    </clipPath>
+  </defs>
+
+  <style>
+    text { font-family: Inter, "SF Pro Text", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif; }
+
+    .cycle { animation-duration: 12s; animation-iteration-count: infinite; animation-timing-function: cubic-bezier(.2,.7,.2,1); }
+
+    .user-bubble { animation-name: userIn; transform-box: fill-box; transform-origin: right bottom; }
+    @keyframes userIn {
+      0%   { opacity: 0; transform: translateY(10px) scale(.96); }
+      5%   { opacity: 1; transform: none; }
+      92%  { opacity: 1; transform: none; }
+      97%,100% { opacity: 0; transform: none; }
+    }
+
+    .caret { animation: caret 12s steps(1) infinite; }
+    @keyframes caret {
+      0%,4% { opacity: 0; }
+      5%,7%,9%,11%,13%,15%,17%,19% { opacity: 1; }
+      6%,8%,10%,12%,14%,16%,18% { opacity: .2; }
+      20%,100% { opacity: 0; }
+    }
+
+    .thinking { animation-name: thinking; }
+    @keyframes thinking {
+      0%,20% { opacity: 0; }
+      22%,30% { opacity: 1; }
+      32%,100% { opacity: 0; }
+    }
+    .dot { animation: dot 0.9s ease-in-out infinite; }
+    .dot.d2 { animation-delay: .15s; } .dot.d3 { animation-delay: .3s; }
+    @keyframes dot { 0%,100% { transform: translateY(0); opacity: .45; } 50% { transform: translateY(-4px); opacity: 1; } }
+
+    .answer { animation-name: answerIn; transform-box: fill-box; transform-origin: left top; }
+    @keyframes answerIn {
+      0%,31% { opacity: 0; transform: translateY(14px) scale(.97); }
+      36%    { opacity: 1; transform: none; }
+      92%    { opacity: 1; transform: none; }
+      97%,100% { opacity: 0; transform: none; }
+    }
+
+    .firm-ring { animation-name: firmRing; }
+    @keyframes firmRing {
+      0%,38% { opacity: 0; }
+      42%    { opacity: 1; }
+      50%    { opacity: .35; }
+      58%    { opacity: 1; }
+      66%,100% { opacity: .5; }
+    }
+
+    .bullet1 { animation-name: b1; } .bullet2 { animation-name: b2; } .bullet3 { animation-name: b3; }
+    @keyframes b1 { 0%,38% { opacity: 0; transform: translateX(-6px); } 41%,92% { opacity: 1; transform: none; } 97%,100% { opacity: 0; } }
+    @keyframes b2 { 0%,41% { opacity: 0; transform: translateX(-6px); } 44%,92% { opacity: 1; transform: none; } 97%,100% { opacity: 0; } }
+    @keyframes b3 { 0%,44% { opacity: 0; transform: translateX(-6px); } 47%,92% { opacity: 1; transform: none; } 97%,100% { opacity: 0; } }
+
+    .toast { animation-name: toastIn; }
+    @keyframes toastIn {
+      0%,54% { opacity: 0; transform: translateY(18px); }
+      59%    { opacity: 1; transform: none; }
+      92%    { opacity: 1; transform: none; }
+      97%,100% { opacity: 0; transform: translateY(6px); }
+    }
+    .ring-icon { animation: ring 1.2s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+    @keyframes ring {
+      0%,40%,100% { transform: rotate(0); }
+      5% { transform: rotate(-14deg); } 10% { transform: rotate(12deg); }
+      15% { transform: rotate(-10deg); } 20% { transform: rotate(8deg); } 25% { transform: rotate(0); }
+    }
+    .ring-wave { animation: wave 1.6s ease-out infinite; transform-box: fill-box; transform-origin: center; }
+    .ring-wave.w2 { animation-delay: .8s; }
+    @keyframes wave { 0% { transform: scale(.7); opacity: .6; } 100% { transform: scale(1.7); opacity: 0; } }
+
+    .pin { animation: pinBob 3s ease-in-out infinite; }
+    @keyframes pinBob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+    .pulse { animation: pulse 2.4s ease-out infinite; transform-box: fill-box; transform-origin: center; }
+    .pulse.p2 { animation-delay: 1.2s; }
+    @keyframes pulse { 0% { transform: scale(.4); opacity: .7; } 100% { transform: scale(2.2); opacity: 0; } }
+
+    .cloud1 { animation: drift 38s linear infinite; }
+    .cloud2 { animation: drift 54s linear infinite; animation-delay: -20s; }
+    @keyframes drift { from { transform: translateX(-160px); } to { transform: translateX(720px); } }
+
+    .truck-body { animation: idle .35s ease-in-out infinite alternate; }
+    @keyframes idle { from { transform: translateY(0); } to { transform: translateY(-0.8px); } }
+
+    .hose-flow { stroke-dasharray: 6 10; animation: flow .7s linear infinite; }
+    @keyframes flow { to { stroke-dashoffset: -16; } }
+
+    .puff { animation: puff 2.6s ease-out infinite; transform-box: fill-box; transform-origin: center; }
+    .puff.pf2 { animation-delay: .9s; } .puff.pf3 { animation-delay: 1.8s; }
+    @keyframes puff { 0% { transform: translate(0,0) scale(.4); opacity: .55; } 100% { transform: translate(-6px,-42px) scale(1.8); opacity: 0; } }
+
+    .beacon { animation: beacon 1s steps(1) infinite; }
+    @keyframes beacon { 0%,49% { fill: #FFB020; } 50%,100% { fill: #FF7A00; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; }
+      .user-bubble, .answer, .toast, .bullet1, .bullet2, .bullet3, .firm-ring { opacity: 1 !important; transform: none !important; }
+      .thinking, .caret { opacity: 0 !important; }
+    }
+  </style>
+
+  <g clip-path="url(#frame)">
+    <!-- ========== SKY ========== -->
+    <rect width="600" height="640" fill="url(#sky)"/>
+    <rect width="600" height="640" fill="url(#sun)"/>
+
+    <!-- subtle grid -->
+    <g stroke="#2F5BEA" stroke-opacity="0.05" stroke-width="1">
+      <path d="M0 80H600M0 160H600M0 240H600M0 320H600M0 400H600"/>
+      <path d="M75 0V640M150 0V640M225 0V640M300 0V640M375 0V640M450 0V640M525 0V640"/>
+    </g>
+
+    <!-- clouds -->
+    <g class="cloud1" opacity="0.9">
+      <g fill="#FFFFFF">
+        <ellipse cx="60" cy="350" rx="46" ry="14"/>
+        <ellipse cx="44" cy="340" rx="22" ry="16"/>
+        <ellipse cx="74" cy="336" rx="26" ry="20"/>
+      </g>
+    </g>
+    <g class="cloud2" opacity="0.75">
+      <g fill="#FFFFFF">
+        <ellipse cx="40" cy="385" rx="38" ry="11"/>
+        <ellipse cx="54" cy="377" rx="20" ry="14"/>
+      </g>
+    </g>
+
+    <!-- ========== LANDSCAPE ========== -->
+    <!-- distant tree line -->
+    <g fill="#9CC392" opacity="0.8">
+      <path d="M0 448 C 30 430, 50 438, 70 428 C 95 416, 120 434, 150 424 C 190 410, 230 432, 270 420 C 320 406, 360 428, 400 418 C 450 404, 500 426, 540 414 C 570 406, 590 414, 600 410 V 470 H 0 Z"/>
+    </g>
+    <path d="M0 462 C 120 440, 260 452, 380 444 C 470 438, 540 446, 600 440 V 640 H 0 Z" fill="url(#hillBack)"/>
+    <path d="M0 486 C 140 470, 300 478, 420 474 C 500 471, 560 476, 600 472 V 640 H 0 Z" fill="url(#hillFront)"/>
+
+    <!-- driveway -->
+    <path d="M250 640 L 300 498 L 600 494 L 600 640 Z" fill="url(#drive)"/>
+    <path d="M300 498 L 600 494" stroke="#E4DFD7" stroke-width="2"/>
+
+    <!-- ========== HOUSE ========== -->
+    <g>
+      <ellipse cx="148" cy="494" rx="118" ry="8" fill="#2E5A2A" opacity="0.35" filter="url(#groundShadow)"/>
+      <!-- chimney -->
+      <rect x="182" y="378" width="16" height="34" fill="#8C5A48"/>
+      <rect x="179" y="374" width="22" height="6" fill="#6E4636"/>
+      <!-- body -->
+      <rect x="52" y="420" width="192" height="72" fill="url(#siding)"/>
+      <!-- siding lines -->
+      <g stroke="#CFC4B2" stroke-width="1">
+        <path d="M52 432H244M52 444H244M52 456H244M52 468H244M52 480H244"/>
+      </g>
+      <!-- roof -->
+      <path d="M38 424 L 148 362 L 258 424 Z" fill="url(#roof)"/>
+      <path d="M38 424 L 148 362 L 258 424" fill="none" stroke="#2A2F38" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M148 362 L 258 424 L 244 424 L 148 370 Z" fill="#000" opacity="0.15"/>
+      <!-- gable window -->
+      <circle cx="148" cy="400" r="9" fill="url(#glass)" stroke="#FFFFFF" stroke-width="2.5"/>
+      <!-- windows -->
+      <g>
+        <rect x="68" y="436" width="40" height="32" rx="2" fill="url(#glass)" stroke="#FFFFFF" stroke-width="3"/>
+        <path d="M88 436V468M68 452H108" stroke="#FFFFFF" stroke-width="2"/>
+        <path d="M70 438 L 84 438 L 70 452 Z" fill="#FFFFFF" opacity="0.35"/>
+        <rect x="64" y="468" width="48" height="4" fill="#B9AE9B"/>
+
+        <rect x="188" y="436" width="40" height="32" rx="2" fill="url(#glass)" stroke="#FFFFFF" stroke-width="3"/>
+        <path d="M208 436V468M188 452H228" stroke="#FFFFFF" stroke-width="2"/>
+        <path d="M190 438 L 204 438 L 190 452 Z" fill="#FFFFFF" opacity="0.35"/>
+        <rect x="184" y="468" width="48" height="4" fill="#B9AE9B"/>
+      </g>
+      <!-- door -->
+      <rect x="132" y="440" width="32" height="52" rx="2" fill="#2F5BEA"/>
+      <rect x="136" y="444" width="24" height="18" rx="1" fill="#2447D6"/>
+      <rect x="136" y="466" width="24" height="22" rx="1" fill="#2447D6"/>
+      <circle cx="158" cy="468" r="1.8" fill="#FFD27A"/>
+      <rect x="126" y="490" width="44" height="4" fill="#B9AE9B"/>
+      <!-- shrubs -->
+      <g fill="#3F7A3A">
+        <circle cx="60" cy="486" r="10"/><circle cx="74" cy="489" r="8"/>
+        <circle cx="236" cy="486" r="10"/><circle cx="222" cy="489" r="8"/>
+      </g>
+      <g fill="#5A9A52">
+        <circle cx="57" cy="482" r="5"/><circle cx="233" cy="482" r="5"/>
+      </g>
+    </g>
+
+    <!-- septic access lid in lawn -->
+    <g>
+      <ellipse cx="268" cy="512" rx="20" ry="6" fill="#2F5A2B" opacity="0.5"/>
+      <ellipse cx="268" cy="509" rx="17" ry="5" fill="#6B7380"/>
+      <ellipse cx="268" cy="508" rx="13" ry="3.6" fill="#8A929E"/>
+    </g>
+
+    <!-- location pin over house -->
+    <g transform="translate(148 330)">
+      <ellipse cx="0" cy="34" rx="10" ry="3" fill="#0F172A" opacity="0.15"/>
+      <circle class="pulse" cx="0" cy="34" r="12" fill="none" stroke="#2F5BEA" stroke-width="2"/>
+      <circle class="pulse p2" cx="0" cy="34" r="12" fill="none" stroke="#2F5BEA" stroke-width="2"/>
+      <g class="pin">
+        <path d="M0 30 C -4 22, -16 12, -16 0 A 16 16 0 0 1 16 0 C 16 12, 4 22, 0 30 Z" fill="url(#cobalt)" filter="url(#softShadow)"/>
+        <circle cx="0" cy="0" r="6" fill="#FFFFFF"/>
+      </g>
+    </g>
+
+    <!-- ========== PUMP TRUCK ========== -->
+    <g>
+      <ellipse cx="438" cy="512" rx="156" ry="9" fill="#3A3833" opacity="0.4" filter="url(#groundShadow)"/>
+
+      <!-- hose: tank → lid -->
+      <path d="M302 452 C 290 470, 284 492, 272 506" fill="none" stroke="#1F2329" stroke-width="7" stroke-linecap="round"/>
+      <path d="M302 452 C 290 470, 284 492, 272 506" fill="none" stroke="#3A4049" stroke-width="3" stroke-linecap="round" class="hose-flow"/>
+
+      <g class="truck-body">
+        <!-- chassis -->
+        <rect x="292" y="466" width="290" height="12" rx="3" fill="#2A2E35"/>
+        <!-- tank -->
+        <rect x="296" y="398" width="186" height="70" rx="35" fill="url(#tank)"/>
+        <ellipse cx="331" cy="433" rx="8" ry="33" fill="#FFFFFF" opacity="0.35"/>
+        <!-- tank bands -->
+        <g fill="#7F8A99" opacity="0.6">
+          <rect x="318" y="401" width="4" height="64"/>
+          <rect x="462" y="401" width="4" height="64"/>
+        </g>
+        <!-- rear valve -->
+        <rect x="290" y="440" width="14" height="16" rx="3" fill="#4A515C"/>
+        <circle cx="297" cy="448" r="3.5" fill="#C9CFD8"/>
+        <!-- top manway + ladder rail -->
+        <rect x="380" y="390" width="34" height="10" rx="3" fill="#9AA4B2"/>
+        <path d="M312 402 H 470" stroke="#B4BDC9" stroke-width="2"/>
+        <!-- tank lettering -->
+        <text x="389" y="430" text-anchor="middle" font-size="12.5" font-weight="800" fill="#1E3FAF" letter-spacing="0.04em">YOUR SEPTIC</text>
+        <text x="389" y="446" text-anchor="middle" font-size="9" font-weight="600" fill="#3B4A6B" letter-spacing="0.12em">&amp; EXCAVATION CO.</text>
+        <!-- vacuum pump box -->
+        <rect x="440" y="448" width="34" height="18" rx="3" fill="#3B4350"/>
+        <rect x="444" y="452" width="26" height="3" fill="#5C6573"/>
+        <rect x="444" y="458" width="26" height="3" fill="#5C6573"/>
+
+        <!-- cab -->
+        <path d="M488 470 V 420 Q 488 410, 498 410 H 538 Q 548 410, 554 420 L 574 446 Q 580 452, 580 462 V 470 Z" fill="url(#cab)"/>
+        <path d="M498 418 H 534 Q 540 418, 544 424 L 560 446 H 498 Z" fill="url(#cabGlass)"/>
+        <path d="M502 420 L 520 420 L 502 440 Z" fill="#FFFFFF" opacity="0.45"/>
+        <path d="M524 418 V 446" stroke="#1E3FAF" stroke-width="3"/>
+        <rect x="528" y="452" width="10" height="3" rx="1.5" fill="#1A2E80"/>
+        <!-- headlight / bumper -->
+        <rect x="572" y="452" width="8" height="8" rx="2" fill="#FFE7A8"/>
+        <rect x="566" y="466" width="18" height="6" rx="2" fill="#9AA4B2"/>
+        <!-- mirror -->
+        <rect x="560" y="420" width="4" height="12" rx="1" fill="#1E2430"/>
+        <!-- beacon -->
+        <rect x="508" y="404" width="16" height="7" rx="3" class="beacon" fill="#FFB020"/>
+        <!-- exhaust stack -->
+        <rect x="483" y="388" width="5" height="30" rx="2" fill="#7D8693"/>
+      </g>
+
+      <!-- exhaust puffs -->
+      <g>
+        <circle class="puff" cx="485" cy="384" r="6" fill="#C8CDD4"/>
+        <circle class="puff pf2" cx="485" cy="384" r="6" fill="#C8CDD4"/>
+        <circle class="puff pf3" cx="485" cy="384" r="6" fill="#C8CDD4"/>
+      </g>
+
+      <!-- wheels -->
+      <g>
+        <g transform="translate(330 482)">
+          <circle r="19" fill="url(#tire)"/><circle r="9" fill="url(#hub)"/>
+          <circle r="2.5" fill="#5A6370"/>
+        </g>
+        <g transform="translate(374 482)">
+          <circle r="19" fill="url(#tire)"/><circle r="9" fill="url(#hub)"/>
+          <circle r="2.5" fill="#5A6370"/>
+        </g>
+        <g transform="translate(546 482)">
+          <circle r="19" fill="url(#tire)"/><circle r="9" fill="url(#hub)"/>
+          <circle r="2.5" fill="#5A6370"/>
+        </g>
+        <!-- fenders -->
+        <path d="M306 472 A 24 24 0 0 1 354 472" fill="none" stroke="#1E2329" stroke-width="5"/>
+        <path d="M350 472 A 24 24 0 0 1 398 472" fill="none" stroke="#1E2329" stroke-width="5"/>
+        <path d="M522 470 A 25 25 0 0 1 570 470" fill="none" stroke="#1A2E80" stroke-width="5"/>
+      </g>
+    </g>
+
+    <!-- foreground grass -->
+    <g stroke="#3E7A37" stroke-width="2" stroke-linecap="round" opacity="0.8">
+      <path d="M20 640 l4 -16M30 640 l-3 -12M120 640 l3 -14M132 640 l-2 -10M210 640 l4 -15M222 640 l-3 -11"/>
+    </g>
+    <path d="M0 600 C 80 590, 180 596, 250 592 L 230 640 H 0 Z" fill="#4A8541" opacity="0.6"/>
+
+    <!-- ========== AI ANSWER CARD ========== -->
+    <g filter="url(#cardShadow)">
+      <rect x="32" y="32" width="536" height="268" rx="22" fill="#FFFFFF" fill-opacity="0.92"/>
+    </g>
+    <rect x="32.5" y="32.5" width="535" height="267" rx="21.5" fill="none" stroke="#FFFFFF" stroke-opacity="0.9"/>
+    <rect x="32.5" y="32.5" width="535" height="267" rx="21.5" fill="none" stroke="#2F5BEA" stroke-opacity="0.08"/>
+
+    <!-- header -->
+    <g>
+      <circle cx="64" cy="64" r="15" fill="url(#avatar)"/>
+      <path d="M58 64 l4 4 l8 -9" fill="none" stroke="#FFFFFF" stroke-width="0" />
+      <text x="64" y="68.5" text-anchor="middle" font-size="11" font-weight="800" fill="#FFFFFF">AI</text>
+      <text x="88" y="61" font-size="13.5" font-weight="700" fill="#0F172A">AI Search</text>
+      <text x="88" y="77" font-size="11" fill="#64748B">ChatGPT · Perplexity · Google AI</text>
+      <g transform="translate(470 54)">
+        <rect width="78" height="22" rx="11" fill="#ECFDF5"/>
+        <circle cx="13" cy="11" r="3.5" fill="#10B981">
+          <animate attributeName="opacity" values="1;0.3;1" dur="1.6s" repeatCount="indefinite"/>
+        </circle>
+        <text x="22" y="15" font-size="10.5" font-weight="700" fill="#047857">Live query</text>
+      </g>
+      <path d="M52 92 H 548" stroke="#E2E8F0"/>
+    </g>
+
+    <!-- user bubble -->
+    <g class="user-bubble cycle">
+      <path d="M244 104 Q 244 98, 250 98 H 534 Q 548 98, 548 112 V 120 Q 548 134, 534 134 H 258 Q 244 134, 244 120 Z" fill="url(#cobalt)"/>
+      <g clip-path="url(#typeClip)">
+        <text x="256" y="121" font-size="14.5" font-weight="500" fill="#FFFFFF">Who pumps septic tanks near me?</text>
+      </g>
+      <rect class="caret" x="256" y="108" width="2" height="17" fill="#FFFFFF">
+        <animate attributeName="x" dur="12s" repeatCount="indefinite" keyTimes="0;0.05;0.19;1" values="256;256;492;492"/>
+      </rect>
+    </g>
+
+    <!-- thinking dots -->
+    <g class="thinking cycle">
+      <rect x="52" y="148" width="66" height="32" rx="16" fill="#F1F5F9"/>
+      <circle class="dot" cx="70" cy="164" r="4" fill="#64748B"/>
+      <circle class="dot d2" cx="85" cy="164" r="4" fill="#64748B"/>
+      <circle class="dot d3" cx="100" cy="164" r="4" fill="#64748B"/>
+    </g>
+
+    <!-- AI answer -->
+    <g class="answer cycle">
+      <rect x="52" y="146" width="420" height="140" rx="16" fill="#F8FAFC" stroke="#E2E8F0"/>
+      <text x="68" y="170" font-size="10" font-weight="700" fill="#64748B" letter-spacing="0.09em">TOP RECOMMENDED LOCAL CONTRACTOR</text>
+
+      <!-- firm name highlight -->
+      <rect x="64" y="180" width="396" height="40" rx="10" fill="url(#firmGlow)"/>
+      <rect class="firm-ring cycle" x="64" y="180" width="396" height="40" rx="10" fill="none" stroke="#2F5BEA" stroke-width="2"/>
+      <text x="78" y="206" font-size="17" font-weight="800" fill="#0F172A">Your Septic &amp; Excavation Co.</text>
+      <g transform="translate(372 194)" fill="#F59E0B">
+        <path d="M6 0l1.8 3.7 4 .6-2.9 2.8.7 4L6 9.2 2.4 11.1l.7-4L.2 4.3l4-.6z"/>
+        <path transform="translate(13 0)" d="M6 0l1.8 3.7 4 .6-2.9 2.8.7 4L6 9.2 2.4 11.1l.7-4L.2 4.3l4-.6z"/>
+        <path transform="translate(26 0)" d="M6 0l1.8 3.7 4 .6-2.9 2.8.7 4L6 9.2 2.4 11.1l.7-4L.2 4.3l4-.6z"/>
+        <path transform="translate(39 0)" d="M6 0l1.8 3.7 4 .6-2.9 2.8.7 4L6 9.2 2.4 11.1l.7-4L.2 4.3l4-.6z"/>
+        <path transform="translate(52 0)" d="M6 0l1.8 3.7 4 .6-2.9 2.8.7 4L6 9.2 2.4 11.1l.7-4L.2 4.3l4-.6z"/>
+      </g>
+
+      <g class="bullet1 cycle">
+        <circle cx="74" cy="238" r="7" fill="#DCFCE7"/>
+        <path d="M70.5 238 l2.5 2.5 l4.5 -5" fill="none" stroke="#059669" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="88" y="242" font-size="12" fill="#334155">Licensed for residential &amp; commercial pumping</text>
+      </g>
+      <g class="bullet2 cycle">
+        <circle cx="74" cy="256" r="7" fill="#DCFCE7"/>
+        <path d="M70.5 256 l2.5 2.5 l4.5 -5" fill="none" stroke="#059669" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="88" y="260" font-size="12" fill="#334155">Same-day &amp; emergency service</text>
+      </g>
+      <g class="bullet3 cycle">
+        <circle cx="74" cy="274" r="7" fill="#DCFCE7"/>
+        <path d="M70.5 274 l2.5 2.5 l4.5 -5" fill="none" stroke="#059669" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="88" y="278" font-size="12" fill="#334155">Septic inspections &amp; perc testing</text>
+      </g>
+    </g>
+
+    <!-- ========== INCOMING CALL TOAST ========== -->
+    <g class="toast cycle">
+      <g filter="url(#softShadow)">
+        <rect x="318" y="316" width="250" height="62" rx="16" fill="#0F172A"/>
+      </g>
+      <g transform="translate(350 347)">
+        <circle class="ring-wave" r="15" fill="none" stroke="#22C55E" stroke-width="2"/>
+        <circle class="ring-wave w2" r="15" fill="none" stroke="#22C55E" stroke-width="2"/>
+        <circle r="15" fill="#22C55E"/>
+        <g class="ring-icon">
+          <path d="M-5.5 -7 c 1 -1, 2.6 -0.8, 3.2 0.4 l 1.4 2.8 c 0.5 1, 0.2 2.1, -0.6 2.8 l -1 0.8 c 1 2.2, 2.7 3.9, 4.9 4.9 l 0.8 -1 c 0.7 -0.8, 1.8 -1.1, 2.8 -0.6 l 2.8 1.4 c 1.2 0.6, 1.4 2.2, 0.4 3.2 l -1.2 1.2 c -1.5 1.5, -3.8 1.9, -5.7 0.9 c -4.6 -2.4, -8.3 -6.1, -10.7 -10.7 c -1 -1.9, -0.6 -4.2, 0.9 -5.7 z" fill="#FFFFFF"/>
+        </g>
+      </g>
+      <text x="376" y="342" font-size="13" font-weight="700" fill="#FFFFFF">Incoming call</text>
+      <text x="376" y="360" font-size="11" fill="#94A3B8">New customer · found you via AI</text>
+      <text x="552" y="342" text-anchor="end" font-size="10" fill="#64748B">now</text>
+    </g>
+  </g>
+
+  <!-- outer frame -->
+  <rect x="0.5" y="0.5" width="599" height="639" rx="27.5" fill="none" stroke="#0F172A" stroke-opacity="0.08"/>
+</svg>

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tank &amp; Trench | AI Search for Septic &amp; Excavation</title>
+  <meta name="description" content="AI Search for Septic &amp; Excavation. When homeowners ask ChatGPT, Perplexity or Google's AI who pumps septic tanks near them, we make sure they hear your name.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" sizes="any">
+
+  <!-- Schema.org Structured Data: Organization & FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://tankandtrench.com/#organization",
+        "name": "Tank & Trench",
+        "legalName": "Shellback Labs LLC",
+        "alternateName": "Tank & Trench",
+        "url": "https://tankandtrench.com/",
+        "logo": "https://tankandtrench.com/images/tank-and-trench-logo.svg",
+        "email": "joe@tankandtrench.com",
+        "telephone": "+1-508-555-0198",
+        "description": "AI Search for Septic & Excavation. Making septic and excavation contractors the authoritative answer when homeowners ask AI assistants who to call."
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://tankandtrench.com/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is AI search?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "When a homeowner asks ChatGPT, Perplexity or Google's AI who to call, the assistant names a few companies. AI search is making sure yours is one of them."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I own what you build?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, your pages and profiles stay yours."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How fast does it work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "It depends on your county and your competition. We show you the calls every month, so you never have to guess."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="has-mobile-bar">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+    <div>
+      <div class="drawer-header">
+        <div class="nav-brand">
+          <img class="brand-logo" src="images/tank-and-trench-logo.svg" alt="Tank &amp; Trench" width="200" height="38">
+        </div>
+        <button class="drawer-close" id="drawerClose" aria-label="Close menu">&times;</button>
+      </div>
+      <ul class="drawer-links">
+        <li><a href="#how-it-works" class="drawer-link" onclick="closeDrawer()">How it works</a></li>
+        <li><a href="pricing.html" class="drawer-link" onclick="closeDrawer()">Pricing</a></li>
+        <li><a href="about.html" class="drawer-link" onclick="closeDrawer()">About</a></li>
+      </ul>
+    </div>
+    <div class="drawer-footer">
+      <a href="tel:5085550198" class="btn btn-secondary btn-lg" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+        </svg>
+        <span>Call Joe: (508) 555-0198</span>
+      </a>
+      <a href="check.html" class="btn btn-primary btn-lg" style="width: 100%;" onclick="closeDrawer()">Get your free AI check</a>
+    </div>
+  </div>
+
+  <!-- Sticky Desktop Navigation Bar -->
+  <div class="navbar-wrapper" id="navbarWrapper">
+    <div class="container-wide">
+      <nav class="navbar" aria-label="Primary">
+        <a href="index.html" class="nav-brand">
+          <img class="brand-logo" src="images/tank-and-trench-logo.svg" alt="Tank &amp; Trench" width="200" height="38">
+        </a>
+
+        <ul class="nav-menu">
+          <li><a href="#how-it-works" class="nav-link">How it works</a></li>
+          <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="tel:5085550198" class="nav-phone" style="display: inline-flex; align-items: center; gap: 6px;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            <span>(508) 555-0198</span>
+          </a>
+          <a href="check.html" class="btn btn-primary btn-sm">Get your free AI check</a>
+          <button class="mobile-toggle" id="drawerOpen" aria-label="Open navigation menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <!-- SECTION 1: HERO -->
+    <section class="hero-section" style="padding-top: clamp(48px, 6vw, 84px); padding-bottom: clamp(56px, 7vw, 96px);">
+      <div class="hero-mask"></div>
+
+      <div class="container" style="position: relative; z-index: 2;">
+        <div class="hero-split-grid">
+          <!-- Left: Hero Text -->
+          <div class="hero-text-col">
+            <div class="eyebrow cobalt" style="margin-bottom: 16px;">AI Search For Septic &amp; Excavation</div>
+            <h1 class="display-xl hero-title" style="margin: 0 0 20px;">
+              When homeowners ask who to call, the answer should be you.
+            </h1>
+            <p class="body-lg hero-desc" style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 32px; max-width: 580px;">
+              Homeowners don't just Google anymore. They ask ChatGPT, Perplexity and Google's AI answers who pumps septic tanks near them. We make sure they hear your name, and we measure it in phone calls and form fills, not rankings.
+            </p>
+
+            <div class="hero-cta-group" style="margin-bottom: 24px;">
+              <a href="check.html" class="btn btn-primary btn-lg">
+                <span>Get your free AI check</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+
+            <div class="hero-trust">
+              <span class="badge-dot"></span>
+              <span>Built for a guy in a truck. No jargon. Measured in phone calls.</span>
+            </div>
+          </div>
+
+          <!-- Right: Hero Scene Visual (AI Search Recommends Contractor) -->
+          <div class="hero-scene-wrapper">
+            <img src="ai-hero-scene.svg" alt="AI search recommends a local septic company when a homeowner searches" width="600" height="640" class="hero-scene-img" loading="eager">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: THE SHIFT -->
+    <section class="shift-section">
+      <div class="container">
+        <div class="shift-grid">
+          <div>
+            <div class="eyebrow sun" style="margin-bottom: 12px;">The Shift</div>
+            <h2 class="display-lg" style="color: var(--white); margin-bottom: 20px;">
+              Ask ChatGPT who pumps septic tanks in your town.
+            </h2>
+            <p class="body-lg" style="color: rgba(255, 255, 255, 0.85); line-height: 1.6; margin-bottom: 24px;">
+              If it names a competitor, that's a call you never knew you lost. AI assistants pull from a short list of companies they understand. Most septic companies aren't on it yet. Not because they're bad at the work, but because nobody built the information the AI reads.
+            </p>
+            <a href="check.html" class="btn btn-inverse btn-md">
+              <span>Get your free AI check</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Shift Callout Details -->
+          <div class="shift-callout-box">
+            <div class="shift-stat-item">
+              <div class="shift-stat-icon red">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </div>
+              <div>
+                <div style="font-weight: 700; font-size: 15px; color: var(--white); margin-bottom: 4px;">Competitor gets named</div>
+                <div style="font-size: 13px; color: rgba(255, 255, 255, 0.7); line-height: 1.5;">Homeowner clicks their number directly from the AI answer. You never even knew the job existed.</div>
+              </div>
+            </div>
+
+            <div class="shift-stat-item">
+              <div class="shift-stat-icon green">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <div>
+                <div style="font-weight: 700; font-size: 15px; color: var(--white); margin-bottom: 4px;">Your Answer Map is built</div>
+                <div style="font-size: 13px; color: rgba(255, 255, 255, 0.7); line-height: 1.5;">Google and AI assistants understand every town and service you cover. Your phone rings.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: HOW IT WORKS -->
+    <section class="section-padding" id="how-it-works">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="eyebrow cobalt">How It Works</div>
+          <h2 class="display-lg">
+            Three steps to make you the answer.
+          </h2>
+          <p class="body-lg section-intro">
+            We don't sell bloated retainers or jargon. We focus on one thing: getting homeowners to hear your name and call your phone.
+          </p>
+        </div>
+
+        <div class="how-it-works-grid">
+          <!-- Step 1 -->
+          <div class="step-card">
+            <div class="step-num-badge">01</div>
+            <h3 class="step-title">We check</h3>
+            <p class="step-body">
+              We ask Google and the AI assistants who to call in your towns and show you what they say.
+            </p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="step-card">
+            <div class="step-num-badge">02</div>
+            <h3 class="step-title">We build your Answer Map</h3>
+            <p class="step-body">
+              Every service, town and homeowner question, mapped and connected. Built in your first 30 days, grown every month after.
+            </p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="step-card">
+            <div class="step-num-badge">03</div>
+            <h3 class="step-title">We count the calls</h3>
+            <p class="step-body">
+              Tracked numbers from day one, and one line first in every report, how many times your phone rang.
+            </p>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+          <a href="check.html" class="btn btn-primary btn-md">Get your free AI check</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: PROOF -->
+    <section class="section-padding" style="padding-top: 0;">
+      <div class="container">
+        <div class="proof-banner">
+          <div>
+            <div class="proof-big-stat">80 &rarr; 5,000+</div>
+            <div class="proof-stat-caption">Daily search impressions</div>
+          </div>
+          <div>
+            <div class="eyebrow mint" style="margin-bottom: 8px;">Real Proof</div>
+            <p class="proof-quote-text">
+              A New England hardscape and paving contractor went from about 80 to 5,000+ daily search impressions on our approach.
+            </p>
+            <p class="proof-disclaimer">
+              Built on the exact same Answer Map approach. Client kept anonymous per trade privacy policy.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: PRICING TEASER -->
+    <section class="section-padding" id="pricing-teaser" style="background: var(--bg-subtle); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="eyebrow sun">Pricing Teaser</div>
+          <h2 class="display-lg">
+            Two plans. One county each. Pro gets you found. Territory locks your county so we won't work with your competitors there.
+          </h2>
+        </div>
+
+        <div class="pricing-teaser-grid">
+          <!-- Pro Plan Teaser -->
+          <div class="teaser-plan-card">
+            <div>
+              <div class="teaser-plan-header">
+                <h3 class="teaser-plan-title">Pro</h3>
+                <div class="teaser-plan-price">$1,000 <span>/ mo</span></div>
+              </div>
+              <p class="teaser-plan-body" style="margin-top: 14px;">
+                Built for owners ready to own their county. Includes Google Business Profile cleanup, service and town pages, schema, the full Answer Map, monthly content, call tracking, and monthly call reporting.
+              </p>
+            </div>
+            <div>
+              <a href="pricing.html" class="btn btn-secondary btn-md" style="width: 100%; text-align: center;">See Pro details</a>
+            </div>
+          </div>
+
+          <!-- Territory Plan Teaser -->
+          <div class="teaser-plan-card featured">
+            <div class="pricing-ribbon">County Exclusivity</div>
+            <div>
+              <div class="teaser-plan-header">
+                <h3 class="teaser-plan-title">Territory</h3>
+                <div class="teaser-plan-price">$1,500 <span>/ mo</span></div>
+              </div>
+              <p class="teaser-plan-body" style="margin-top: 14px;">
+                Built for owners who want to lock out competitors. Everything in Pro, plus complete county exclusivity (we won't work with your competitors there) and leads from our county lead sites.
+              </p>
+            </div>
+            <div>
+              <a href="pricing.html" class="btn btn-primary btn-md" style="width: 100%; text-align: center;">See Territory details</a>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: center; gap: 16px; margin-top: 36px; flex-wrap: wrap;">
+          <a href="pricing.html" class="btn btn-primary btn-md">See pricing</a>
+          <a href="pricing.html#county-check" class="btn btn-secondary btn-md">Is my county taken?</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: A NOTE FROM JOE -->
+    <section class="section-padding">
+      <div class="container-narrow">
+        <div class="joe-note-box">
+          <div class="joe-photo-wrap">
+            <img src="images/about-joe-field-audit.jpg" alt="Joe from Tank &amp; Trench working on field audits" width="160" height="160" loading="lazy">
+          </div>
+          <div>
+            <div class="eyebrow cobalt" style="margin-bottom: 8px;">A Note from Joe</div>
+            <p class="joe-quote">
+              &ldquo;I'm Joe from Tank &amp; Trench. I've spent years figuring out what makes people click, search and call. Now I do it for one trade only. If a homeowner in your county asks who to call, I want the answer to be you.&rdquo;
+            </p>
+            <div class="joe-sig">Joe &middot; Tank &amp; Trench</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: FAQ (FAQPage Schema) -->
+    <section class="section-padding" style="background: var(--bg-subtle); border-top: 1px solid var(--border-subtle);">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="eyebrow cobalt">Straight Answers</div>
+          <h2 class="display-lg">
+            Frequently Asked Questions
+          </h2>
+          <p class="body-lg section-intro">
+            No jargon, no runaround. Exactly how we operate.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <!-- Q1 -->
+          <div class="faq-card">
+            <div class="faq-q">What is AI search?</div>
+            <div class="faq-a">
+              When a homeowner asks ChatGPT, Perplexity or Google's AI who to call, the assistant names a few companies. AI search is making sure yours is one of them.
+            </div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="faq-card">
+            <div class="faq-q">Do I own what you build?</div>
+            <div class="faq-a">
+              Yes, your pages and profiles stay yours.
+            </div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="faq-card">
+            <div class="faq-q">How fast does it work?</div>
+            <div class="faq-a">
+              It depends on your county and your competition. We show you the calls every month, so you never have to guess.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8: FINAL CALL TO ACTION -->
+    <section class="section-padding" style="background: var(--white); text-align: center;">
+      <div class="container-narrow">
+        <div class="eyebrow sun" style="justify-content: center; margin-bottom: 12px;">Free AI Check</div>
+        <h2 class="display-lg" style="margin-bottom: 20px;">
+          Find out what the AI says about you. Free, five minutes of your time, and you get a short video walkthrough.
+        </h2>
+        <div style="margin-top: 32px;">
+          <a href="check.html" class="btn btn-primary btn-lg">
+            <span>Get your free AI check</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+        <p class="body-sm" style="color: var(--text-tertiary); margin-top: 14px;">
+          Takes 30 seconds to request &middot; Delivered in two business days &middot; No sales pitch
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- STICKY MOBILE BOTTOM BAR (Call button + Free AI check button) -->
+  <div class="mobile-sticky-bar" aria-label="Mobile quick actions">
+    <a href="tel:5085550198" class="mobile-sticky-btn mobile-sticky-call">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+      </svg>
+      <span>Call Joe</span>
+    </a>
+    <a href="check.html" class="mobile-sticky-btn mobile-sticky-check">
+      <span>Get your free AI check</span>
+    </a>
+  </div>
+
+  <!-- STREAMLINED FOOTER -->
+  <footer class="simple-footer">
+    <div class="container">
+      <div class="simple-footer-inner">
+        <div class="simple-footer-top">
+          <div>
+            <img class="brand-logo" src="images/tank-and-trench-logo-light.svg" alt="Tank &amp; Trench" width="190" height="36">
+            <p style="font-size: 14px; color: rgba(255, 255, 255, 0.7); max-width: 480px; margin-top: 10px; line-height: 1.5;">
+              AI Search for Septic &amp; Excavation. When homeowners ask who to call, the answer should be you.
+            </p>
+          </div>
+
+          <div class="simple-footer-contacts">
+            <a href="tel:5085550198" class="simple-footer-contact-link">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+              <span>(508) 555-0198</span>
+            </a>
+
+            <a href="mailto:joe@tankandtrench.com" class="simple-footer-contact-link">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              <span>joe@tankandtrench.com</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="simple-footer-bottom">
+          <div>
+            &copy; 2026 Shellback Labs LLC d/b/a Tank &amp; Trench. All rights reserved.
+          </div>
+
+          <div class="simple-footer-legal-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Vanilla Interaction Scripts -->
+  <script>
+    // 1. Sticky condensed navbar on scroll
+    const navbarWrapper = document.getElementById('navbarWrapper');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        navbarWrapper.classList.add('scrolled');
+      } else {
+        navbarWrapper.classList.remove('scrolled');
+      }
+    }, { passive: true });
+
+    // 2. Mobile Drawer Navigation
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const drawerOpen = document.getElementById('drawerOpen');
+    const drawerClose = document.getElementById('drawerClose');
+
+    if (drawerOpen && mobileDrawer && drawerClose) {
+      drawerOpen.addEventListener('click', () => {
+        mobileDrawer.classList.add('open');
+        mobileDrawer.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      });
+
+      drawerClose.addEventListener('click', closeDrawer);
+    }
+
+    function closeDrawer() {
+      if (mobileDrawer) {
+        mobileDrawer.classList.remove('open');
+        mobileDrawer.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+    }
+  </script>
+</body>
+</html>

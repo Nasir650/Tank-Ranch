@@ -1,0 +1,842 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "meta": {
+    "name": "WordLift — AI Discovery Platform Homepage",
+    "version": "1.0.0",
+    "specType": "ui-spec",
+    "source": "Full-page homepage screenshot (desktop, 1440px reference)",
+    "designLanguage": "Editorial-tech: clean white canvas, saturated cobalt blocks, and one 'selection box' highlight motif borrowed from design-tool UI. Each section headline marks one key phrase in an accent color, which ties the long page together.",
+    "principles": [
+      "One highlighted phrase per headline, never two. The highlight is the brand signature, not decoration.",
+      "Alternate white and cobalt sections to set the scroll rhythm (white → blue → white → white → blue → white...).",
+      "Cards carry the content; sections carry the mood. Keep cards quiet so the colored sections can stand out.",
+      "Floating pixel-squares are the only illustrative motif. They appear at the hero and the closing CTA, nowhere else.",
+      "Every number is a proof point: stats are set large and tabular, and always paired with a short claim."
+    ],
+    "referenceViewport": { "width": 1440, "contentMaxWidth": 1200, "gutter": 24 }
+  },
+
+  "tokens": {
+    "color": {
+      "primitive": {
+        "cobalt-50": "#EEF1FE",
+        "cobalt-100": "#DCE2FD",
+        "cobalt-200": "#B6C2FA",
+        "cobalt-400": "#5B74EE",
+        "cobalt-500": "#3A55E6",
+        "cobalt-600": "#2B44D4",
+        "cobalt-700": "#2236AE",
+        "cobalt-900": "#141F66",
+        "ink-950": "#0A0B10",
+        "ink-900": "#111318",
+        "ink-700": "#2E323C",
+        "ink-500": "#5E6472",
+        "ink-400": "#858B98",
+        "ink-200": "#D7DAE0",
+        "ink-100": "#ECEEF2",
+        "ink-50": "#F6F7F9",
+        "white": "#FFFFFF",
+        "sun-400": "#F7C944",
+        "sun-500": "#F2B705",
+        "mint-400": "#4ADE80",
+        "mint-500": "#22C55E",
+        "coral-400": "#F8677F",
+        "coral-500": "#EF4462",
+        "violet-400": "#9B7BF7"
+      },
+      "semantic": {
+        "bg.canvas": "{white}",
+        "bg.subtle": "{ink-50}",
+        "bg.brand": "{cobalt-500}",
+        "bg.brand-deep": "{cobalt-600}",
+        "bg.inverse": "{ink-950}",
+        "surface.card": "{white}",
+        "surface.card-on-brand": "rgba(255,255,255,0.06)",
+        "surface.card-on-brand-hover": "rgba(255,255,255,0.12)",
+        "border.default": "{ink-200}",
+        "border.subtle": "{ink-100}",
+        "border.on-brand": "rgba(255,255,255,0.22)",
+        "border.focus": "{cobalt-500}",
+        "text.primary": "{ink-900}",
+        "text.secondary": "{ink-500}",
+        "text.tertiary": "{ink-400}",
+        "text.on-brand": "{white}",
+        "text.on-brand-muted": "rgba(255,255,255,0.72)",
+        "text.link": "{cobalt-600}",
+        "action.primary": "{cobalt-500}",
+        "action.primary-hover": "{cobalt-600}",
+        "action.primary-active": "{cobalt-700}",
+        "action.on-brand": "{white}",
+        "status.success": "{mint-500}",
+        "status.error": "{coral-500}",
+        "rating.star": "{sun-500}"
+      },
+      "highlight": {
+        "_note": "Headline accent chips. Each section uses exactly one. Pair = background / text.",
+        "selection": { "bg": "{cobalt-50}", "text": "{cobalt-500}", "border": "{cobalt-500}", "handles": "{cobalt-500}", "usedIn": ["hero"] },
+        "sun": { "bg": "{sun-400}", "text": "{ink-900}", "usedIn": ["results", "future-of-search"] },
+        "cobalt": { "bg": "{cobalt-500}", "text": "{white}", "usedIn": ["key-areas", "success-stories"] },
+        "coral": { "bg": "{coral-400}", "text": "{white}", "usedIn": ["testimonials", "partners"] },
+        "mint": { "bg": "{mint-400}", "text": "{ink-900}", "usedIn": ["industries (on cobalt bg)"] }
+      },
+      "decorativeSquares": ["{sun-400}", "{cobalt-400}", "{mint-400}", "{coral-400}", "{violet-400}"],
+      "contrastAudit": {
+        "text.primary on bg.canvas": "17.9:1 AAA",
+        "text.secondary on bg.canvas": "5.9:1 AA",
+        "white on cobalt-500": "5.4:1 AA",
+        "ink-900 on sun-400": "12.1:1 AAA",
+        "white on coral-400": "3.1:1 — AA Large only; display sizes ≥ 32px only",
+        "ink-900 on mint-400": "11.0:1 AAA",
+        "text.on-brand-muted on cobalt-500": "4.6:1 AA"
+      }
+    },
+
+    "typography": {
+      "fontFamily": {
+        "display": "'Inter Tight', 'Inter', system-ui, sans-serif",
+        "body": "'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif",
+        "mono": "'JetBrains Mono', ui-monospace, monospace"
+      },
+      "features": { "body": "'ss01', 'cv11'", "numeric": "'tnum', 'lnum'" },
+      "scale": {
+        "display-xl": { "size": "clamp(44px, 5.6vw, 76px)", "lineHeight": 1.04, "weight": 500, "tracking": "-0.035em", "family": "display", "use": "Hero H1" },
+        "display-lg": { "size": "clamp(36px, 4.2vw, 56px)", "lineHeight": 1.08, "weight": 500, "tracking": "-0.03em", "family": "display", "use": "Section H2" },
+        "display-md": { "size": "clamp(28px, 3vw, 40px)", "lineHeight": 1.12, "weight": 500, "tracking": "-0.025em", "family": "display", "use": "Sub-section H2, testimonial quote" },
+        "stat": { "size": "clamp(32px, 3.4vw, 48px)", "lineHeight": 1.0, "weight": 600, "tracking": "-0.03em", "family": "display", "features": "numeric", "use": "Big numbers" },
+        "heading-lg": { "size": "24px", "lineHeight": 1.25, "weight": 600, "tracking": "-0.015em", "family": "display", "use": "Card titles (large)" },
+        "heading-md": { "size": "18px", "lineHeight": 1.33, "weight": 600, "tracking": "-0.01em", "family": "display", "use": "Card titles" },
+        "body-lg": { "size": "18px", "lineHeight": 1.55, "weight": 400, "tracking": "-0.005em", "family": "body", "use": "Hero subtitle, section intros" },
+        "body-md": { "size": "15px", "lineHeight": 1.6, "weight": 400, "tracking": "0", "family": "body", "use": "Card body" },
+        "body-sm": { "size": "13px", "lineHeight": 1.5, "weight": 400, "tracking": "0", "family": "body", "use": "Meta, captions, footer" },
+        "label": { "size": "14px", "lineHeight": 1.0, "weight": 500, "tracking": "-0.005em", "family": "body", "use": "Buttons, nav" },
+        "eyebrow": { "size": "11px", "lineHeight": 1.0, "weight": 600, "tracking": "0.14em", "transform": "uppercase", "family": "mono", "use": "Kickers above section titles" },
+        "quote": { "size": "clamp(22px, 2.2vw, 30px)", "lineHeight": 1.35, "weight": 500, "tracking": "-0.02em", "family": "display", "use": "Testimonial" }
+      },
+      "rules": {
+        "measure": { "body": "62ch", "intro": "48ch", "headline": "18ch" },
+        "headlineWrap": "text-wrap: balance",
+        "bodyWrap": "text-wrap: pretty",
+        "headlineAlignment": "center on marketing sections; left inside cards",
+        "neverBold": "Section headlines stay at weight 500. The highlight provides emphasis, so headlines are never bolded."
+      }
+    },
+
+    "spacing": {
+      "base": 4,
+      "scale": { "0": 0, "1": 4, "2": 8, "3": 12, "4": 16, "5": 20, "6": 24, "8": 32, "10": 40, "12": 48, "16": 64, "20": 80, "24": 96, "32": 128, "40": 160 },
+      "section": {
+        "paddingY": { "mobile": 72, "tablet": 96, "desktop": 128 },
+        "headerToContent": { "mobile": 40, "desktop": 64 },
+        "eyebrowToTitle": 16,
+        "titleToIntro": 20,
+        "introToCta": 32
+      },
+      "card": { "padding": { "sm": 20, "md": 28, "lg": 40 }, "gap": { "grid": 24, "dense": 16 } },
+      "stack": { "tight": 8, "default": 16, "loose": 24 }
+    },
+
+    "layout": {
+      "container": { "max": 1200, "wide": 1320, "narrow": 880, "paddingX": { "mobile": 20, "tablet": 32, "desktop": 40 } },
+      "grid": { "columns": 12, "gutter": 24 },
+      "breakpoints": { "sm": 640, "md": 768, "lg": 1024, "xl": 1280, "2xl": 1440 }
+    },
+
+    "radius": { "none": 0, "xs": 4, "sm": 8, "md": 12, "lg": 16, "xl": 24, "pill": 999 },
+
+    "border": { "hairline": "1px solid {border.default}", "subtle": "1px solid {border.subtle}", "onBrand": "1px solid {border.on-brand}" },
+
+    "shadow": {
+      "none": "none",
+      "xs": "0 1px 2px rgba(17,19,24,0.06)",
+      "sm": "0 2px 6px -1px rgba(17,19,24,0.06), 0 1px 2px rgba(17,19,24,0.04)",
+      "md": "0 12px 24px -8px rgba(17,19,24,0.10), 0 2px 6px rgba(17,19,24,0.04)",
+      "lg": "0 24px 48px -16px rgba(17,19,24,0.18), 0 4px 12px rgba(17,19,24,0.05)",
+      "brand-glow": "0 10px 30px -10px rgba(58,85,230,0.55)",
+      "focus-ring": "0 0 0 3px {cobalt-200}",
+      "focus-ring-on-brand": "0 0 0 3px rgba(255,255,255,0.55)"
+    },
+
+    "motion": {
+      "duration": { "instant": 80, "fast": 140, "base": 220, "slow": 360, "reveal": 640 },
+      "easing": {
+        "standard": "cubic-bezier(0.2, 0, 0, 1)",
+        "emphasized": "cubic-bezier(0.3, 0, 0, 1.15)",
+        "exit": "cubic-bezier(0.4, 0, 1, 1)",
+        "linear": "linear"
+      },
+      "reducedMotion": "Under prefers-reduced-motion: turn off float, marquee and parallax, swap reveal translates for opacity only (120ms), and stop counters from animating (show final values)."
+    },
+
+    "zIndex": { "base": 0, "decor": 1, "content": 2, "sticky": 50, "dropdown": 60, "overlay": 80, "modal": 90, "toast": 100 }
+  },
+
+  "components": {
+    "Button": {
+      "anatomy": ["container", "label", "trailingIcon?"],
+      "base": {
+        "height": { "sm": 36, "md": 44, "lg": 52 },
+        "paddingX": { "sm": 14, "md": 20, "lg": 24 },
+        "radius": "{radius.pill}",
+        "typography": "label",
+        "gap": 8,
+        "iconSize": 16,
+        "transition": "background-color {fast} {standard}, transform {fast} {standard}, box-shadow {base} {standard}"
+      },
+      "variants": {
+        "primary": {
+          "default": { "bg": "{action.primary}", "text": "{white}", "shadow": "none" },
+          "hover": { "bg": "{action.primary-hover}", "shadow": "{brand-glow}", "trailingIcon": "translateX(3px)" },
+          "active": { "bg": "{action.primary-active}", "transform": "translateY(1px) scale(0.99)", "shadow": "none" },
+          "focusVisible": { "outline": "none", "shadow": "{focus-ring}" },
+          "disabled": { "bg": "{ink-200}", "text": "{ink-400}", "cursor": "not-allowed" },
+          "loading": { "label": "visually hidden", "spinner": "16px, 2px stroke, white, 700ms linear spin", "ariaBusy": true }
+        },
+        "inverse": {
+          "_use": "Buttons on cobalt sections",
+          "default": { "bg": "{white}", "text": "{cobalt-600}" },
+          "hover": { "bg": "{cobalt-50}" },
+          "active": { "transform": "translateY(1px)" },
+          "focusVisible": { "shadow": "{focus-ring-on-brand}" }
+        },
+        "secondary": {
+          "default": { "bg": "transparent", "text": "{ink-900}", "border": "1px solid {ink-200}" },
+          "hover": { "border": "1px solid {ink-900}", "bg": "{ink-50}" },
+          "active": { "bg": "{ink-100}" },
+          "focusVisible": { "shadow": "{focus-ring}" }
+        },
+        "link": {
+          "_use": "'Discover more →', 'See our customers' stories →', 'Download the guide →'",
+          "default": { "text": "{text.link}", "typography": "label", "underline": "none", "trailingIcon": "arrow-right 14px" },
+          "hover": { "underline": "1px offset 4px", "trailingIcon": "translateX(3px)" },
+          "focusVisible": { "shadow": "{focus-ring}", "radius": "{radius.xs}" }
+        },
+        "icon": {
+          "_use": "Carousel prev/next",
+          "size": 40,
+          "radius": "{radius.pill}",
+          "default": { "bg": "{white}", "border": "1px solid {ink-200}", "icon": "{ink-900}" },
+          "hover": { "bg": "{ink-900}", "icon": "{white}", "border": "1px solid {ink-900}" },
+          "disabled": { "opacity": 0.35, "cursor": "default" },
+          "focusVisible": { "shadow": "{focus-ring}" }
+        }
+      }
+    },
+
+    "HighlightText": {
+      "_purpose": "The brand signature. Wraps one phrase inside a section headline.",
+      "variants": {
+        "selection": {
+          "_use": "Hero only. Mimics a selected text layer in a design tool.",
+          "padding": "0.02em 0.14em",
+          "bg": "{highlight.selection.bg}",
+          "text": "{highlight.selection.text}",
+          "border": "1.5px solid {highlight.selection.border}",
+          "radius": 0,
+          "handles": { "count": 4, "position": "each corner, centered on the border", "size": 8, "fill": "{white}", "stroke": "1.5px {cobalt-500}" },
+          "entrance": "Box scales X 0 → 1 from the left (origin left) over 520ms emphasized, text fades in at +120ms, then the handles pop in (scale 0 → 1, 60ms stagger)."
+        },
+        "fill": {
+          "_use": "All other section headlines; color comes from tokens.color.highlight",
+          "padding": "0 0.16em 0.04em",
+          "radius": "{radius.xs}",
+          "boxDecorationBreak": "clone",
+          "entrance": "When scrolled into view, the background wipes left → right (clip-path inset(0 100% 0 0) → inset(0)) over 560ms emphasized, after the headline has faded in."
+        }
+      },
+      "rules": [
+        "Only one per headline.",
+        "Never wrap more than four words.",
+        "On mobile, if the phrase wraps across lines, box-decoration-break: clone keeps each line chip-shaped."
+      ]
+    },
+
+    "Eyebrow": {
+      "typography": "eyebrow",
+      "color": { "onLight": "{text.tertiary}", "onBrand": "{text.on-brand-muted}" },
+      "prefix": "6×6 square in the section's highlight color, 8px gap",
+      "examples": ["FREE GUIDES & DOWNLOADS", "OUR SOLUTION", "WHY WORDLIFT", "CASE STUDIES"]
+    },
+
+    "NavBar": {
+      "height": { "default": 72, "condensed": 60 },
+      "layout": "container.wide; logo left · nav center-left · utilities right",
+      "bg": { "top": "transparent", "scrolled": "rgba(255,255,255,0.82) + backdrop-filter: saturate(180%) blur(14px)" },
+      "borderBottom": { "top": "none", "scrolled": "1px solid {border.subtle}" },
+      "position": "sticky top 0, z {sticky}",
+      "logo": { "height": 24, "color": "{cobalt-500}", "ariaLabel": "WordLift home" },
+      "items": [
+        { "label": "Platform", "hasMenu": true },
+        { "label": "Verticals", "hasMenu": true },
+        { "label": "Resources", "hasMenu": true },
+        { "label": "Company", "hasMenu": true },
+        { "label": "Pricing", "hasMenu": false }
+      ],
+      "utilities": [
+        { "label": "Login", "variant": "Button.link (ink-900, no arrow)" },
+        { "label": "Contact Us", "variant": "Button.primary sm" }
+      ],
+      "navItem": {
+        "typography": "label",
+        "paddingX": 12,
+        "height": 36,
+        "radius": "{radius.pill}",
+        "chevron": "12px, rotates 180° when open (fast, standard)",
+        "states": {
+          "default": { "text": "{ink-700}" },
+          "hover": { "text": "{ink-900}", "bg": "{ink-50}" },
+          "open": { "text": "{ink-900}", "bg": "{ink-100}" },
+          "current": { "text": "{ink-900}", "indicator": "4px dot under label, {cobalt-500}" },
+          "focusVisible": { "shadow": "{focus-ring}" }
+        }
+      },
+      "megaMenu": {
+        "trigger": "hover with 120ms intent delay, plus click, plus Enter/Space/ArrowDown",
+        "panel": { "width": 720, "radius": "{radius.lg}", "bg": "{white}", "shadow": "{lg}", "border": "{border.subtle}", "padding": 24, "offsetY": 8 },
+        "layout": "2 columns of link items + 1 featured promo card (cobalt bg)",
+        "item": { "icon": "32px tile, {cobalt-50} bg, {cobalt-500} glyph", "title": "heading-md 15px", "desc": "body-sm secondary", "hover": "bg {ink-50}, radius md" },
+        "motion": { "enter": "opacity 0→1, translateY(-6px)→0, scale(0.98)→1, 200ms standard", "exit": "opacity→0, 120ms exit" },
+        "dismiss": ["Escape (returns focus to trigger)", "click outside", "pointer leaves for 200ms"]
+      },
+      "scrollBehavior": "After 24px of scroll, condense to 60px and apply the scrolled bg. Hide when scrolling down faster than 8px per frame past 600px; show again on any upward scroll.",
+      "mobile": {
+        "breakpoint": "< lg",
+        "trigger": "Hamburger 40×40, morphs to an X over 220ms",
+        "drawer": "Full-screen sheet with a white bg. Items are accordion rows 56px tall, with the Contact Us CTA pinned to the bottom (safe-area padding).",
+        "bodyScrollLock": true
+      }
+    },
+
+    "Card": {
+      "base": { "bg": "{surface.card}", "radius": "{radius.lg}", "border": "{border.hairline}", "padding": "{card.padding.md}", "transition": "transform {base} {standard}, box-shadow {base} {standard}, border-color {base} {standard}" },
+      "states": {
+        "default": { "shadow": "{xs}" },
+        "hover": { "shadow": "{md}", "transform": "translateY(-4px)", "border": "1px solid {ink-200}" },
+        "active": { "transform": "translateY(-1px)", "shadow": "{sm}" },
+        "focusWithin": { "shadow": "{focus-ring}" }
+      },
+      "clickable": "If the card has one primary link, the whole card is the hit target (stretched-link pseudo-element). Secondary links stay above it with z-index.",
+      "variants": {
+        "resource": {
+          "_section": "guides-carousel",
+          "width": 360,
+          "padding": 0,
+          "media": { "aspectRatio": "16/10", "radius": "{radius.lg} {radius.lg} 0 0", "objectFit": "cover", "hover": "image scale 1.04 over 600ms standard" },
+          "tag": { "position": "top-left over media, 16px inset", "style": "pill, 24px height, white bg, eyebrow typography" },
+          "body": { "padding": 24, "gap": 12 },
+          "meta": { "typography": "body-sm", "color": "{text.tertiary}", "format": "{Month} {YYYY} · {readTime}" },
+          "title": { "typography": "heading-md", "clamp": 3 },
+          "cta": "Button.link 'Download the guide' with a download-arrow icon"
+        },
+        "pillar-on-brand": {
+          "_section": "pillars (cobalt bg)",
+          "bg": "{surface.card-on-brand}",
+          "border": "{border.onBrand}",
+          "radius": "{radius.md}",
+          "padding": 28,
+          "minHeight": 240,
+          "icon": { "size": 20, "color": "{white}", "container": "none, inline before title" },
+          "title": { "typography": "heading-md", "color": "{white}" },
+          "lead": { "typography": "body-md", "weight": 600, "color": "{white}", "marginTop": 40 },
+          "body": { "typography": "body-sm", "color": "{text.on-brand-muted}" },
+          "states": {
+            "hover": { "bg": "{surface.card-on-brand-hover}", "border": "1px solid rgba(255,255,255,0.4)", "transform": "none" }
+          },
+          "spotlight": "On hover, a radial gradient (240px, rgba(255,255,255,0.10)) follows the cursor through --mx/--my custom properties."
+        },
+        "feature": {
+          "_section": "key-areas",
+          "bg": "transparent",
+          "border": "none",
+          "padding": "24px 0",
+          "divider": "1px top border {border.subtle}",
+          "icon": { "size": 20, "color": "{cobalt-500}", "marginBottom": 20 },
+          "title": { "typography": "heading-md" },
+          "body": { "typography": "body-sm", "color": "{text.secondary}", "measure": "34ch" },
+          "states": { "hover": { "divider": "top border animates to 2px {cobalt-500} from the left over 360ms", "icon": "rotate -8° and back, 360ms emphasized" } }
+        },
+        "industry": {
+          "_section": "industries (cobalt bg)",
+          "bg": "{surface.card-on-brand}",
+          "border": "{border.onBrand}",
+          "radius": "{radius.md}",
+          "padding": 28,
+          "minHeight": 300,
+          "layout": "Title row at the top, body text anchored to the bottom (flex column, justify space-between)",
+          "title": { "typography": "heading-lg", "color": "{white}", "icon": "16px leading glyph" },
+          "body": { "typography": "body-sm", "color": "{text.on-brand-muted}", "measure": "30ch" },
+          "states": {
+            "hover": { "bg": "{white}", "title": "{ink-900}", "body": "{ink-500}", "icon": "{cobalt-500}", "transition": "all {slow} {standard}", "arrow": "↗ appears top-right, opacity 0→1 with translate(-4px,4px)→0" }
+          },
+          "featuredVariant": {
+            "_use": "First tile: 'Use Cases — Discover how WordLift can help your business'",
+            "bg": "{cobalt-700}",
+            "badge": "pill 'Use Cases', white 12% bg",
+            "title": "heading-lg, white",
+            "cta": "Button.inverse sm"
+          }
+        },
+        "case-study": {
+          "_section": "success-stories",
+          "bg": "transparent",
+          "border": "none",
+          "padding": 0,
+          "logo": { "height": 40, "maxWidth": 200, "filter": "grayscale(1) contrast(1.1)", "hoverFilter": "none", "marginBottom": 32 },
+          "eyebrow": "Industry + region (e.g. 'E-COMMERCE · ITALY')",
+          "headline": { "typography": "heading-md", "measure": "28ch", "emphasis": "Numbers inside the headline use the 'stat-inline' style: weight 700, {cobalt-600}, tnum" },
+          "body": { "typography": "body-sm", "color": "{text.secondary}" },
+          "cta": "Button.link 'See our customers' stories'"
+        },
+        "partner": {
+          "_section": "partners",
+          "bg": "{bg.subtle}",
+          "border": "none",
+          "radius": "{radius.lg}",
+          "padding": 0,
+          "logoStage": { "height": 160, "bg": "{white}", "radius": "{radius.lg} {radius.lg} 0 0", "margin": 8, "logo": "centered, max 70% width, max 56px height", "badge": "Program badge (e.g. 'Inception Program') in a framed box when it applies" },
+          "body": { "padding": 24, "gap": 12 },
+          "title": { "typography": "heading-md" },
+          "bullets": { "typography": "body-sm", "color": "{text.secondary}", "marker": "6×6 square {cobalt-500}", "gap": 8, "maxItems": 5 },
+          "cta": { "component": "Button.link 'Discover more'", "position": "pinned to the card bottom (margin-top: auto)" },
+          "states": { "hover": { "bg": "{cobalt-50}", "logoStage": "shadow {sm}" } }
+        }
+      }
+    },
+
+    "Stat": {
+      "_section": "results",
+      "layout": "vertical stack, left-aligned, gap 12",
+      "icon": { "size": 20, "color": "{cobalt-500}" },
+      "value": { "typography": "stat", "color": "{ink-900}" },
+      "label": { "typography": "body-md", "color": "{text.secondary}", "measure": "24ch" },
+      "divider": "1px left border {border.subtle}, 24px padding-left (desktop); top border on mobile",
+      "interaction": {
+        "countUp": "Counts from 0 to the value over 1200ms (easeOutExpo) the first time the stat is ≥ 50% visible. Keeps the suffix (x, %, X) static.",
+        "accessibility": "aria-label carries the final value so screen readers never hear the in-between numbers."
+      },
+      "contentNote": "The source design puts the number mid-sentence ('Get up to 3x revenue...'). The improved version pulls the number out as the hero value and keeps the sentence as the label."
+    },
+
+    "Testimonial": {
+      "_section": "testimonials",
+      "container": { "maxWidth": 880, "bg": "{white}", "border": "{border.hairline}", "radius": "{radius.xl}", "padding": { "mobile": 32, "desktop": 56 }, "shadow": "{sm}" },
+      "eyebrow": "TESTIMONIALS",
+      "quoteMark": { "glyph": "“", "size": 96, "color": "{coral-400}", "position": "absolute, top -28px, left 48px", "font": "display" },
+      "quote": { "typography": "quote", "color": "{ink-900}", "measure": "40ch" },
+      "attribution": {
+        "layout": "row with the avatar at 48px (circle) · name / role stack · company logo on the right (opacity 0.7)",
+        "name": "heading-md 15px",
+        "role": "body-sm secondary"
+      },
+      "controls": { "component": "Button.icon ×2", "position": "bottom-right of card", "gap": 8 },
+      "pagination": "Thin progress segments (24×2px each, ink-200; active cobalt-500 fills over autoplay duration)",
+      "behavior": {
+        "autoplay": "7000ms, pauses on hover, focus-within, and when the tab is hidden",
+        "transition": "Outgoing quote fades and translates Y -8px over 180ms, incoming one fades from +8px over 280ms, with a crossfade overlap of 60ms.",
+        "keyboard": "← / → while focus is inside the region",
+        "a11y": "role='region' aria-roledescription='carousel' aria-label='Customer testimonials'; slides use aria-roledescription='slide' with an aria-label of 'n of N'; the live region is polite only when autoplay is paused."
+      }
+    },
+
+    "Carousel": {
+      "_section": "guides-carousel",
+      "track": "Horizontal scroll-snap (x mandatory), gap 24, scroll-padding equal to the container padding. The overflow bleeds to the right edge of the viewport.",
+      "controls": "Button.icon prev/next, bottom-left beneath the track",
+      "states": { "atStart": "prev disabled", "atEnd": "next disabled" },
+      "drag": "Pointer drag with momentum on desktop; native swipe on touch",
+      "edgeFade": "24px mask-image gradient on the right edge while more content remains",
+      "a11y": "Cards are list items; buttons have aria-controls pointing at the track and labels 'Previous guides' / 'Next guides'"
+    },
+
+    "LogoMarquee": {
+      "_section": "logo-strip",
+      "bg": "{bg.inverse}",
+      "height": 96,
+      "logo": { "height": 24, "color": "rgba(255,255,255,0.72)", "hover": "rgba(255,255,255,1)" },
+      "gap": 72,
+      "motion": "Infinite translateX loop at 40px/s using a duplicated list, with aria-hidden on the clone.",
+      "mask": "Linear-gradient fade, 120px on both edges",
+      "interaction": "Pauses on hover",
+      "label": "Visually hidden h2 'Trusted by'"
+    },
+
+    "ReviewBadge": {
+      "_section": "user-reviews",
+      "size": { "width": 120, "height": 64 },
+      "layout": "row, gap 32, centered, wraps on mobile",
+      "style": "Source badge image with the rating below it: stars at 14px in {rating.star}, score at body-sm 600 (e.g. '4.8 / 5')",
+      "states": { "hover": "translateY(-2px), shadow sm" },
+      "link": "Opens the review platform in a new tab (rel='noopener', with an external-link icon announced to assistive tech)"
+    },
+
+    "FloatingSquares": {
+      "_section": "hero, future-of-search",
+      "shape": "Square, radius 4, with no rotation (crisp pixel feel)",
+      "sizes": [14, 20, 28, 36],
+      "colors": "{color.decorativeSquares}",
+      "placement": "Positioned absolutely in the left and right gutters, kept clear of the content column. Use 6–8 per section and never overlap text.",
+      "motion": {
+        "idle": "Each square floats translateY ±6px in a 5–8s ease-in-out alternate loop, with a randomized delay.",
+        "parallax": "Pointer parallax up to 12px, depth-weighted by size (bigger moves more).",
+        "scroll": "Drifts at 0.15× scroll speed"
+      },
+      "ariaHidden": true
+    },
+
+    "FormField": {
+      "_section": "newsletter",
+      "label": { "typography": "body-sm", "weight": 500, "color": "{ink-700}", "marginBottom": 8 },
+      "input": { "height": 48, "radius": "{radius.sm}", "paddingX": 16, "bg": "{white}", "border": "1px solid {ink-200}", "typography": "body-md", "placeholder": "{ink-400}" },
+      "states": {
+        "default": {},
+        "hover": { "border": "1px solid {ink-400}" },
+        "focus": { "border": "1px solid {cobalt-500}", "shadow": "{focus-ring}" },
+        "filled": { "border": "1px solid {ink-200}" },
+        "invalid": { "border": "1px solid {coral-500}", "shadow": "0 0 0 3px rgba(239,68,98,0.15)", "helper": "body-sm, {coral-500}, alert-circle 14px icon, aria-describedby" },
+        "valid": { "trailingIcon": "check 16px {mint-500}" },
+        "disabled": { "bg": "{ink-50}", "text": "{ink-400}", "cursor": "not-allowed" }
+      },
+      "validation": "Validate on blur, then re-validate on input once a field has errored. The email field uses type=email with autocomplete=email.",
+      "required": "Asterisk in {coral-500}, aria-required='true'"
+    },
+
+    "Footer": {
+      "bg": "{bg.brand}",
+      "text": "{text.on-brand-muted}",
+      "paddingTop": 96,
+      "grid": "5 columns at desktop: brand column (span 2: logo, mission line, socials) followed by Company, Solutions, Learn, and Helpful Links",
+      "columnTitle": { "typography": "label", "color": "{white}", "marginBottom": 20 },
+      "link": { "typography": "body-sm", "gap": 12, "hover": "{white}, underline offset 4" },
+      "socials": { "size": 36, "radius": "{radius.pill}", "border": "{border.onBrand}", "hover": "white bg, cobalt icon" },
+      "legalBar": { "borderTop": "{border.onBrand}", "paddingY": 24, "typography": "body-sm", "layout": "Links on the left (Privacy Policy, Terms of Service, GDPR, Cookie Settings), address and VAT in the center, credit on the right" },
+      "watermark": "Oversized 'wordlift' wordmark at the bottom edge, 18vw, rgba(255,255,255,0.06), cropped 30% by the viewport"
+    }
+  },
+
+  "sections": [
+    {
+      "id": "nav",
+      "component": "NavBar"
+    },
+    {
+      "id": "hero",
+      "bg": "{bg.canvas} + a faint 48px dot grid (ink-200 at 40% opacity), radial-masked to the center",
+      "paddingY": { "mobile": "96 / 64", "desktop": "160 / 112" },
+      "layout": "centered single column, container.narrow",
+      "content": {
+        "h1": { "text": "The {AI Discovery} Platform for Brands", "highlight": { "phrase": "AI Discovery", "variant": "selection" }, "typography": "display-xl", "lineBreak": "after 'Discovery'" },
+        "subtitle": { "text": "Get found and recommended by AI assistants and next-gen search engines", "typography": "body-lg", "color": "{text.secondary}", "measure": "40ch", "marginTop": 24 },
+        "ctaGroup": {
+          "marginTop": 40,
+          "primary": { "label": "Start Your AI Visibility Audit", "variant": "Button.primary lg", "icon": "arrow-right" },
+          "secondary": { "label": "Book a demo", "variant": "Button.secondary lg", "_improvement": "Added a lower-commitment path next to the audit CTA" }
+        },
+        "trustLine": { "text": "4.8 ★ on Capterra · Trusted by 1,000+ brands", "typography": "body-sm", "color": "{text.tertiary}", "marginTop": 24, "_improvement": "Moves social proof above the fold" },
+        "decor": "FloatingSquares ×8 (4 per side)"
+      },
+      "entrance": {
+        "sequence": [
+          { "el": "h1 words", "anim": "fade + translateY(16px)→0, 40ms stagger per word", "delay": 0 },
+          { "el": "highlight box", "anim": "HighlightText.selection.entrance", "delay": 280 },
+          { "el": "subtitle", "anim": "fade + rise 12px", "delay": 420 },
+          { "el": "ctaGroup", "anim": "fade + rise 12px", "delay": 520 },
+          { "el": "squares", "anim": "scale 0→1 (emphasized), 50ms stagger", "delay": 600 }
+        ]
+      }
+    },
+    {
+      "id": "logo-strip",
+      "component": "LogoMarquee",
+      "content": { "logos": ["Client 1", "Client 2", "Client 3", "Client 4", "Client 5 (enterprise partner)"] }
+    },
+    {
+      "id": "guides-carousel",
+      "bg": "{bg.canvas}",
+      "layout": "Header row with the eyebrow and title on the left and carousel controls on the right; track below",
+      "content": {
+        "eyebrow": "FREE GUIDES & DOWNLOADS",
+        "title": { "text": "Playbooks for the AI search era", "typography": "display-md", "align": "left", "_improvement": "The source section has no headline; added one for scannability and SEO." },
+        "cards": [
+          { "variant": "resource", "date": "January 2026", "tag": "FREE GUIDE", "title": "A step-by-step guide to structuring your product data so AI agents can discover, recommend, and buy your products", "cta": "Download the guide" },
+          { "variant": "resource", "date": "August 2026", "tag": "FREE AUDIT", "title": "Get instant AI-visibility insights and actionable recommendations to optimize for ChatGPT, Perplexity, and Google AI Overviews", "cta": "Get Your Free Audit Now" },
+          { "variant": "resource", "date": "September 2026", "tag": "FREE GUIDE", "title": "Step-by-step instructions, real examples, and practical strategies to boost visibility in AI-driven search", "cta": "Download the guide" }
+        ]
+      },
+      "component": "Carousel"
+    },
+    {
+      "id": "pillars",
+      "bg": "{bg.brand}",
+      "text": "{text.on-brand}",
+      "decor": "Subtle 1px grid lines at 64px (rgba(255,255,255,0.06)) plus a soft radial glow of {cobalt-400} in the top right",
+      "radius": "Section has {radius.xl} rounded corners, inset 16px from the viewport (a 'floating slab')",
+      "content": {
+        "eyebrow": "OUR SOLUTION",
+        "h2": { "text": "25+ years of SEO Excellence turned into AI Powered Solutions", "typography": "display-lg", "color": "{white}", "highlight": null, "note": "Stays unhighlighted on purpose: the cobalt block is the emphasis here" },
+        "grid": {
+          "columns": { "desktop": 3, "tablet": 2, "mobile": 1 },
+          "gap": 16,
+          "cards": [
+            { "variant": "pillar-on-brand", "icon": "radar", "title": "Reach", "lead": "Reach more potential customers and maximize your digital presence.", "body": "Turn your data into structured knowledge graphs for better rankings." },
+            { "variant": "pillar-on-brand", "icon": "sparkles", "title": "Engage", "lead": "Engage your audience and boost interactions with products and content.", "body": "Use AI to generate content that optimizes site navigation and drives traffic." },
+            { "variant": "pillar-on-brand", "icon": "target", "title": "Convert", "lead": "Convert interactions into conversations with AI-driven insights.", "body": "Gain predictive insights to support visitors and increase sales." },
+            { "variant": "pillar-on-brand", "icon": "trending-up", "title": "Thrive", "lead": "Learn from every interaction and turn insights into strategic advantages.", "body": "Drive continuous improvement and innovation.", "span": "full row (3 cols); horizontal layout with the title left and copy right" }
+          ]
+        }
+      },
+      "reveal": "Cards fade and rise 24px with an 80ms stagger once 20% is visible"
+    },
+    {
+      "id": "results",
+      "bg": "{bg.canvas}",
+      "layout": "Centered header, then a 3-column stat row",
+      "content": {
+        "h2": { "text": "Drive {Measurable Results}", "highlight": { "phrase": "Measurable Results", "variant": "fill", "color": "sun" }, "typography": "display-lg" },
+        "intro": { "text": "Unlock the full potential of your digital strategy with proven, data-driven techniques. Achieve exponential growth in revenue, traffic, and lead generation by optimizing your online presence for maximum impact.", "typography": "body-lg", "color": "{text.secondary}", "measure": "56ch" },
+        "cta": { "label": "Discover How", "variant": "Button.primary md" },
+        "stats": [
+          { "icon": "chart-bar", "value": "3x", "label": "more revenue from organic search" },
+          { "icon": "arrow-up-right", "value": "+80%", "label": "increase in organic traffic" },
+          { "icon": "users", "value": "2x", "label": "qualified leads from organic traffic" }
+        ],
+        "statsMarginTop": 80
+      }
+    },
+    {
+      "id": "key-areas",
+      "bg": "{bg.canvas}",
+      "content": {
+        "eyebrow": "WHY WORDLIFT",
+        "h2": { "text": "AI-Driven Solutions Empowering Your Team Across {Key Areas}", "highlight": { "phrase": "Key Areas", "variant": "fill", "color": "cobalt" }, "typography": "display-lg" },
+        "grid": {
+          "columns": { "desktop": 3, "tablet": 2, "mobile": 1 },
+          "columnGap": 48,
+          "rowGap": 40,
+          "items": [
+            { "variant": "feature", "icon": "user-check", "title": "Human-Led", "body": "We empower your team to leverage AI for smarter, more effective marketing strategies." },
+            { "variant": "feature", "icon": "layers", "title": "Unique Vertical Expertise", "body": "We boost your team's performance with industry-specific insights and optimization." },
+            { "variant": "feature", "icon": "lightbulb", "title": "Strategic Knowledge", "body": "We enable your leadership with intelligent data quality, turning customer data into winning market moves." },
+            { "variant": "feature", "icon": "share-2", "title": "Dynamic Knowledge Graph", "body": "We build interconnected business information, enhancing your content discoverability across all channels." },
+            { "variant": "feature", "icon": "shield", "title": "Security", "body": "We safeguard your data while leveraging AI, ensuring ownership and protection under your team's oversight." },
+            { "variant": "feature", "icon": "bot", "title": "AI Agents", "body": "We improve your customer interactions with brand-controlled AI agents, elevating support to new heights." }
+          ]
+        }
+      }
+    },
+    {
+      "id": "testimonials",
+      "bg": "{bg.subtle}",
+      "content": {
+        "h2": { "text": "What Our {Clients Say}", "highlight": { "phrase": "Clients Say", "variant": "fill", "color": "coral" }, "typography": "display-lg" },
+        "slides": [
+          {
+            "quote": "We have already achieved positive results in the first months of testing, increasing visibility and sales. Also thanks to the support of our SEO team and the WordLift team, the implementation was fast and efficient.",
+            "name": "Silvia Scarone",
+            "role": "Marketing Manager",
+            "company": "Scarosso"
+          }
+        ]
+      },
+      "component": "Testimonial"
+    },
+    {
+      "id": "user-reviews",
+      "bg": "{bg.subtle}",
+      "paddingTop": 0,
+      "content": {
+        "h3": { "text": "What users are saying", "typography": "display-md" },
+        "badges": [
+          { "source": "G2", "rating": null },
+          { "source": "WordPress.org", "rating": null },
+          { "source": "Capterra", "rating": 4.8 },
+          { "source": "GetApp", "rating": null }
+        ]
+      },
+      "component": "ReviewBadge",
+      "_improvement": "Merged with testimonials into one shared bg block so the social proof reads as a single beat"
+    },
+    {
+      "id": "industries",
+      "bg": "{bg.brand}",
+      "radius": "{radius.xl}, inset 16px (matches pillars)",
+      "content": {
+        "h2": { "text": "AI-Powered Solutions Tailored to {Your Industry}", "highlight": { "phrase": "Your Industry", "variant": "fill", "color": "mint" }, "typography": "display-lg", "color": "{white}" },
+        "grid": {
+          "columns": { "desktop": 3, "tablet": 2, "mobile": 1 },
+          "gap": 16,
+          "items": [
+            { "variant": "industry.featured", "badge": "Use Cases", "title": "Discover how WordLift can help your business.", "cta": "Explore use cases" },
+            { "variant": "industry", "icon": "shopping-bag", "title": "E-commerce", "body": "Supercharge your product visibility and sales journeys, driving targeted traffic to catalogs and category pages across all search platforms." },
+            { "variant": "industry", "icon": "plane", "title": "Travel", "body": "Turn your destination into a traveler's dream. Our AI boosts your content's visibility, helping adventure seekers discover and plan their next unforgettable journey through your offerings." },
+            { "variant": "industry", "icon": "newspaper", "title": "Media", "body": "Empower your editorial team with AI that scales your unique voice, optimizing content performance across your entire media portfolio." },
+            { "variant": "industry", "icon": "plug", "title": "E-commerce Enabler", "body": "Amplify your client success rates with our AI-powered tools, delivering measurable growth and setting your agency apart in a competitive market." }
+          ],
+          "_layoutNote": "With 5 tiles, the featured tile spans 2 rows on desktop (grid-row: span 2) so the grid comes out even."
+        }
+      }
+    },
+    {
+      "id": "success-stories",
+      "bg": "{bg.canvas}",
+      "content": {
+        "eyebrow": "CASE STUDIES",
+        "h2": { "text": "Real Results, Real Impact: Our {Success Stories}", "highlight": { "phrase": "Success Stories", "variant": "fill", "color": "cobalt" }, "typography": "display-lg" },
+        "grid": {
+          "columns": { "desktop": 3, "mobile": 1 },
+          "gap": 48,
+          "dividers": "1px vertical rules between columns on desktop",
+          "items": [
+            { "variant": "case-study", "logo": "eye-oo", "eyebrow": "E-COMMERCE", "headline": "80% Traffic Surge, 30% Sales Boost: E-commerce Win. How Eye-oo outperformed competitors with AI-driven content strategies.", "highlightNumbers": ["80%", "30%"] },
+            { "variant": "case-study", "logo": "SalzburgerLand", "eyebrow": "TRAVEL · AUSTRIA", "headline": "92.65% Organic Search Increase: Tourism Success. SalzburgerLand Tourismus skyrocketed visibility with our strategic knowledge graph.", "highlightNumbers": ["92.65%"] },
+            { "variant": "case-study", "logo": "windowsreport", "eyebrow": "MEDIA", "headline": "0 to 2 Million Monthly Visitors: Publishing Explosion. WindowsReport.com achieved a 6% visibility boost in 8 months using AI-powered SEO.", "highlightNumbers": ["2 Million", "6%"] }
+          ]
+        }
+      }
+    },
+    {
+      "id": "partners",
+      "bg": "{bg.canvas}",
+      "content": {
+        "h2": { "text": "Collaborating with Our Trusted {Partners}", "highlight": { "phrase": "Partners", "variant": "fill", "color": "coral" }, "typography": "display-lg" },
+        "grid": {
+          "columns": { "desktop": 3, "tablet": 2, "mobile": 1 },
+          "gap": 24,
+          "equalHeight": true,
+          "items": [
+            { "variant": "partner", "logo": "Microsoft", "title": "Empowering Growth: The Microsoft ISV Program", "bullets": ["Supports ISVs in developing cloud solutions", "Enhances WordLift's SEO tools with Microsoft", "Encourages collaboration within the partner ecosystem", "Showcases WordLift in the Azure Marketplace", "Vital for WordLift's growth and innovation"] },
+            { "variant": "partner", "logo": "Google Cloud for Startups", "title": "Google Cloud: Accelerating Innovation Through the Google for Startups Program", "bullets": ["Empowers startups with robust cloud credits and technical resources", "Accelerates the development of AI-powered solutions", "Enhances scalability, security, and performance", "Drives innovation in SEO"] },
+            { "variant": "partner", "logo": "NVIDIA", "badge": "Inception Program", "title": "Driving Innovation: The NVIDIA Inception Program", "bullets": ["Supports startups at the forefront of AI", "Provides access to cutting-edge GPU technologies and tools", "Enhances WordLift's AI capabilities", "Offers technical guidance to accelerate product development", "Reinforces WordLift's leadership in industry trends"] },
+            { "variant": "partner", "logo": "GS1", "badge": "Solution Partner", "title": "Solution Partner GS1 Italy Digital Link", "bullets": ["GS1-validated data enhances product discoverability online", "Ensures consistent, reliable product details for consumers", "Enables personalized, customer-focused interactions", "Automates updates, reducing manual effort and errors", "Streamlines e-commerce processes and speeds up updates"] },
+            { "variant": "partner", "logo": "Redlink", "title": "Redlink GmbH's Journey with WordLift", "bullets": ["Redlink GmbH specializes in digital content solutions", "Partnered with WordLift to enhance their content strategies", "The partnership boosts SEO and content visibility", "Redlink achieved notable traffic increases"] },
+            { "variant": "partner", "logo": "databricks", "title": "WordLift joins the Databricks Partner Program", "bullets": ["Databricks specializes in data intelligence and AI scale", "WordLift integrates knowledge graph capabilities", "Strengthens enterprise-grade AI SEO", "Together, we accelerate AI-powered content and search visibility"] }
+          ]
+        }
+      }
+    },
+    {
+      "id": "future-of-search",
+      "bg": "{bg.canvas}",
+      "content": {
+        "h2": { "text": "The {Future of Search} is AI-powered", "highlight": { "phrase": "Future of Search", "variant": "fill", "color": "sun" }, "typography": "display-lg" },
+        "ctaCard": {
+          "maxWidth": 880,
+          "bg": "{white}",
+          "border": "{border.hairline}",
+          "radius": "{radius.xl}",
+          "padding": 48,
+          "shadow": "{lg}",
+          "layout": "Left-aligned copy, with FloatingSquares spilling out past the bottom-right edge (overflow visible)",
+          "icon": "Small pixel-cluster glyph, 32px",
+          "kicker": { "text": "Will you lead or follow?", "typography": "heading-md" },
+          "body": { "text": "Traditional search may plummet 25% by 2026, while 58% of users already prefer AI for product discovery. As consumers embrace ChatGPT and AI interfaces, will your brand remain visible? WordLift ensures you dominate this new AI-powered landscape, guaranteeing visibility wherever your audience searches.", "typography": "body-md", "color": "{text.secondary}", "measure": "56ch" },
+          "cta": { "label": "Secure Your AI Discovery Dominance", "variant": "Button.primary lg" }
+        }
+      },
+      "reveal": "Card scales 0.96→1 and fades in over 640ms emphasized, while the squares stagger outward from the card corner."
+    },
+    {
+      "id": "newsletter",
+      "bg": "{bg.canvas}",
+      "borderTop": "{border.subtle}",
+      "layout": "container.narrow, centered",
+      "content": {
+        "h2": { "text": "Newsletter", "typography": "display-md" },
+        "intro": { "text": "Learn how to use structured data to get better SEO rankings. Practical SEO tips, webinars, and case studies right in your inbox once a week.", "typography": "body-md", "color": "{text.secondary}", "emphasis": "'once a week' in weight 600, ink-900" },
+        "form": {
+          "layout": "2-col (First name | Last name), then a full-width Email, then Submit aligned right (full width on mobile)",
+          "gap": 16,
+          "fields": [
+            { "name": "firstName", "label": "First Name", "type": "text", "autocomplete": "given-name", "required": true },
+            { "name": "lastName", "label": "Last Name", "type": "text", "autocomplete": "family-name", "required": false },
+            { "name": "email", "label": "Email", "type": "email", "autocomplete": "email", "required": true }
+          ],
+          "consent": { "text": "I agree to receive emails. Unsubscribe anytime.", "type": "checkbox", "required": true, "typography": "body-sm", "_improvement": "GDPR-explicit consent" },
+          "submit": { "label": "Subscribe", "variant": "Button.primary md" },
+          "states": {
+            "idle": {},
+            "submitting": "Button shows loading, fields disabled, aria-busy on the form",
+            "success": "The form collapses (height animates, 360ms) into a success panel with a mint check icon, 'You're in. First issue lands next week.', and focus moves to the panel heading",
+            "error": "Inline banner above the submit button, coral-500 left border, 'Something went wrong. Try again.', role='alert'; field values are kept"
+          }
+        }
+      },
+      "component": "FormField"
+    },
+    {
+      "id": "footer",
+      "component": "Footer",
+      "content": {
+        "columns": {
+          "Company": ["About Us", "Contact Us", "Partnership", "Press", "Careers", "Hiring", "Brand Guidelines"],
+          "Solutions": ["Visibility", "Product Performance", "Agent", "Knowledge Services", "SEO Management Service"],
+          "Learn": ["Blog", "Academy", "Best SEO Case Studies", "SEO Glossary"],
+          "Helpful Links": ["AI Audit for the Agentic Web", "AI Search Visibility Tool", "Structured Data Audit Tool", "FAQ"]
+        },
+        "socials": ["X", "LinkedIn", "Facebook", "Instagram", "YouTube"],
+        "legal": ["Privacy Policy", "Terms of Service", "GDPR", "Cookie Settings"]
+      }
+    }
+  ],
+
+  "responsive": {
+    "mobile (<640)": {
+      "nav": "Logo + hamburger; Contact Us moves into the drawer",
+      "hero": "h1 at 44px, the CTAs stack full-width, squares cut to 4 and kept in the top corners only",
+      "grids": "Single column; pillars, industries, and partners keep a 16px gap",
+      "stats": "Stacked with top dividers",
+      "caseStudies": "Become a horizontal snap carousel with 85% card width",
+      "partners": "Bullets clamp to 3, with a 'Show more' toggle",
+      "floatingSlabs": "Inset drops from 16px to 8px and radius from 24 to 16",
+      "footer": "The brand column on top, then link columns as 2×2, then the legal links stacked"
+    },
+    "tablet (640–1023)": {
+      "grids": "2 columns",
+      "industries": "The featured tile spans the full row",
+      "testimonial": "padding 40"
+    },
+    "desktop (≥1024)": "As specified",
+    "touchTargets": "Minimum 44×44 for every interactive element; nav items get 48px height on mobile"
+  },
+
+  "interactions": {
+    "scrollReveal": {
+      "default": "opacity 0→1, translateY 24px→0, 640ms emphasized",
+      "trigger": "IntersectionObserver, threshold 0.2, rootMargin '0px 0px -10% 0px', runs once",
+      "stagger": "Children stagger 80ms each, capped at 6 (later children share the last delay)"
+    },
+    "hoverPhilosophy": "Hover states on white cards lift them; on cobalt cards they brighten or invert. Hover never changes layout or size, so nothing reflows.",
+    "cursor": "pointer only on real interactive elements; decorative cards have no pointer",
+    "smoothScroll": "Anchor links use scroll-behavior: smooth with scroll-margin-top equal to the nav height + 16",
+    "linkPrefetch": "Prefetch on hover intent for the nav mega-menu and case-study links"
+  },
+
+  "accessibility": {
+    "landmarks": ["header > nav[aria-label='Primary']", "main", "section[aria-labelledby] for each section", "footer"],
+    "headingOrder": "One h1 (hero); each section gets an h2; card titles are h3",
+    "highlightSemantics": "Highlights are <mark> with styles reset, or <span>. Never put role or aria on them; the text reads naturally.",
+    "focus": "Every interactive element shows :focus-visible with the focus-ring token. On cobalt, use focus-ring-on-brand.",
+    "skipLink": "'Skip to content', the first focusable element, visible on focus",
+    "motion": "{tokens.motion.reducedMotion}",
+    "images": "Logos get alt='{Company} logo'; decorative imagery gets alt='' and aria-hidden",
+    "color": "Never use color alone for state (invalid fields also get an icon and text)",
+    "language": "lang='en' on html"
+  },
+
+  "improvementsOverSource": [
+    "Gave the hero a secondary CTA and a social-proof line above the fold.",
+    "Pulled the numbers out of the stat sentences so '3x', '+80%' and '2x' read at a glance.",
+    "Made the two cobalt sections inset 'floating slabs' with matching radii so they read as one family.",
+    "Added an eyebrow plus headline to the guides carousel, which had no title.",
+    "Defined a strict 'one highlight per headline' rule and assigned the accent colors so they rotate evenly down the page.",
+    "Merged testimonials and review badges into one social-proof block on a subtle bg.",
+    "Made the industry grid come out even by having the featured tile span 2 rows.",
+    "Added explicit GDPR consent plus full form states (submitting, success, error) to the newsletter.",
+    "Specified reduced-motion behavior and contrast checks. Coral highlights are limited to display sizes because they only pass AA Large."
+  ],
+
+  "implementationNotes": {
+    "cssVariables": "Emit tokens as CSS custom properties: --color-*, --space-*, --radius-*, --shadow-*, --ease-*, --dur-*.",
+    "tailwindMapping": "tokens.color.primitive → theme.colors, tokens.spacing.scale → theme.spacing, tokens.radius → theme.borderRadius, tokens.typography.scale → custom @utility classes.",
+    "fonts": "Self-host Inter and Inter Tight as variable woff2 files, font-display: swap, preloading the Latin subset.",
+    "performance": "LCP element is the hero h1 (text), so no hero image is needed. Lazy-load card media, serve AVIF/WebP, and keep the marquee in CSS (no JS)."
+  }
+}

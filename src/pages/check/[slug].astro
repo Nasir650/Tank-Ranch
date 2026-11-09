@@ -1,0 +1,317 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import { parse } from 'csv-parse/sync';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const csvPath = path.resolve('./src/data/postcards.csv');
+  if (!fs.existsSync(csvPath)) {
+    return [];
+  }
+  const fileContent = fs.readFileSync(csvPath, 'utf-8');
+  const records = parse(fileContent, {
+    columns: true,
+    skip_empty_lines: true,
+    trim: true,
+  });
+
+  return records.map((record: any) => ({
+    params: { slug: record.slug },
+    props: { record },
+  }));
+}
+
+const { record } = Astro.props;
+
+const isNamed = (record.company_named || '').toLowerCase().trim() === 'yes';
+const firstName = record.owner_first_name || 'there';
+const town = record.city || '';
+const state = record.state || '';
+const company = record.company || 'Your Company';
+const aiAssistant = record.ai_assistant || 'ChatGPT';
+const questionAsked = record.question_asked || `Who's the best septic company in ${town} ${state}?`;
+const rawDate = record.date_checked || '2026-11-20';
+
+// Format date nicely (e.g. November 20, 2026)
+function formatDate(isoStr: string) {
+  try {
+    const parts = isoStr.split('-');
+    if (parts.length === 3) {
+      const year = parts[0];
+      const monthIndex = parseInt(parts[1], 10) - 1;
+      const day = parseInt(parts[2], 10);
+      const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      return `${months[monthIndex]} ${day}, ${year}`;
+    }
+  } catch (e) {}
+  return isoStr;
+}
+
+const displayDate = formatDate(rawDate);
+const trackedPhone = "(508) 555-0198";
+const trackedTel = "tel:5085550198";
+const prefilledSms = `sms:15085550198?&body=Hi%20Joe%2C%20this%20is%20${encodeURIComponent(firstName)}%20from%20${encodeURIComponent(company)}.`;
+
+const pageTitle = `${firstName}, here's what ${aiAssistant} said about septic in ${town} | Tank & Trench`;
+const pageDesc = `Private AI search check for ${company} in ${town}, ${state}. Verified on ${displayDate}.`;
+---
+
+<BaseLayout title={pageTitle} description={pageDesc} noindex={true} phoneNumber={trackedPhone} phoneTel={trackedTel}>
+  <section class="section-padding" style="padding-top: clamp(36px, 5vw, 64px);">
+    <div class="container-narrow">
+
+      <!-- Breadcrumb / Eyebrow -->
+      <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;">
+        <span class="eyebrow cobalt" style="font-size: 13px;">Confidential Check &middot; Wave {record.wave || '1'}</span>
+      </div>
+
+      <!-- H1: [First name], here's what ChatGPT said about septic in [Town]. -->
+      <h1 class="display-lg" style="margin-bottom: 24px; line-height: 1.15;">
+        {firstName}, here's what {aiAssistant} said about septic in {town}.
+      </h1>
+
+      <!-- Version A or Version B Callout -->
+      {isNamed ? (
+        <div style="background: #f0fdf4; border: 1px solid #86efac; border-radius: var(--radius-lg); padding: 20px 24px; margin-bottom: 28px;">
+          <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" style="flex-shrink: 0; margin-top: 2px;">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <div>
+              <p style="font-size: 18px; font-weight: 700; color: #166534; margin: 0 0 6px;">
+                {company} was in the answer.
+              </p>
+              <p style="font-size: 15px; color: #14532d; line-height: 1.5; margin: 0;">
+                Here's how to stay there as competitors catch on.
+              </p>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div style="background: #fff7ed; border: 1px solid #fed7aa; border-radius: var(--radius-lg); padding: 20px 24px; margin-bottom: 28px;">
+          <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2.5" style="flex-shrink: 0; margin-top: 2px;">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <div>
+              <p style="font-size: 18px; font-weight: 700; color: #9a3412; margin: 0 0 6px;">
+                {company} wasn't in the answer.
+              </p>
+              <p style="font-size: 15px; color: #7c2d12; line-height: 1.5; margin: 0;">
+                That's not about your work. It's about what the AI can find about you.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <!-- PROOF BOX -->
+      <div class="proof-box" style="background: var(--ink-900); color: var(--white); border-radius: var(--radius-xl); padding: clamp(24px, 4vw, 36px); margin-bottom: 36px; box-shadow: var(--shadow-lg);">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+          <span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #22c55e;"></span>
+          <span style="font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.05em; text-transform: uppercase; color: rgba(255, 255, 255, 0.7);">
+            Live AI Verification
+          </span>
+        </div>
+
+        <div style="font-size: clamp(16px, 2.5vw, 20px); font-weight: 600; line-height: 1.4; margin-bottom: 20px; color: #f8fafc; border-left: 3px solid var(--cobalt-400); padding-left: 16px;">
+          &ldquo;On {displayDate}, we asked {aiAssistant}: {questionAsked}&rdquo;
+        </div>
+
+        <!-- Screenshot Container -->
+        <div style="background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: var(--radius-lg); padding: 16px; margin-bottom: 20px; overflow: hidden;">
+          {record.screenshot ? (
+            <div>
+              <img
+                src={`/checks/${record.screenshot}`}
+                alt={`Screenshot of AI prompt query: ${questionAsked}`}
+                style="width: 100%; height: auto; border-radius: 6px; display: block; max-height: 480px; object-fit: contain; background: #0f172a;"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+              />
+              <div style="display: none; padding: 24px; text-align: left; font-family: var(--font-mono); font-size: 13px; color: #cbd5e1; line-height: 1.6;">
+                <div style="color: #38bdf8; margin-bottom: 8px;">&gt; {aiAssistant} Prompt: "{questionAsked}"</div>
+                <div style="margin-top: 12px; padding: 12px; background: rgba(0,0,0,0.3); border-radius: 6px;">
+                  <strong style="color: #fff;">Answer Returned:</strong>
+                  <p style="margin: 6px 0 0; color: #94a3b8;">{record.ai_named}</p>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div style="padding: 20px; font-family: var(--font-mono); font-size: 14px; color: #cbd5e1;">
+              <div style="color: #38bdf8;">&gt; {aiAssistant} query executed: "{questionAsked}"</div>
+            </div>
+          )}
+        </div>
+
+        <!-- Who it named -->
+        <div style="background: rgba(255, 255, 255, 0.08); border-radius: var(--radius-md); padding: 14px 18px; display: flex; flex-direction: column; gap: 4px;">
+          <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: rgba(255, 255, 255, 0.6); font-family: var(--font-mono);">
+            Who the AI named in {town}:
+          </div>
+          <div style="font-size: 16px; font-weight: 700; color: #fff;">
+            {record.ai_named}
+          </div>
+        </div>
+      </div>
+
+      <!-- THREE QUICK REASONS FROM OUR RESEARCH -->
+      <div style="background: var(--white); border: 1px solid var(--border-default); border-radius: var(--radius-xl); padding: clamp(24px, 4vw, 36px); margin-bottom: 36px;">
+        <h2 class="heading-lg" style="margin-bottom: 8px; color: var(--ink-900);">
+          Three quick reasons from our research:
+        </h2>
+        <p class="body-md" style="color: var(--text-secondary); margin-bottom: 24px;">
+          When homeowners ask AI who to call, the assistant scans structured data. Here is what we found missing or blocking you in {town}:
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          {record.fix_1 && (
+            <div style="display: flex; align-items: flex-start; gap: 14px;">
+              <div style="width: 28px; height: 28px; border-radius: 50%; background: #fee2e2; color: #b91c1c; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0; margin-top: 2px;">
+                1
+              </div>
+              <div>
+                <p style="font-size: 15px; font-weight: 600; color: var(--ink-900); margin: 0;">{record.fix_1}</p>
+              </div>
+            </div>
+          )}
+
+          {record.fix_2 && (
+            <div style="display: flex; align-items: flex-start; gap: 14px;">
+              <div style="width: 28px; height: 28px; border-radius: 50%; background: #fee2e2; color: #b91c1c; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0; margin-top: 2px;">
+                2
+              </div>
+              <div>
+                <p style="font-size: 15px; font-weight: 600; color: var(--ink-900); margin: 0;">{record.fix_2}</p>
+              </div>
+            </div>
+          )}
+
+          {record.fix_3 && (
+            <div style="display: flex; align-items: flex-start; gap: 14px;">
+              <div style="width: 28px; height: 28px; border-radius: 50%; background: #fee2e2; color: #b91c1c; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0; margin-top: 2px;">
+                3
+              </div>
+              <div>
+                <p style="font-size: 15px; font-weight: 600; color: var(--ink-900); margin: 0;">{record.fix_3}</p>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <!-- CONVERSION SECTION: FORM OR TEXT JOE -->
+      <div style="background: var(--ink-50); border: 2px solid var(--cobalt-200); border-radius: var(--radius-xl); padding: clamp(28px, 4vw, 44px); box-shadow: var(--shadow-md);">
+        <div style="margin-bottom: 24px;">
+          <h2 class="heading-lg" style="margin-bottom: 8px; color: var(--ink-900);">
+            Get your free 5-minute video audit
+          </h2>
+          <p class="body-md" style="color: var(--text-secondary); margin: 0;">
+            Joe will record a 5-minute walkthrough showing exactly what AI assistants see in {town}, what your competitors have configured, and how to get your phone ringing.
+          </p>
+        </div>
+
+        <form id="postcardAuditForm" action="https://formspree.io/f/xbjnbqzz" method="POST">
+          <input type="hidden" name="company" value={company}>
+          <input type="hidden" name="slug" value={record.slug}>
+          <input type="hidden" name="city" value={town}>
+          <input type="hidden" name="state" value={state}>
+          <input type="hidden" name="wave" value={record.wave || '1'}>
+          <input type="hidden" name="source" value="postcard-check-page">
+
+          <div style="margin-bottom: 18px;">
+            <label for="auditName" style="display: block; font-size: 14px; font-weight: 600; color: var(--ink-900); margin-bottom: 6px;">Your Name *</label>
+            <input type="text" id="auditName" name="name" class="form-input" value={firstName} required>
+          </div>
+
+          <div style="margin-bottom: 18px;">
+            <label for="auditPhone" style="display: block; font-size: 14px; font-weight: 600; color: var(--ink-900); margin-bottom: 6px;">Phone Number *</label>
+            <input type="tel" id="auditPhone" name="phone" class="form-input" placeholder="(508) 555-0123" required>
+          </div>
+
+          <div style="margin-bottom: 24px;">
+            <label for="bestTime" style="display: block; font-size: 14px; font-weight: 600; color: var(--ink-900); margin-bottom: 6px;">Best time to reach you</label>
+            <select id="bestTime" name="best_time_to_reach" class="form-input" style="cursor: pointer;">
+              <option value="Anytime">Anytime during business hours</option>
+              <option value="Morning">Morning (8:00 AM &ndash; 12:00 PM)</option>
+              <option value="Afternoon">Afternoon (12:00 PM &ndash; 5:00 PM)</option>
+              <option value="Evening">Evening (5:00 PM &ndash; 7:00 PM)</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+            <span>Get my free video audit</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+        </form>
+
+        <div id="postcardConfirmationBox" style="display: none; background: #effdf4; border: 1px solid #86efac; border-radius: var(--radius-lg); padding: 24px; text-align: center; margin-top: 16px;">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" style="margin-bottom: 8px;">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="9 12 11 14 15 10"></polyline>
+          </svg>
+          <h3 style="font-size: 18px; color: #166534; margin-bottom: 6px;">Audit Request Received, {firstName}!</h3>
+          <p style="font-size: 14px; color: #14532d; line-height: 1.5; margin: 0;">
+            Joe is recording your personalized video audit for {company} in {town}. You'll receive the private video link by text and email within 2 business days.
+          </p>
+        </div>
+
+        <!-- Or: Prefer to text? Text Joe at [tracked number] -->
+        <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border-default); text-align: center;">
+          <p class="body-sm" style="color: var(--text-secondary); margin-bottom: 8px;">
+            In your truck right now and don't want to fill out a form?
+          </p>
+          <a href={prefilledSms} class="btn btn-secondary btn-md" style="display: inline-flex; align-items: center; gap: 8px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+            <span>Prefer to text? Text Joe at {trackedPhone}</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Small line: "AI answers change day to day. This is what it said on [date]." -->
+      <div style="margin-top: 28px; text-align: center;">
+        <p style="font-size: 13px; color: var(--text-tertiary); font-style: italic; margin: 0;">
+          AI answers change day to day. This is what it said on {displayDate}.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <script is:inline>
+    const form = document.getElementById('postcardAuditForm');
+    const confirmBox = document.getElementById('postcardConfirmationBox');
+
+    if (form && confirmBox) {
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const btn = form.querySelector('button[type="submit"]');
+        btn.disabled = true;
+        btn.innerHTML = 'Sending...';
+
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+          });
+          if (res.ok) {
+            form.style.display = 'none';
+            confirmBox.style.display = 'block';
+          } else {
+            form.submit();
+          }
+        } catch (err) {
+          form.submit();
+        }
+      });
+    }
+  </script>
+</BaseLayout>

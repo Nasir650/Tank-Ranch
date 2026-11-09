@@ -1,0 +1,13 @@
+# Cloudflare Pages Redirects for Legacy HTML URLs
+/index.html / 301
+/check.html /check/ 301
+/pricing.html /pricing/ 301
+/about.html /about/ 301
+/privacy.html /privacy/ 301
+/terms.html /terms/ 301
+/answer-map.html /answer-map/ 301
+/library.html /library/ 301
+/methodology.html /methodology/ 301
+/results.html /results/ 301
+/audit.html /check/ 301
+/contact.html /about/ 301

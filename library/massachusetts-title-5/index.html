@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Massachusetts Title 5 | Tank &amp; Trench</title>
+  <meta name="description" content="MassDEP explains when a Title 5 inspection is required, which property transfers qualify for exceptions, and who can conduct the inspection.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <style>
+    .library-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .term-card {
+      background: var(--white);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-xs);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform var(--dur-base) var(--ease-standard), box-shadow var(--dur-base) var(--ease-standard);
+    }
+    .term-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--cobalt-500);
+    }
+    .term-category {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--cobalt-500);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+    .term-title {
+      font-family: var(--font-display);
+      font-size: 19px;
+      font-weight: 600;
+      color: var(--ink-900);
+      margin-bottom: 10px;
+    }
+    .term-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .term-reviewer {
+      padding-top: 14px;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 12px;
+      color: var(--text-tertiary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .schema-preview-box {
+      background: var(--ink-950);
+      color: var(--white);
+      border-radius: var(--radius-xl);
+      padding: clamp(32px, 4vw, 48px);
+      margin-top: 56px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    pre.code-block {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.6;
+      color: #A5D6FF;
+      overflow-x: auto;
+      margin-top: 16px;
+    }
+    @media (max-width: 1024px) {
+      .library-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .library-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Where can I check Title 5 septic inspection requirements?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MassDEP explains when a Title 5 inspection is required, which property transfers qualify for exceptions, and who can conduct the inspection."
+      }
+    }
+  ]
+}
+  </script>
+  <link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" sizes="any">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div>
+      <div class="drawer-header">
+        <div class="nav-brand">
+          <img class="brand-logo" src="../../images/tank-and-trench-logo.svg" alt="Tank &amp; Trench" width="222" height="42">
+        </div>
+        <button class="mobile-toggle" id="drawerClose" aria-label="Close menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <ul class="drawer-links">
+        <li><a href="../../index.html" class="drawer-link">Home</a></li>
+        <li><a href="../../answer-map.html" class="drawer-link">The Answer Map</a></li>
+        <li><a href="../../methodology.html" class="drawer-link">Methodology</a></li>
+        <li><a href="../../pricing.html" class="drawer-link">Pricing</a></li>
+        <li><a href="../../results.html" class="drawer-link">Results</a></li>
+        <li><a href="../../library.html" class="drawer-link active">Septic Library</a></li>
+        <li><a href="../../about.html" class="drawer-link">About</a></li>
+        <li><a href="../../contact.html" class="drawer-link">Contact</a></li>
+      </ul>
+    </div>
+    <div style="padding-top: 24px; border-top: 1px solid var(--border-subtle);">
+      <a href="../../audit.html" class="btn btn-primary btn-lg" style="width: 100%;">Get Free Video Audit</a>
+    </div>
+  </div>
+
+  <!-- Sticky Navbar -->
+  <div class="navbar-wrapper" id="navbarWrapper">
+    <div class="container-wide">
+      <nav class="navbar" aria-label="Primary">
+        <a href="../../index.html" class="nav-brand">
+          <img class="brand-logo" src="../../images/tank-and-trench-logo.svg" alt="Tank &amp; Trench" width="222" height="42">
+        </a>
+
+        <ul class="nav-menu">
+          <li><a href="../../answer-map.html" class="nav-link">The Answer Map</a></li>
+          <li><a href="../../methodology.html" class="nav-link">Methodology</a></li>
+          <li><a href="../../pricing.html" class="nav-link">Pricing</a></li>
+          <li><a href="../../results.html" class="nav-link">Results</a></li>
+          <li><a href="../../library.html" class="nav-link active">Septic Library</a></li>
+          <li><a href="../../about.html" class="nav-link">About</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="../../contact.html" class="nav-phone">Contact Joe</a>
+          <a href="../../audit.html" class="btn btn-primary btn-sm">Get Video Audit</a>
+          <button class="mobile-toggle" id="drawerOpen" aria-label="Open navigation menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <section class="page-hero">
+      <div class="container-narrow">
+        <a href="../../library.html">Septic Answer Library</a>
+        <h1 class="display-lg" style="margin-top: 16px;">Massachusetts Title 5</h1>
+      </div>
+    </section>
+    <section class="section-padding">
+      <div class="container-narrow">
+        <h2 class="heading-lg" style="margin-bottom: 12px;">Where can I check Title 5 septic inspection requirements?</h2>
+        <p class="body-lg">MassDEP explains when a Title 5 inspection is required, which property transfers qualify for exceptions, and who can conduct the inspection.</p>
+        <p class="body-sm" style="margin-top: 20px;">Source <a href="https://www.mass.gov/guides/buying-or-selling-property-with-a-septic-system">MassDEP: Buying or Selling Property with a Septic System</a></p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-title">
+            <img class="brand-logo" src="../../images/tank-and-trench-logo-light.svg" alt="Tank &amp; Trench" width="222" height="42">
+          </div>
+          <p class="footer-mission">
+            AI Search for Septic &amp; Excavation: the agency that makes a contractor the answer when a homeowner searches Google or asks an AI assistant who to call.
+          </p>
+          <div class="footer-contact-item">Direct: Joe from Tank &amp; Trench</div>
+          <div class="footer-contact-item">Audits: audit@tankandtrench.com</div>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">The Offer</h4>
+          <ul class="footer-links">
+            <li><a href="../../pricing.html" class="footer-link">Pro Package ($1,000/mo)</a></li>
+            <li><a href="../../pricing.html" class="footer-link">Territory Exclusivity ($1,500/mo)</a></li>
+            <li><a href="../../answer-map.html" class="footer-link">The Answer Map</a></li>
+            <li><a href="../../results.html" class="footer-link">Call Tracking Reports</a></li>
+            <li><a href="../../audit.html" class="footer-link">Free 60-Second Video Audit</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Trade Library</h4>
+          <ul class="footer-links">
+            <li><a href="../../library.html" class="footer-link">Perc Test Protocols</a></li>
+            <li><a href="../../library.html" class="footer-link">Drain Field Restoration</a></li>
+            <li><a href="../../library.html" class="footer-link">Pump-out Frequency Rules</a></li>
+            <li><a href="../../library.html" class="footer-link">Title 5 &amp; State Regulations</a></li>
+            <li><a href="../../library.html" class="footer-link">Trenching Safety Standards</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Verification</h4>
+          <ul class="footer-links">
+            <li><a href="../../results.html" class="footer-link">CallRail Integration</a></li>
+            <li><a href="../../pricing.html" class="footer-link">Ask About County Availability</a></li>
+            <li><a href="../../methodology.html" class="footer-link">ACF Pro Schema Blueprint</a></li>
+            <li><a href="../../methodology.html" class="footer-link">llms.txt Specification</a></li>
+            <li><a href="../../audit.html" class="footer-link">Direct Screen Recording</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-legal-bar">
+        <div class="footer-legal-links">
+          <span>&copy; 2026 Tank &amp; Trench. All rights reserved.</span>
+          <a href="../../privacy.html" class="footer-link">Privacy Policy</a>
+          <a href="../../terms.html" class="footer-link">Terms of Service</a>
+        </div>
+        <div>Category: AI Search for Septic &amp; Excavation</div>
+      </div>
+
+      <div class="footer-watermark">tank &amp; trench</div>
+    </div>
+  </footer>
+
+  <script>
+    const navbarWrapper = document.getElementById('navbarWrapper');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 24) { navbarWrapper.classList.add('scrolled'); }
+      else { navbarWrapper.classList.remove('scrolled'); }
+    }, { passive: true });
+
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const drawerOpen = document.getElementById('drawerOpen');
+    const drawerClose = document.getElementById('drawerClose');
+    drawerOpen.addEventListener('click', () => { mobileDrawer.classList.add('open'); document.body.style.overflow = 'hidden'; });
+    drawerClose.addEventListener('click', () => { mobileDrawer.classList.remove('open'); document.body.style.overflow = ''; });
+  </script>
+</body>
+</html>

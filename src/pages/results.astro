@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "Call & Form Reporting | Tank & Trench";
+const pageDesc = "Measured in phone calls, not impressions. We compare tracked phone calls and form inquiries over time to show what your Answer Map is bringing in.";
+---
+<BaseLayout title={pageTitle} description={pageDesc}>
+  <section class="page-hero">
+    <div class="page-hero-mask"></div>
+    <div class="container-narrow page-hero-content">
+      <div class="eyebrow sun">Call and Form Reporting</div>
+      <h1 class="display-lg" style="margin-bottom: 18px;">
+        Measured in phone calls, <span class="highlight-chip highlight-sun">not impressions</span>
+      </h1>
+      <p class="body-lg" style="max-width: 620px; margin: 0 auto 28px;">
+        We compare tracked phone calls and form inquiries over time to show what your Answer Map is bringing in.
+      </p>
+      <div>
+        <a href="/check/" class="btn btn-primary btn-md">Get your free AI check</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container-narrow">
+      <div class="section-header text-center">
+        <h2 class="display-lg">What your monthly report shows</h2>
+        <p class="body-lg section-intro">
+          We put call counts first, show inquiry sources where attribution is available, and compare the same measures month to month.
+        </p>
+      </div>
+
+      <div style="background: var(--ink-950); color: var(--white); border-radius: var(--radius-xl); padding: clamp(28px, 4vw, 48px); margin-top: 32px; border: 1px solid rgba(255, 255, 255, 0.12);">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; font-family: var(--font-mono); font-size: 12px; color: rgba(255, 255, 255, 0.6);">
+          <span>SAMPLE MONTHLY REPORT FORMAT</span>
+          <span>CONTRACTOR PORTAL</span>
+        </div>
+
+        <div style="font-size: clamp(24px, 3.5vw, 36px); font-weight: 700; color: var(--mint-400); margin-bottom: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.12); padding-bottom: 20px;">
+          "Your phone rang 63 times from Google and AI search this month."
+        </div>
+
+        <p style="font-size: 15px; color: rgba(255, 255, 255, 0.8); line-height: 1.6; margin-bottom: 28px;">
+          Tracked numbers from day one, and one line first in every report: how many times your phone rang.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px;">
+          <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--radius-md); padding: 18px;">
+            <div style="font-size: 28px; font-weight: 700; color: #fff;">48</div>
+            <div style="font-size: 13px; color: rgba(255, 255, 255, 0.7); margin-top: 4px;">Routine Septic Pump-outs</div>
+          </div>
+          <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--radius-md); padding: 18px;">
+            <div style="font-size: 28px; font-weight: 700; color: #fff;">15</div>
+            <div style="font-size: 13px; color: rgba(255, 255, 255, 0.7); margin-top: 4px;">Emergency Backup Calls</div>
+          </div>
+          <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--radius-md); padding: 18px;">
+            <div style="font-size: 28px; font-weight: 700; color: #fff;">12</div>
+            <div style="font-size: 13px; color: rgba(255, 255, 255, 0.7); margin-top: 4px;">Site Work &amp; Perc Inquiries</div>
+          </div>
+          <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--radius-md); padding: 18px;">
+            <div style="font-size: 28px; font-weight: 700; color: #fff;">91%</div>
+            <div style="font-size: 13px; color: rgba(255, 255, 255, 0.7); margin-top: 4px;">Residential Homeowners</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="section-padding" style="background: var(--white); text-align: center; border-top: 1px solid var(--border-subtle);">
+    <div class="container-narrow">
+      <div class="eyebrow sun" style="justify-content: center; margin-bottom: 12px;">Free AI Check</div>
+      <h2 class="display-lg" style="margin-bottom: 20px;">
+        Find out what the AI says about you. Free, five minutes of your time, and you get a short video walkthrough.
+      </h2>
+      <div style="margin-top: 32px;">
+        <a href="/check/" class="btn btn-primary btn-lg">
+          <span>Get your free AI check</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

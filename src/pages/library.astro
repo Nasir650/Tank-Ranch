@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "Septic & Excavation AI Search Knowledge Library | Tank & Trench";
+const pageDesc = "Canonical definitions, schema-mapped entities, and regulatory references used to build Answer Maps for septic and excavation contractors.";
+---
+<BaseLayout title={pageTitle} description={pageDesc}>
+  <section class="page-hero">
+    <div class="page-hero-mask"></div>
+    <div class="container-narrow page-hero-content">
+      <div class="eyebrow sun">Reference Library</div>
+      <h1 class="display-lg" style="margin-bottom: 18px;">
+        The Septic &amp; Excavation Knowledge Base
+      </h1>
+      <p class="body-lg" style="max-width: 640px; margin: 0 auto 28px;">
+        The canonical concepts, town health codes, and entity definitions we wire into every contractor's Answer Map.
+      </p>
+      <div>
+        <a href="/check/" class="btn btn-primary btn-md">Get your free AI check</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container">
+      <div class="term-grid">
+        <article class="term-card">
+          <h3 class="heading-md" style="margin-bottom: 8px;">Drain Field (Leach Field)</h3>
+          <p class="body-sm" style="color: var(--text-secondary);">What does a drain field do, how long does it last, and what causes failure?</p>
+        </article>
+        <article class="term-card">
+          <h3 class="heading-md" style="margin-bottom: 8px;">Perc Test</h3>
+          <p class="body-sm" style="color: var(--text-secondary);">What does a perc test measure, and why is an engineer required?</p>
+        </article>
+        <article class="term-card">
+          <h3 class="heading-md" style="margin-bottom: 8px;">Pump-Out Intervals</h3>
+          <p class="body-sm" style="color: var(--text-secondary);">How often should a septic tank be pumped based on household size?</p>
+        </article>
+        <article class="term-card">
+          <h3 class="heading-md" style="margin-bottom: 8px;">Septic Inspection</h3>
+          <p class="body-sm" style="color: var(--text-secondary);">What happens during a Title 5 or county real estate septic inspection?</p>
+        </article>
+        <article class="term-card">
+          <h3 class="heading-md" style="margin-bottom: 8px;">Distribution Box (D-Box)</h3>
+          <p class="body-sm" style="color: var(--text-secondary);">What does a distribution box do and how does level flow prevent field collapse?</p>
+        </article>
+        <article class="term-card">
+          <h3 class="heading-md" style="margin-bottom: 8px;">Effluent Filter</h3>
+          <p class="body-sm" style="color: var(--text-secondary);">What does an effluent filter do and how often does it require cleaning?</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="section-padding" style="background: var(--white); text-align: center; border-top: 1px solid var(--border-subtle);">
+    <div class="container-narrow">
+      <div class="eyebrow sun" style="justify-content: center; margin-bottom: 12px;">Free AI Check</div>
+      <h2 class="display-lg" style="margin-bottom: 20px;">
+        Find out what the AI says about you. Free, five minutes of your time, and you get a short video walkthrough.
+      </h2>
+      <div style="margin-top: 32px;">
+        <a href="/check/" class="btn btn-primary btn-lg">
+          <span>Get your free AI check</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,243 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "Pricing & Plans | Tank & Trench";
+const pageDesc = "Two plans. One county each. Pro gets you found. Territory locks your county so we won't work with your competitors there.";
+---
+<BaseLayout title={pageTitle} description={pageDesc}>
+  <!-- Subpage Hero -->
+  <section class="section-padding" style="padding-bottom: 24px;">
+    <div class="container-narrow text-center">
+      <div class="eyebrow sun" style="justify-content: center; margin-bottom: 12px;">Pricing &amp; Territory</div>
+      <h1 class="display-xl" style="margin-bottom: 18px;">
+        Two plans. One county each.
+      </h1>
+      <p class="body-lg" style="max-width: 620px; margin: 0 auto; color: var(--text-secondary);">
+        Pro gets you found. Territory locks your county so we won't work with your competitors there.
+      </p>
+    </div>
+  </section>
+
+  <!-- Detailed Comparison Table -->
+  <section class="section-padding" style="padding-top: 16px;">
+    <div class="container">
+      <div class="section-header text-center">
+        <p class="body-md" style="color: var(--ink-700); max-width: 680px; margin: 0 auto;">
+          <strong>Both plans include:</strong> Google profile cleanup, service and town pages, schema, the full Answer Map, monthly content, a review program, AI-answer monitoring, call tracking, and a monthly call report.
+        </p>
+      </div>
+
+      <div class="pricing-table-container">
+        <table class="pricing-table">
+          <thead>
+            <tr>
+              <th style="width: 34%;">Feature</th>
+              <th style="width: 33%;">Pro</th>
+              <th class="featured-col" style="width: 33%;">Territory</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Price</strong></td>
+              <td><strong style="font-size: 20px; color: var(--cobalt-600);">$1,000</strong> / month</td>
+              <td class="featured-col"><strong style="font-size: 20px; color: var(--ink-900);">$1,500</strong> / month</td>
+            </tr>
+            <tr>
+              <td><strong>Built for</strong></td>
+              <td>Owners ready to own their county</td>
+              <td class="featured-col"><strong>Owners who want to lock out competitors</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Google Profile Cleanup</strong></td>
+              <td><span class="check-icon">✓</span> Included</td>
+              <td class="featured-col"><span class="check-icon">✓</span> Included</td>
+            </tr>
+            <tr>
+              <td><strong>Service &amp; Town Pages</strong></td>
+              <td><span class="check-icon">✓</span> Included</td>
+              <td class="featured-col"><span class="check-icon">✓</span> Included</td>
+            </tr>
+            <tr>
+              <td><strong>Full Answer Map &amp; Schema</strong></td>
+              <td><span class="check-icon">✓</span> Included</td>
+              <td class="featured-col"><span class="check-icon">✓</span> Included</td>
+            </tr>
+            <tr>
+              <td><strong>Call Tracking &amp; Monthly Report</strong></td>
+              <td><span class="check-icon">✓</span> Tracked calls first</td>
+              <td class="featured-col"><span class="check-icon">✓</span> Tracked calls first</td>
+            </tr>
+            <tr>
+              <td><strong>Review Program &amp; AI Monitoring</strong></td>
+              <td><span class="check-icon">✓</span> Included</td>
+              <td class="featured-col"><span class="check-icon">✓</span> Included</td>
+            </tr>
+            <tr>
+              <td><strong>County Exclusivity</strong></td>
+              <td><span class="cross-icon">No</span></td>
+              <td class="featured-col"><strong style="color: var(--mint-500);">Yes &mdash; Locked Territory</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Leads from our county lead sites</strong></td>
+              <td><span class="cross-icon">No</span></td>
+              <td class="featured-col"><span class="check-icon">✓</span> Yes, where we have one</td>
+            </tr>
+            <tr>
+              <td><strong>Action</strong></td>
+              <td><a class="btn btn-secondary btn-sm" href="/check/" style="width: 100%; text-align: center;">Get free AI check</a></td>
+              <td class="featured-col"><a class="btn btn-primary btn-sm" href="#county-availability" style="width: 100%; text-align: center;">Is my county taken?</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- County Availability Checker Section -->
+  <section class="section-padding" style="background-color: var(--bg-subtle); border-top: 1px solid var(--border-subtle);" id="county-check">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="eyebrow cobalt">County Availability</div>
+        <h2 class="display-lg">
+          Is my county taken?
+        </h2>
+        <p class="body-lg section-intro">
+          Exclusivity goes to the first company in a county to sign Territory.
+        </p>
+      </div>
+
+      <div class="county-checker-card" id="county-availability">
+        <form id="countyCheckForm" action="https://formspree.io/f/xbjnbqzz" method="POST">
+          <input type="hidden" name="source" value="county-availability-check">
+          <div style="margin-bottom: 16px;">
+            <label for="cCompany" style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px;">Company Name *</label>
+            <input id="cCompany" name="company" type="text" class="form-input" placeholder="e.g. Acme Septic Service" required>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+            <div>
+              <label for="cCounty" style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px;">County *</label>
+              <input id="cCounty" name="county" type="text" class="form-input" placeholder="e.g. Worcester County" required>
+            </div>
+            <div>
+              <label for="cState" style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px;">State *</label>
+              <input id="cState" name="state" type="text" class="form-input" placeholder="e.g. MA" required>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+            <div>
+              <label for="cPhone" style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px;">Phone *</label>
+              <input id="cPhone" name="phone" type="tel" class="form-input" placeholder="e.g. (508) 555-0123" required>
+            </div>
+            <div>
+              <label for="cEmail" style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px;">Email *</label>
+              <input id="cEmail" name="email" type="email" class="form-input" placeholder="e.g. dave@acmeseptic.com" required>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-lg" type="submit" style="width: 100%;">
+            Check County Availability
+          </button>
+        </form>
+
+        <div id="countyConfirmBox" style="display: none; background: #effdf4; border: 1px solid #86efac; border-radius: var(--radius-lg); padding: 24px; text-align: center; margin-top: 16px;">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" style="margin-bottom: 8px;">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="9 12 11 14 15 10"></polyline>
+          </svg>
+          <h3 style="font-size: 18px; color: #166534; margin-bottom: 6px;">County Status Requested</h3>
+          <p style="font-size: 14px; color: #14532d; line-height: 1.5; margin: 0;">
+            Joe will check current exclusivity status for your county and get back to you directly within one business day.
+          </p>
+        </div>
+
+        <p class="body-sm" style="margin-top: 14px; text-align: center; color: var(--text-tertiary);">
+          You will hear directly from Joe within one business day with territory status.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Terms Section -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="eyebrow sun">Contract Terms</div>
+        <h2 class="display-lg">
+          Straightforward agreements.
+        </h2>
+      </div>
+
+      <div class="how-it-works-grid">
+        <div class="step-card">
+          <h3 class="step-title">6 to 12 Month Agreement</h3>
+          <p class="step-body">
+            Long enough to build authority, clean up profiles, and track call volume changes across seasonal cycles.
+          </p>
+        </div>
+
+        <div class="step-card">
+          <h3 class="step-title">You Own Everything</h3>
+          <p class="step-body">
+            Every page, schema entity, town hub, and profile cleanup stays yours. No rented pages or host lock-in.
+          </p>
+        </div>
+
+        <div class="step-card">
+          <h3 class="step-title">First-Come Exclusivity</h3>
+          <p class="step-body">
+            First septic or excavation company in a county to sign Territory locks out competitors. We never take two clients in the same county.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final Call to Action -->
+  <section class="section-padding" style="background: var(--white); text-align: center; border-top: 1px solid var(--border-subtle);">
+    <div class="container-narrow">
+      <div class="eyebrow sun" style="justify-content: center; margin-bottom: 12px;">Free AI Check</div>
+      <h2 class="display-lg" style="margin-bottom: 20px;">
+        Find out what the AI says about you. Free, five minutes of your time, and you get a short video walkthrough.
+      </h2>
+      <div style="margin-top: 32px;">
+        <a href="/check/" class="btn btn-primary btn-lg">
+          <span>Get your free AI check</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+      <p class="body-sm" style="color: var(--text-tertiary); margin-top: 14px;">
+        Takes 30 seconds to request &middot; Delivered in two business days &middot; No sales pitch
+      </p>
+    </div>
+  </section>
+
+  <script is:inline>
+    const cForm = document.getElementById('countyCheckForm');
+    const cBox = document.getElementById('countyConfirmBox');
+    if (cForm && cBox) {
+      cForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const btn = cForm.querySelector('button[type="submit"]');
+        btn.disabled = true;
+        btn.innerHTML = 'Checking...';
+        try {
+          const res = await fetch(cForm.action, {
+            method: 'POST',
+            body: new FormData(cForm),
+            headers: { 'Accept': 'application/json' }
+          });
+          if (res.ok) {
+            cForm.style.display = 'none';
+            cBox.style.display = 'block';
+          } else {
+            cForm.submit();
+          }
+        } catch(err) {
+          cForm.submit();
+        }
+      });
+    }
+  </script>
+</BaseLayout>

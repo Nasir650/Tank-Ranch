@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42">
+  <title>Tank &amp; Trench</title>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M13 12V8h14v4 M32 18h5" stroke="#2B44D4" stroke-width="3"/>
+    <rect x="6" y="12" width="28" height="13" rx="5" stroke="#2B44D4" stroke-width="3"/>
+    <path d="m5 29 7 6h17l7-6" stroke="#2B44D4" stroke-width="3.4"/>
+  </g>
+</svg>

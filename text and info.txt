@@ -1,0 +1,183 @@
+Tank & Trench
+Tank & Trench is AI Search for Septic & Excavation: the agency that makes a contractor the answer when a homeowner searches Google or asks an AI assistant who to call.
+Category we claim: AI Search for Septic & Excavation. Never "an SEO agency."
+One-line pitch: "When someone in your county searches or asks ChatGPT who pumps septic tanks, the answer should be you. We build that."
+The promise: more phone calls, more form fills/contact form reach outs. Not rankings, not impressions.
+Who we serve: owner-operated septic pumping, installation, inspection and excavation companies. Often run by the owner and an office manager, with no marketing staff.
+Our method: the Answer Map
+Every client gets an Answer Map: their services, towns, equipment and common homeowner questions, mapped and connected so Google and AI assistants know exactly what they do and where. It is built once, owned by the client, and grows every month. —-> this is our way of appearing Scientific - look at Wordlift —> David Riccitelli → We take his approach, but dig in on Septic/Excavation → they will have never seen something so specialized just for them, which is where we likely convert 10+ (hopefully more) clients. I assume this can be done with AI, but in a systemized way.
+Principle
+What the owner hears
+Built for answers, not just rankings
+"When a homeowner asks Google or ChatGPT who to call, the answer is you."
+An asset, not a monthly chore
+"We build your Answer Map once. You own it, and it keeps working."
+Measured in calls and form fills
+"You'll know exactly how many calls came in, every month."
+
+Name it everywhere. The Answer Map goes in every pitch, report and invoice. A named deliverable is easier to sell, hard to compare with a generic agency, and ours alone.
+The offer
+Two fixed packages, one price each, no custom quotes. Prices are open decisions (see the end).
+Tier
+What the client gets
+Built for
+Price
+Pro
+Google Business Profile cleanup, LocalBusiness and Service schema, one page per core service, town pages for their main towns, FAQ markup, call tracking, a handful 5-10 total blog posts, plus a full Answer Map (every service, town and FAQ connected), monthly content, review program, AI-answer monitoring
+Established companies ready to dominate their county
+1000/month
+Territory
+Everything in Pro, plus exclusivity in their county and leads from our own Tank & Trench lead sites there
+Owners who want to lock out competitors
+1500 /month
+
+Contracts: 6 to 12 month minimum. Month-to-month only at a premium.
+Exclusivity: First to sign gets it. This creates real urgency without a hard sell.
+Reporting in calls: call tracking on every client from day one. The monthly report leads with one line: "Your phone rang 63 times from Google and AI search this month." Rankings go underneath, for those who care.
+Building the expert presence
+We are experts in septic search.
+The brand is the entity. Tank & Trench gets the Organization entity page, told in proof points: results achieved, audiences built, research published. No founder surname anywhere public. Joe appears as "Joe from Tank & Trench" on calls, emails and video audits.
+A Septic Answer Library on our own site. One entity page per concept: drain field, leach field, perc test, pump-out intervals, septic inspection, Massachusetts Title 5, Rhode Island and Connecticut septic rules. Interlinked and structured, so AI assistants cite us when they answer septic questions.
+Original research. A county-by-county "who ranks for septic" report - only for clients
+Lead generation
+Warm leads come from specificity and trust, not volume. No mass email blasts.
+
+
+Researcher-Caller
+Trade Insider
+Who
+Analytical phone person, US part-time or a strong English speaker on the Pakistan team
+Former contractor office manager, dispatcher, or equipment and supplier rep
+Edge
+Never calls without homework
+Speaks the trade; trusted in two sentences
+Prospects from
+Trigger lists (below)
+Associations, supplier counters, trade shows, contractor Facebook groups
+Warm-lead move
+A 60-second screen recording of the prospect's own rankings, then a call
+Introductions from suppliers and happy clients
+When to hire
+First
+After two or three case studies
+
+Trigger lists, not random lists. Call companies with a reason: newly licensed contractors, companies already running Google Ads, companies hiring, companies a competitor just passed, and companies with a dead Google profile or unanswered reviews.
+The video audit. Ten minutes of research per prospect: where they rank for "septic pumping [town]," who beats them, and three things the leader has that they don't. Text or email the video, then call: "Did you see the video I made of your rankings?"
+Delivery and quality
+Joe owns strategy, positioning and closing. Everything repeatable is handed off, with one person accountable for each piece.
+Who
+Owns
+Joe
+Positioning, research reports, sales calls, client relationships, final QA on anything new
+Mike's team
+Fulfillment: pages, schema, Google profiles, content, monthly reports
+Joe for now
+Research for the video audits, trigger lists, knowledge-graph build-out, lead-site upkeep
+
+Checklists for everything. One checklist per deliverable: a town page, a schema setup, a Google profile cleanup. Nothing reaches a client without passing it.
+QA before the client sees it. Mike's team had a rough start on Rockhouse before results trended up. Build the review step in from day one.
+Weekly numbers. Calls, new reviews, rankings for each client's core terms. Trending up is not enough; it has to be measured.
+Website build guide
+Mike's team can build everything from one template on one stack. Build in this order: the Tank & Trench agency site, then a reusable client-site template, then a lead-site template.
+Stack
+Layer
+Choice
+Why
+CMS
+WordPress
+Mike's team can build and edit it; fast to template
+Theme
+GeneratePress or Kadence, plus one child theme
+Lightweight and fast; no page-builder bloat
+Structured fields
+Advanced Custom Fields (ACF) Pro
+Every service, town and FAQ is entered once as fields. Pages and schema are generated from the same data. This is the Answer Map.
+Schema
+Rank Math Pro for basics, plus custom JSON-LD built from ACF fields
+Organization, LocalBusiness, Service, FAQPage, Article, BreadcrumbList
+CDN and security
+Cloudflare
+Speed, SSL, bot protection
+Forms
+Gravity Forms
+Reliable lead routing to email or a CRM
+Call tracking
+CallRail, with dynamic number insertion
+Calls are the number we report
+Analytics
+GA4, Google Search Console, Microsoft Clarity
+Traffic, search queries, session recordings
+AI readability
+An llms.txt file, plus short, quotable answer blocks on every page
+Helps AI assistants read and cite the site
+
+
+Use Claude behind the scenes instead: drafting service and town pages for human review, preparing video-audit research, building county reports, and checking schema.
+Phase 2 option: a free "Septic Search Score" tool on the agency site. An owner enters their company and county and gets a ranking snapshot, which doubles as a lead magnet.
+Agency site: tankandtrench.com - taking inspiration from WordLift.com
+Page
+URL
+Must include
+Home
+/
+"AI Search for Septic & Excavation" headline, the calls-not-rankings promise, proof, a "Get your free video audit" button
+The Answer Map
+/answer-map/
+The site-plan analogy, a 3-step process, a sample monthly report
+Pricing
+/pricing/
+Starter, Pro and Territory table, contract terms, a "Is my county taken?" form
+Free video audit
+/audit/
+The main conversion page: short form (company, county, phone) and what they'll receive
+Septic Answer Library
+/library/ and /library/[term]/
+One page per term, a "Reviewed by" line, FAQ schema
+Results
+/results/
+Case studies in calls before and after, client-approved only
+Methodology
+/methodology/
+How we build the Answer Map and how we measure calls
+About
+/about/
+Brand story, no founder surname, the reviewer's credentials
+Contact
+/contact/
+Tracked phone number, form, service area
+Legal
+/privacy/ and /terms/
+Required for forms and call tracking
+
+Client-site template (septic and excavation contractors)
+Page type
+URL pattern
+Must include
+Home
+/
+Click-to-call header, services, towns served, real reviews, emergency line if offered
+Service pages
+/services/[service]/
+Only services they offer: pumping, inspection, installation and replacement, repair, drain field repair, excavation and site work, emergency service
+Town pages
+/areas/[town]/
+Real local detail: town septic rules, permit notes, jobs done there. Never copy-paste pages with the town name swapped.
+Service × town
+/areas/[town]/[service]/
+Only the top 3 to 5 towns × top services, to avoid thin pages
+Homeowner guide
+/septic-guide/
+Pump-out frequency, warning signs, inspections for home sales, FAQ schema
+Reviews
+/reviews/
+Embedded real reviews; no self-made review markup
+Blog
+/blog/
+Blog posts about local septic and excavation
+About
+/about/
+Owner, license numbers, years in business, real crew and truck photos
+Contact
+/contact/
+Form, tracked number, hours, service area map
+

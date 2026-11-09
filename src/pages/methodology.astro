@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "The AI Search Methodology | Tank & Trench";
+const pageDesc = "The technical architecture behind Tank & Trench: how we engineer the Answer Map, structured schema, and CallRail dynamic call tracking.";
+---
+<BaseLayout title={pageTitle} description={pageDesc}>
+  <section class="page-hero">
+    <div class="page-hero-mask"></div>
+    <div class="container-narrow page-hero-content">
+      <div class="eyebrow cobalt">Technical Architecture</div>
+      <h1 class="display-lg" style="margin-bottom: 18px;">
+        Engineering local authority for <span class="highlight-chip highlight-cobalt">AI search engines</span>
+      </h1>
+      <p class="body-lg" style="max-width: 640px; margin: 0 auto 28px;">
+        How we transform an owner-operated septic or excavation company into the verified answer machine for ChatGPT, Perplexity, and Google AI Overviews.
+      </p>
+      <div>
+        <a href="/check/" class="btn btn-primary btn-md">Get your free AI check</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4-Stage Rollout -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="eyebrow mint">30-Day Deployment</div>
+        <h2 class="display-lg">
+          The 4-stage Answer Map implementation
+        </h2>
+      </div>
+
+      <div class="timeline-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px;">
+        <div class="timeline-card" style="background: var(--white); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: 28px;">
+          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--cobalt-500); margin-bottom: 8px;">STAGE 01</div>
+          <h3 class="heading-md" style="margin-bottom: 10px;">GBP &amp; NAP Foundation</h3>
+          <p class="body-sm" style="color: var(--text-secondary); line-height: 1.6;">
+            Cleanup of primary business categories, service area boundaries, operating hours, and canonical citation signals.
+          </p>
+        </div>
+
+        <div class="timeline-card" style="background: var(--white); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: 28px;">
+          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--cobalt-500); margin-bottom: 8px;">STAGE 02</div>
+          <h3 class="heading-md" style="margin-bottom: 10px;">Structured Field Architecture</h3>
+          <p class="body-sm" style="color: var(--text-secondary); line-height: 1.6;">
+            Services, towns, truck fleet, soil types, and FAQs structured cleanly into JSON-LD schema (Organization, LocalBusiness, Service, FAQPage).
+          </p>
+        </div>
+
+        <div class="timeline-card" style="background: var(--white); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: 28px;">
+          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--cobalt-500); margin-bottom: 8px;">STAGE 03</div>
+          <h3 class="heading-md" style="margin-bottom: 10px;">llms.txt &amp; Answer Blocks</h3>
+          <p class="body-sm" style="color: var(--text-secondary); line-height: 1.6;">
+            Deployment of short, quotable answer cards and an llms.txt protocol so ChatGPT, Perplexity, and Google AI Overviews cite you.
+          </p>
+        </div>
+
+        <div class="timeline-card" style="background: var(--white); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: 28px;">
+          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--cobalt-500); margin-bottom: 8px;">STAGE 04</div>
+          <h3 class="heading-md" style="margin-bottom: 10px;">CallRail Dynamic Insertion</h3>
+          <p class="body-sm" style="color: var(--text-secondary); line-height: 1.6;">
+            Dynamic phone swapping across all pages and town hubs. Inbound calls are logged, tagged, and delivered in your monthly call report.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="section-padding" style="background: var(--white); text-align: center; border-top: 1px solid var(--border-subtle);">
+    <div class="container-narrow">
+      <div class="eyebrow sun" style="justify-content: center; margin-bottom: 12px;">Free AI Check</div>
+      <h2 class="display-lg" style="margin-bottom: 20px;">
+        Find out what the AI says about you. Free, five minutes of your time, and you get a short video walkthrough.
+      </h2>
+      <div style="margin-top: 32px;">
+        <a href="/check/" class="btn btn-primary btn-lg">
+          <span>Get your free AI check</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

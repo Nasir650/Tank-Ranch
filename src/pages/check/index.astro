@@ -1,0 +1,161 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const pageTitle = "Does AI recommend you, or your competitor? | Free AI Check";
+const pageDesc = "Find out whether ChatGPT, Perplexity and Google's AI recommend you or your competitor. Free 5-minute video walkthrough for septic and excavation contractors.";
+---
+<BaseLayout title={pageTitle} description={pageDesc}>
+  <section class="section-padding">
+    <div class="container">
+      <div class="eyebrow cobalt" style="margin-bottom: 12px;">Free AI Check</div>
+      <h1 class="display-xl" style="max-width: 820px; margin-bottom: 16px;">
+        Does AI recommend you, or your competitor?
+      </h1>
+      <p class="body-lg" style="color: var(--text-secondary); max-width: 640px;">
+        Fill out the short form below. We'll run a live check on your town across ChatGPT, Perplexity, and Google's AI answers.
+      </p>
+
+      <div class="check-grid" style="display: grid; grid-template-columns: 1fr 1.15fr; gap: 48px; align-items: flex-start; margin-top: 40px;">
+        <!-- Deliverables / What You Get -->
+        <div class="check-deliverables" style="background: var(--ink-50); border: 1px solid var(--border-default); border-radius: var(--radius-xl); padding: clamp(28px, 4vw, 40px); display: flex; flex-direction: column; gap: 20px;">
+          <h2 class="heading-lg" style="color: var(--ink-900); margin-bottom: 4px;">What you get:</h2>
+          <p class="body-md" style="color: var(--ink-700); margin-bottom: 12px;">
+            Personalized research for your exact service territory. No generic PDF audit.
+          </p>
+
+          <div style="display: flex; gap: 14px; align-items: flex-start;">
+            <div style="width: 32px; height: 32px; border-radius: var(--radius-pill); background: var(--cobalt-50); color: var(--cobalt-600); display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 1px solid var(--cobalt-100);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+            </div>
+            <div>
+              <strong style="color: var(--ink-900);">A 5-minute video walkthrough</strong>
+              <p class="body-sm" style="color: var(--ink-700); margin-top: 2px;">Joe records his screen showing live AI queries for your county and what answers pop up.</p>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 14px; align-items: flex-start;">
+            <div style="width: 32px; height: 32px; border-radius: var(--radius-pill); background: var(--cobalt-50); color: var(--cobalt-600); display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 1px solid var(--cobalt-100);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <div>
+              <strong style="color: var(--ink-900);">Who the AI names in your town</strong>
+              <p class="body-sm" style="color: var(--ink-700); margin-top: 2px;">See whether the AI recommends your company, your competitor, or nobody yet.</p>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 14px; align-items: flex-start;">
+            <div style="width: 32px; height: 32px; border-radius: var(--radius-pill); background: var(--cobalt-50); color: var(--cobalt-600); display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 1px solid var(--cobalt-100);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <div>
+              <strong style="color: var(--ink-900);">Three things to fix first</strong>
+              <p class="body-sm" style="color: var(--ink-700); margin-top: 2px;">The exact missing schema or service data preventing the AI from naming your company.</p>
+            </div>
+          </div>
+
+          <div style="border-top: 1px solid var(--border-default); padding-top: 16px; margin-top: 8px;">
+            <div style="font-size: 13px; color: var(--ink-500); display: flex; align-items: center; gap: 8px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--mint-500)" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              <span>Zero sales pressure &middot; Direct review from Joe</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- The Form Panel -->
+        <div class="check-form-panel" style="background: var(--white); border: 1px solid var(--border-default); border-radius: var(--radius-xl); padding: clamp(28px, 4vw, 44px); box-shadow: var(--shadow-md);">
+          <form id="checkForm" action="https://formspree.io/f/xbjnbqzz" method="POST">
+            <div style="margin-bottom: 20px;">
+              <label for="companyName" style="display: block; font-size: 14px; font-weight: 600; color: var(--ink-900); margin-bottom: 6px;">Company Name *</label>
+              <input type="text" id="companyName" name="company" class="form-input" placeholder="e.g. Apex Septic & Excavation" required>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+              <label for="townState" style="display: block; font-size: 14px; font-weight: 600; color: var(--ink-900); margin-bottom: 6px;">Town & State *</label>
+              <input type="text" id="townState" name="town_state" class="form-input" placeholder="e.g. Sanford, NC" required>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+              <label for="ownerName" style="display: block; font-size: 14px; font-weight: 600; color: var(--ink-900); margin-bottom: 6px;">Your Name *</label>
+              <input type="text" id="ownerName" name="name" class="form-input" placeholder="e.g. Dale" required>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+              <label for="phone" style="display: block; font-size: 14px; font-weight: 600; color: var(--ink-900); margin-bottom: 6px;">Phone Number *</label>
+              <input type="tel" id="phone" name="phone" class="form-input" placeholder="e.g. (508) 555-0123" required>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+              <label for="email" style="display: block; font-size: 14px; font-weight: 600; color: var(--ink-900); margin-bottom: 6px;">Email Address *</label>
+              <input type="email" id="email" name="email" class="form-input" placeholder="e.g. dale@pineridgeseptic.com" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 8px;">
+              <span>Get your free AI check</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </form>
+
+          <div id="confirmationBox" style="display: none; background: #effdf4; border: 1px solid #86efac; border-radius: var(--radius-lg); padding: 24px; text-align: center; margin-top: 16px;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" style="margin-bottom: 8px;">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="9 12 11 14 15 10"></polyline>
+            </svg>
+            <h3 style="font-size: 18px; color: #166534; margin-bottom: 6px;">Check Request Received!</h3>
+            <p style="font-size: 14px; color: #14532d; line-height: 1.5; margin: 0;">
+              Joe is reviewing what ChatGPT and Google AI say about your town. You will receive your 5-minute video walkthrough by email and text within 2 business days.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    const checkForm = document.getElementById('checkForm');
+    const confirmationBox = document.getElementById('confirmationBox');
+
+    if (checkForm && confirmationBox) {
+      checkForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const submitBtn = checkForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = 'Sending...';
+
+        try {
+          const formData = new FormData(checkForm);
+          const response = await fetch(checkForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+          });
+          if (response.ok) {
+            checkForm.style.display = 'none';
+            confirmationBox.style.display = 'block';
+          } else {
+            // Fallback: standard form submit
+            checkForm.submit();
+          }
+        } catch (err) {
+          // If network error, standard submit fallback
+          checkForm.submit();
+        }
+      });
+    }
+  </script>
+</BaseLayout>

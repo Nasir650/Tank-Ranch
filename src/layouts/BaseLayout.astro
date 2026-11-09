@@ -1,0 +1,124 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+  canonicalUrl?: string;
+  bodyClass?: string;
+  phoneNumber?: string;
+  phoneTel?: string;
+  callrailId?: string;
+}
+
+const {
+  title = "Tank & Trench | AI Search for Septic & Excavation",
+  description = "When homeowners ask ChatGPT, Perplexity or Google's AI who pumps septic tanks near them, we make sure they hear your name. Measured in calls and form fills.",
+  noindex = false,
+  canonicalUrl,
+  bodyClass = "has-mobile-bar",
+  phoneNumber = "(508) 555-0198",
+  phoneTel = "tel:5085550198",
+  callrailId = "" // Set in environment or layout prop when CallRail account ID is active
+} = Astro.props;
+
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MobileStickyBar from '../components/MobileStickyBar.astro';
+
+const currentPath = Astro.url.pathname;
+const resolvedCanonical = canonicalUrl || new URL(currentPath, Astro.site || 'https://tankandtrench.com').href;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  {noindex ? (
+    <meta name="robots" content="noindex, nofollow, noarchive">
+  ) : (
+    <meta name="robots" content="index, follow">
+  )}
+  <link rel="canonical" href={resolvedCanonical}>
+
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+
+  <!-- Typography Preconnects -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="/styles.css">
+
+  <!-- OpenGraph -->
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:url" content={resolvedCanonical}>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Tank & Trench">
+  <meta property="og:image" content="/images/tank-and-trench-logo.svg">
+
+  <!-- CallRail Dynamic Number Insertion (DNI) -->
+  {callrailId && (
+    <script type="text/javascript" src={`//cdn.callrail.com/companies/${callrailId}/12/swap.js`} async></script>
+  )}
+
+  <slot name="head" />
+</head>
+<body class={bodyClass}>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <Header phoneNumber={phoneNumber} phoneTel={phoneTel} />
+
+  <main id="main-content">
+    <slot />
+  </main>
+
+  <MobileStickyBar phoneNumber={phoneNumber} phoneTel={phoneTel} />
+  <Footer phoneNumber={phoneNumber} phoneTel={phoneTel} />
+
+  <!-- Interaction Scripts: Condensed Sticky Navbar + Mobile Drawer -->
+  <script is:inline>
+    // 1. Sticky condensed navbar on scroll
+    const navbarWrapper = document.getElementById('navbarWrapper');
+    if (navbarWrapper) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 20) {
+          navbarWrapper.classList.add('scrolled');
+        } else {
+          navbarWrapper.classList.remove('scrolled');
+        }
+      }, { passive: true });
+    }
+
+    // 2. Mobile Drawer Navigation
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const drawerOpen = document.getElementById('drawerOpen');
+    const drawerClose = document.getElementById('drawerClose');
+
+    if (drawerOpen && mobileDrawer && drawerClose) {
+      drawerOpen.addEventListener('click', () => {
+        mobileDrawer.classList.add('open');
+        mobileDrawer.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      });
+
+      drawerClose.addEventListener('click', closeDrawer);
+    }
+
+    function closeDrawer() {
+      if (mobileDrawer) {
+        mobileDrawer.classList.remove('open');
+        mobileDrawer.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+    }
+    window.closeDrawer = closeDrawer;
+  </script>
+</body>
+</html>

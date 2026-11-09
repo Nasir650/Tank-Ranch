@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Results &amp; Reporting | Tank &amp; Trench</title>
+  <meta name="description" content="See how Tank &amp; Trench reports tracked phone calls and form inquiries.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .case-study-card {
+      background: var(--white);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-xl);
+      padding: clamp(32px, 4vw, 56px);
+      margin-bottom: 40px;
+      box-shadow: var(--shadow-sm);
+    }
+    .case-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 32px;
+    }
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin: 28px 0;
+    }
+    .metric-pill-box {
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .metric-pill-box.before {
+      background: var(--ink-50);
+      border: 1px solid var(--border-default);
+    }
+    .metric-pill-box.after {
+      background: #EBF8F0;
+      border: 1px solid #B8E4C7;
+    }
+    .call-log-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 24px;
+      font-size: 13px;
+      background: var(--bg-subtle);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+    }
+    .call-log-table th, .call-log-table td {
+      padding: 12px 16px;
+      text-align: left;
+    }
+    .call-log-table th {
+      background: var(--ink-100);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-700);
+    }
+    .call-log-table tr:not(:last-child) td {
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    @media (max-width: 768px) {
+      .comparison-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" sizes="any">
+</head>
+<body class="has-mobile-bar">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+    <div>
+      <div class="drawer-header">
+        <div class="nav-brand">
+          <img class="brand-logo" src="images/tank-and-trench-logo.svg" alt="Tank &amp; Trench" width="200" height="38">
+        </div>
+        <button class="drawer-close" id="drawerClose" aria-label="Close menu">&times;</button>
+      </div>
+      <ul class="drawer-links">
+        <li><a href="index.html#how-it-works" class="drawer-link" onclick="closeDrawer()">How it works</a></li>
+        <li><a href="pricing.html" class="drawer-link" onclick="closeDrawer()">Pricing</a></li>
+        <li><a href="about.html" class="drawer-link" onclick="closeDrawer()">About</a></li>
+      </ul>
+    </div>
+    <div class="drawer-footer">
+      <a href="tel:5085550198" class="btn btn-secondary btn-lg" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+        </svg>
+        <span>Call Joe: (508) 555-0198</span>
+      </a>
+      <a href="check.html" class="btn btn-primary btn-lg" style="width: 100%;" onclick="closeDrawer()">Get your free AI check</a>
+    </div>
+  </div>
+
+  <!-- Sticky Desktop Navigation Bar -->
+  <div class="navbar-wrapper" id="navbarWrapper">
+    <div class="container-wide">
+      <nav class="navbar" aria-label="Primary">
+        <a href="index.html" class="nav-brand">
+          <img class="brand-logo" src="images/tank-and-trench-logo.svg" alt="Tank &amp; Trench" width="200" height="38">
+        </a>
+
+        <ul class="nav-menu">
+          <li><a href="index.html#how-it-works" class="nav-link">How it works</a></li>
+          <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="tel:5085550198" class="nav-phone" style="display: inline-flex; align-items: center; gap: 6px;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            <span>(508) 555-0198</span>
+          </a>
+          <a href="check.html" class="btn btn-primary btn-sm">Get your free AI check</a>
+          <button class="mobile-toggle" id="drawerOpen" aria-label="Open navigation menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <!-- Subpage Hero -->
+    <section class="page-hero">
+      <div class="page-hero-mask"></div>
+      <div class="container-narrow page-hero-content">
+        <div class="eyebrow sun">Call and Form Reporting</div>
+        <h1 class="display-lg" style="margin-bottom: 18px;">
+          Measured in phone calls, <span class="highlight-chip highlight-sun">not impressions</span>
+        </h1>
+        <p class="body-lg" style="max-width: 620px; margin: 0 auto;">
+          We compare tracked phone calls and form inquiries over time to show what your Answer Map is bringing in.
+        </p>
+      </div>
+    </section>
+
+    <!-- Case Studies List -->
+    <section class="section-padding">
+      <div class="container-narrow">
+        <h2 class="heading-lg">What your monthly report shows</h2>
+        <p class="body-lg section-intro">See how we put call counts first, show inquiry sources where attribution is available, and compare the same measures month to month.</p>
+        <a href="answer-map.html#sample-report" class="btn btn-secondary btn-md">View the Illustrative Report</a>
+      </div>
+    </section>
+
+    <!-- Floating Slab CTA -->
+    <div class="floating-slab">
+      <div class="container" style="text-align: center;">
+        <div class="eyebrow on-brand">Your County Results</div>
+        <h2 class="display-md" style="color: var(--white); margin-bottom: 16px;">
+          Want to see how your company appears in local search?
+        </h2>
+        <p class="body-lg" style="color: var(--text-on-brand-muted); max-width: 580px; margin: 0 auto 32px;">
+          Request a free 60-second video audit. We will review your county's search volume and show who is currently getting those calls.
+        </p>
+        <a href="audit.html" class="btn btn-inverse btn-lg">Request Your Free Video Audit</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-title">
+            <img class="brand-logo" src="images/tank-and-trench-logo-light.svg" alt="Tank &amp; Trench" width="222" height="42">
+          </div>
+          <p class="footer-mission">
+            AI Search for Septic &amp; Excavation: the agency that makes a contractor the answer when a homeowner searches Google or asks an AI assistant who to call.
+          </p>
+          <div class="footer-contact-item">Direct: Joe from Tank &amp; Trench</div>
+          <div class="footer-contact-item">Audits: audit@tankandtrench.com</div>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">The Offer</h4>
+          <ul class="footer-links">
+            <li><a href="pricing.html" class="footer-link">Pro Package ($1,000/mo)</a></li>
+            <li><a href="pricing.html" class="footer-link">Territory Exclusivity ($1,500/mo)</a></li>
+            <li><a href="answer-map.html" class="footer-link">The Answer Map</a></li>
+            <li><a href="results.html" class="footer-link">Call Tracking Reports</a></li>
+            <li><a href="audit.html" class="footer-link">Free 60-Second Video Audit</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Trade Library</h4>
+          <ul class="footer-links">
+            <li><a href="library.html" class="footer-link">Perc Test Protocols</a></li>
+            <li><a href="library.html" class="footer-link">Drain Field Restoration</a></li>
+            <li><a href="library.html" class="footer-link">Pump-out Frequency Rules</a></li>
+            <li><a href="library.html" class="footer-link">Title 5 &amp; State Regulations</a></li>
+            <li><a href="library.html" class="footer-link">Trenching Safety Standards</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Verification</h4>
+          <ul class="footer-links">
+            <li><a href="results.html" class="footer-link">CallRail Integration</a></li>
+            <li><a href="pricing.html" class="footer-link">Ask About County Availability</a></li>
+            <li><a href="methodology.html" class="footer-link">ACF Pro Schema Blueprint</a></li>
+            <li><a href="methodology.html" class="footer-link">llms.txt Specification</a></li>
+            <li><a href="audit.html" class="footer-link">Direct Screen Recording</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-legal-bar">
+        <div class="footer-legal-links">
+          <span>&copy; 2026 Tank &amp; Trench. All rights reserved.</span>
+          <a href="privacy.html" class="footer-link">Privacy Policy</a>
+          <a href="terms.html" class="footer-link">Terms of Service</a>
+        </div>
+        <div>Category: AI Search for Septic &amp; Excavation</div>
+      </div>
+
+      <div class="footer-watermark">tank &amp; trench</div>
+    </div>
+  </footer>
+
+  <script>
+    const navbarWrapper = document.getElementById('navbarWrapper');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 24) { navbarWrapper.classList.add('scrolled'); }
+      else { navbarWrapper.classList.remove('scrolled'); }
+    }, { passive: true });
+
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const drawerOpen = document.getElementById('drawerOpen');
+    const drawerClose = document.getElementById('drawerClose');
+    drawerOpen.addEventListener('click', () => { mobileDrawer.classList.add('open'); document.body.style.overflow = 'hidden'; });
+    drawerClose.addEventListener('click', () => { mobileDrawer.classList.remove('open'); document.body.style.overflow = ''; });
+  </script>
+</body>
+</html>

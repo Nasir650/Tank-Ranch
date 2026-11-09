@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Septic Answer Library | Tank &amp; Trench</title>
+  <meta name="description" content="Technical knowledge library for septic pumping, perc tests, drain fields, and state environmental regulations. Structured for AI assistant citations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .library-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .term-card {
+      background: var(--white);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-xs);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform var(--dur-base) var(--ease-standard), box-shadow var(--dur-base) var(--ease-standard);
+    }
+    .term-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--cobalt-500);
+    }
+    .term-category {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--cobalt-500);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+    .term-title {
+      font-family: var(--font-display);
+      font-size: 19px;
+      font-weight: 600;
+      color: var(--ink-900);
+      margin-bottom: 10px;
+    }
+    .term-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .term-reviewer {
+      padding-top: 14px;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 12px;
+      color: var(--text-tertiary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .schema-preview-box {
+      background: var(--ink-950);
+      color: var(--white);
+      border-radius: var(--radius-xl);
+      padding: clamp(32px, 4vw, 48px);
+      margin-top: 56px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    pre.code-block {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.6;
+      color: #A5D6FF;
+      overflow-x: auto;
+      margin-top: 16px;
+    }
+    @media (max-width: 1024px) {
+      .library-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .library-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" sizes="any">
+</head>
+<body class="has-mobile-bar">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+    <div>
+      <div class="drawer-header">
+        <div class="nav-brand">
+          <img class="brand-logo" src="images/tank-and-trench-logo.svg" alt="Tank &amp; Trench" width="200" height="38">
+        </div>
+        <button class="drawer-close" id="drawerClose" aria-label="Close menu">&times;</button>
+      </div>
+      <ul class="drawer-links">
+        <li><a href="index.html#how-it-works" class="drawer-link" onclick="closeDrawer()">How it works</a></li>
+        <li><a href="pricing.html" class="drawer-link" onclick="closeDrawer()">Pricing</a></li>
+        <li><a href="about.html" class="drawer-link" onclick="closeDrawer()">About</a></li>
+      </ul>
+    </div>
+    <div class="drawer-footer">
+      <a href="tel:5085550198" class="btn btn-secondary btn-lg" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+        </svg>
+        <span>Call Joe: (508) 555-0198</span>
+      </a>
+      <a href="check.html" class="btn btn-primary btn-lg" style="width: 100%;" onclick="closeDrawer()">Get your free AI check</a>
+    </div>
+  </div>
+
+  <!-- Sticky Desktop Navigation Bar -->
+  <div class="navbar-wrapper" id="navbarWrapper">
+    <div class="container-wide">
+      <nav class="navbar" aria-label="Primary">
+        <a href="index.html" class="nav-brand">
+          <img class="brand-logo" src="images/tank-and-trench-logo.svg" alt="Tank &amp; Trench" width="200" height="38">
+        </a>
+
+        <ul class="nav-menu">
+          <li><a href="index.html#how-it-works" class="nav-link">How it works</a></li>
+          <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="tel:5085550198" class="nav-phone" style="display: inline-flex; align-items: center; gap: 6px;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            <span>(508) 555-0198</span>
+          </a>
+          <a href="check.html" class="btn btn-primary btn-sm">Get your free AI check</a>
+          <button class="mobile-toggle" id="drawerOpen" aria-label="Open navigation menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <!-- Subpage Hero -->
+    <section class="page-hero">
+      <div class="page-hero-mask"></div>
+      <div class="container-narrow page-hero-content">
+        <div class="eyebrow cobalt">Entity Repository</div>
+        <h1 class="display-lg" style="margin-bottom: 18px;">
+          Septic Answer <span class="highlight-chip highlight-cobalt">Library</span>
+        </h1>
+        <p class="body-lg" style="max-width: 620px; margin: 0 auto;">
+          Plain-language answers about septic systems, maintenance, and state rules. Each entry links to the public guidance it draws on.
+        </p>
+      </div>
+    </section>
+
+    <!-- Library Grid Section -->
+    <section class="section-padding">
+      <div class="container">
+        <h2 class="heading-lg" style="margin-bottom: 24px;">Browse septic topics</h2>
+        <div class="library-grid">
+          <article class="term-card">
+            <h3 class="heading-md"><a href="library/drain-field/">Drain Field (Leach Field)</a></h3>
+            <p class="body-sm">What does a drain field do?</p>
+          </article>
+          <article class="term-card">
+            <h3 class="heading-md"><a href="library/perc-test/">Perc Test</a></h3>
+            <p class="body-sm">What does a perc test measure?</p>
+          </article>
+          <article class="term-card">
+            <h3 class="heading-md"><a href="library/pump-out-intervals/">Pump-Out Intervals</a></h3>
+            <p class="body-sm">How often should a septic tank be pumped?</p>
+          </article>
+          <article class="term-card">
+            <h3 class="heading-md"><a href="library/septic-inspection/">Septic Inspection</a></h3>
+            <p class="body-sm">What happens during a septic inspection?</p>
+          </article>
+          <article class="term-card">
+            <h3 class="heading-md"><a href="library/massachusetts-title-5/">Massachusetts Title 5</a></h3>
+            <p class="body-sm">Where can I check Title 5 septic inspection requirements?</p>
+          </article>
+          <article class="term-card">
+            <h3 class="heading-md"><a href="library/rhode-island-septic-rules/">Rhode Island Septic Rules</a></h3>
+            <p class="body-sm">Where can I find Rhode Island septic rules and permits?</p>
+          </article>
+          <article class="term-card">
+            <h3 class="heading-md"><a href="library/connecticut-septic-rules/">Connecticut Septic Rules</a></h3>
+            <p class="body-sm">Where can I find Connecticut septic technical standards?</p>
+          </article>
+          <article class="term-card">
+            <h3 class="heading-md"><a href="library/distribution-box/">Distribution Box</a></h3>
+            <p class="body-sm">What does a septic distribution box do?</p>
+          </article>
+          <article class="term-card">
+            <h3 class="heading-md"><a href="library/effluent-filter/">Effluent Filter</a></h3>
+            <p class="body-sm">What does a septic effluent filter do?</p>
+          </article>
+          <article class="term-card">
+            <h3 class="heading-md"><a href="library/septic-tank-baffles/">Septic Tank Baffles</a></h3>
+            <p class="body-sm">What are the inlet and outlet baffles?</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Floating Slab CTA -->
+    <div class="floating-slab">
+      <div class="container" style="text-align: center;">
+        <div class="eyebrow on-brand">Dominate County Search</div>
+        <h2 class="display-md" style="color: var(--white); margin-bottom: 16px;">
+          Put these entity answers to work for your business
+        </h2>
+        <p class="body-lg" style="color: var(--text-on-brand-muted); max-width: 580px; margin: 0 auto 32px;">
+          Lock your county and let Tank &amp; Trench build your company's full Answer Map today.
+        </p>
+        <a href="audit.html" class="btn btn-inverse btn-lg">Request Your Free Video Audit</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-title">
+            <img class="brand-logo" src="images/tank-and-trench-logo-light.svg" alt="Tank &amp; Trench" width="222" height="42">
+          </div>
+          <p class="footer-mission">
+            AI Search for Septic &amp; Excavation: the agency that makes a contractor the answer when a homeowner searches Google or asks an AI assistant who to call.
+          </p>
+          <div class="footer-contact-item">Direct: Joe from Tank &amp; Trench</div>
+          <div class="footer-contact-item">Audits: audit@tankandtrench.com</div>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">The Offer</h4>
+          <ul class="footer-links">
+            <li><a href="pricing.html" class="footer-link">Pro Package ($1,000/mo)</a></li>
+            <li><a href="pricing.html" class="footer-link">Territory Exclusivity ($1,500/mo)</a></li>
+            <li><a href="answer-map.html" class="footer-link">The Answer Map</a></li>
+            <li><a href="results.html" class="footer-link">Call Tracking Reports</a></li>
+            <li><a href="audit.html" class="footer-link">Free 60-Second Video Audit</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Trade Library</h4>
+          <ul class="footer-links">
+            <li><a href="library.html" class="footer-link">Perc Test Protocols</a></li>
+            <li><a href="library.html" class="footer-link">Drain Field Restoration</a></li>
+            <li><a href="library.html" class="footer-link">Pump-out Frequency Rules</a></li>
+            <li><a href="library.html" class="footer-link">Title 5 &amp; State Regulations</a></li>
+            <li><a href="library.html" class="footer-link">Trenching Safety Standards</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Verification</h4>
+          <ul class="footer-links">
+            <li><a href="results.html" class="footer-link">CallRail Integration</a></li>
+            <li><a href="pricing.html" class="footer-link">Ask About County Availability</a></li>
+            <li><a href="methodology.html" class="footer-link">ACF Pro Schema Blueprint</a></li>
+            <li><a href="methodology.html" class="footer-link">llms.txt Specification</a></li>
+            <li><a href="audit.html" class="footer-link">Direct Screen Recording</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-legal-bar">
+        <div class="footer-legal-links">
+          <span>&copy; 2026 Tank &amp; Trench. All rights reserved.</span>
+          <a href="privacy.html" class="footer-link">Privacy Policy</a>
+          <a href="terms.html" class="footer-link">Terms of Service</a>
+        </div>
+        <div>Category: AI Search for Septic &amp; Excavation</div>
+      </div>
+
+      <div class="footer-watermark">tank &amp; trench</div>
+    </div>
+  </footer>
+
+  <script>
+    const navbarWrapper = document.getElementById('navbarWrapper');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 24) { navbarWrapper.classList.add('scrolled'); }
+      else { navbarWrapper.classList.remove('scrolled'); }
+    }, { passive: true });
+
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const drawerOpen = document.getElementById('drawerOpen');
+    const drawerClose = document.getElementById('drawerClose');
+    drawerOpen.addEventListener('click', () => { mobileDrawer.classList.add('open'); document.body.style.overflow = 'hidden'; });
+    drawerClose.addEventListener('click', () => { mobileDrawer.classList.remove('open'); document.body.style.overflow = ''; });
+  </script>
+</body>
+</html>
