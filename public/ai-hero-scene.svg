@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 640" width="600" height="640" role="img" aria-labelledby="t d">
-  <title id="t">Example: AI search recommends a local septic company</title>
-  <desc id="d">A homeowner asks an AI assistant who pumps septic tanks nearby. The AI recommends Your Septic &amp; Excavation Co., and a new customer call comes in while a pump truck services a home.</desc>
+  <title id="t">AI search recommends a local contractor</title>
+  <desc id="d">An AI assistant answers questions about septic pumping, land clearing and excavation. A pump truck and excavator sit next to each other.</desc>
 
   <defs>
     <!-- Sky + ground -->
@@ -97,13 +97,6 @@
 
     <clipPath id="frame"><rect width="600" height="640" rx="28"/></clipPath>
 
-    <!-- typing reveal -->
-    <clipPath id="typeClip">
-      <rect x="248" y="96" height="30" width="0">
-        <animate attributeName="width" dur="12s" repeatCount="indefinite"
-                 keyTimes="0;0.05;0.19;0.93;1" values="0;0;270;270;0"/>
-      </rect>
-    </clipPath>
   </defs>
 
   <style>
@@ -119,12 +112,13 @@
       97%,100% { opacity: 0; transform: none; }
     }
 
-    .caret { animation: caret 12s steps(1) infinite; }
-    @keyframes caret {
-      0%,4% { opacity: 0; }
-      5%,7%,9%,11%,13%,15%,17%,19% { opacity: 1; }
-      6%,8%,10%,12%,14%,16%,18% { opacity: .2; }
-      20%,100% { opacity: 0; }
+    .question { animation: question 36s steps(1) infinite; }
+    .question.second { animation-delay: -24s; }
+    .question.third { animation-delay: -12s; }
+    @keyframes question { 0% { opacity: 1; } 33.333%, 100% { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; }
+      .question.second, .question.third, .thinking, .ring-wave { display: none; }
     }
 
     .thinking { animation-name: thinking; }
@@ -386,6 +380,22 @@
       </g>
     </g>
 
+    <g transform="translate(83 475)">
+      <ellipse cx="112" cy="108" rx="113" ry="9" fill="#222923" opacity=".38"/>
+      <rect x="75" y="84" width="106" height="23" rx="11" fill="#272B2E"/>
+      <rect x="82" y="89" width="92" height="13" rx="6" fill="#52575D"/>
+      <path d="M92 96h72" stroke="#292F33" stroke-width="5" stroke-dasharray="6 5"/>
+      <rect x="111" y="75" width="37" height="12" fill="#2E3338"/>
+      <path d="M93 76V57h31l9-17h35l13 14v22z" fill="#D38410" stroke="#6A461A" stroke-width="3"/>
+      <path d="M116 55V28q0-7 7-7h29q7 0 7 7v39h-43z" fill="#EDAA27" stroke="#6A461A" stroke-width="3"/>
+      <path d="M121 28h28v27h-28z" fill="#294755"/>
+      <path d="M113 57 80 12 34 36 24 74" fill="none" stroke="#62461E" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M113 57 80 12 34 36 24 74" fill="none" stroke="#F9B331" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M107 53 71 21M73 19 40 36" fill="none" stroke="#3D4448" stroke-width="3"/>
+      <path d="M23 70 33 78 29 93H6l-5-10 13 2z" fill="#383D41" stroke="#262B2F" stroke-width="2"/>
+      <circle cx="80" cy="12" r="3" fill="#634416"/>
+    </g>
+
     <!-- foreground grass -->
     <g stroke="#3E7A37" stroke-width="2" stroke-linecap="round" opacity="0.8">
       <path d="M20 640 l4 -16M30 640 l-3 -12M120 640 l3 -14M132 640 l-2 -10M210 640 l4 -15M222 640 l-3 -11"/>
@@ -405,7 +415,7 @@
       <path d="M58 64 l4 4 l8 -9" fill="none" stroke="#FFFFFF" stroke-width="0" />
       <text x="64" y="68.5" text-anchor="middle" font-size="11" font-weight="800" fill="#FFFFFF">AI</text>
       <text x="88" y="61" font-size="13.5" font-weight="700" fill="#0F172A">AI Search</text>
-      <text x="88" y="77" font-size="11" fill="#64748B">ChatGPT · Perplexity · Google AI</text>
+      <text x="88" y="77" font-size="11" fill="#64748B">ChatGPT · Claude · Google AI</text>
       <g transform="translate(470 54)">
         <rect width="78" height="22" rx="11" fill="#ECFDF5"/>
         <circle cx="13" cy="11" r="3.5" fill="#10B981">
@@ -419,12 +429,9 @@
     <!-- user bubble -->
     <g class="user-bubble cycle">
       <path d="M244 104 Q 244 98, 250 98 H 534 Q 548 98, 548 112 V 120 Q 548 134, 534 134 H 258 Q 244 134, 244 120 Z" fill="url(#cobalt)"/>
-      <g clip-path="url(#typeClip)">
-        <text x="256" y="121" font-size="14.5" font-weight="500" fill="#FFFFFF">Who pumps septic tanks near me?</text>
-      </g>
-      <rect class="caret" x="256" y="108" width="2" height="17" fill="#FFFFFF">
-        <animate attributeName="x" dur="12s" repeatCount="indefinite" keyTimes="0;0.05;0.19;1" values="256;256;492;492"/>
-      </rect>
+      <text class="question" x="256" y="121" font-size="14.5" font-weight="500" fill="#FFFFFF">Who pumps septic tanks near me?</text>
+      <text class="question second" x="256" y="121" font-size="14.5" font-weight="500" fill="#FFFFFF">Who does land clearing in [town]?</text>
+      <text class="question third" x="256" y="121" font-size="14.5" font-weight="500" fill="#FFFFFF">Best excavation company near me?</text>
     </g>
 
     <!-- thinking dots -->
@@ -455,17 +462,17 @@
       <g class="bullet1 cycle">
         <circle cx="74" cy="238" r="7" fill="#DCFCE7"/>
         <path d="M70.5 238 l2.5 2.5 l4.5 -5" fill="none" stroke="#059669" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        <text x="88" y="242" font-size="12" fill="#334155">Licensed for residential &amp; commercial pumping</text>
+        <text x="88" y="242" font-size="12" fill="#334155">Septic pumping, installation &amp; repair</text>
       </g>
       <g class="bullet2 cycle">
         <circle cx="74" cy="256" r="7" fill="#DCFCE7"/>
         <path d="M70.5 256 l2.5 2.5 l4.5 -5" fill="none" stroke="#059669" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        <text x="88" y="260" font-size="12" fill="#334155">Same-day &amp; emergency service</text>
+        <text x="88" y="260" font-size="12" fill="#334155">Excavation, grading &amp; land clearing</text>
       </g>
       <g class="bullet3 cycle">
         <circle cx="74" cy="274" r="7" fill="#DCFCE7"/>
         <path d="M70.5 274 l2.5 2.5 l4.5 -5" fill="none" stroke="#059669" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        <text x="88" y="278" font-size="12" fill="#334155">Septic inspections &amp; perc testing</text>
+        <text x="88" y="278" font-size="12" fill="#334155">Residential &amp; commercial projects</text>
       </g>
     </g>
 

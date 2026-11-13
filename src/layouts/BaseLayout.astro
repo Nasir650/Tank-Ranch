@@ -5,19 +5,21 @@ interface Props {
   noindex?: boolean;
   canonicalUrl?: string;
   bodyClass?: string;
-  phoneNumber?: string;
-  phoneTel?: string;
+  textHref?: string;
+  showCheckShortcut?: boolean;
+  postcardOnly?: boolean;
   callrailId?: string;
 }
 
 const {
   title = "Tank & Trench | AI Search for Septic & Excavation",
-  description = "When homeowners ask ChatGPT, Perplexity or Google's AI who pumps septic tanks near them, we make sure they hear your name. Measured in calls and form fills.",
+  description = "We help septic and excavation contractors get found when homeowners and builders ask ChatGPT, Claude and Google’s AI who to call.",
   noindex = false,
   canonicalUrl,
   bodyClass = "has-mobile-bar",
-  phoneNumber = "(508) 555-0198",
-  phoneTel = "tel:5085550198",
+  textHref,
+  showCheckShortcut = false,
+  postcardOnly = false,
   callrailId = "" // Set in environment or layout prop when CallRail account ID is active
 } = Astro.props;
 
@@ -48,9 +50,11 @@ const resolvedCanonical = canonicalUrl || new URL(currentPath, Astro.site || 'ht
   <link rel="apple-touch-icon" href="/favicon.svg">
 
   <!-- Typography Preconnects -->
+  {!postcardOnly && <Fragment>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  </Fragment>}
 
   <!-- Core Stylesheet -->
   <link rel="stylesheet" href="/styles.css">
@@ -73,14 +77,14 @@ const resolvedCanonical = canonicalUrl || new URL(currentPath, Astro.site || 'ht
 <body class={bodyClass}>
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <Header phoneNumber={phoneNumber} phoneTel={phoneTel} />
+  {!postcardOnly && <Header textHref={textHref} checkHref={showCheckShortcut ? "#check-form" : "/check/#check-form"} />}
 
   <main id="main-content">
     <slot />
   </main>
 
-  <MobileStickyBar phoneNumber={phoneNumber} phoneTel={phoneTel} />
-  <Footer phoneNumber={phoneNumber} phoneTel={phoneTel} />
+  <MobileStickyBar textHref={textHref} showCheckShortcut={showCheckShortcut} />
+  {!postcardOnly && <Footer textHref={textHref} />}
 
   <!-- Interaction Scripts: Condensed Sticky Navbar + Mobile Drawer -->
   <script is:inline>

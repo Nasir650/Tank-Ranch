@@ -1,60 +1,47 @@
 ---
+import contact from '../data/contact.json';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const pageTitle = "Tank & Trench | When homeowners ask who to call, the answer should be you";
-const pageDesc = "Homeowners don't just Google anymore. They ask ChatGPT, Perplexity and Google's AI answers who pumps septic tanks near them. We make sure they hear your name, measured in calls.";
+const headline = "When someone asks AI who to call, the answer should be you.";
+const pageTitle = "Tank & Trench | " + headline;
+const pageDesc = "Homeowners and builders ask ChatGPT, Claude and Google’s AI who pumps septic, clears land or digs foundations. Tank & Trench helps them find you.";
+const faqs = [
+  ["What is AI search?", "When homeowners or builders ask ChatGPT, Claude or Google’s AI who to call, the assistant may name a few local companies. We help make your services and service area easier to find."],
+  ["Do I own what you build?", "Yes, your pages and profiles stay yours."],
+  ["How fast does it work?", "It depends on your county and your competition. We report tracked calls and form fills each month so you can follow the results."],
+  ["I do septic and excavation. Is that one plan or two?", "Start with one conversation about both services. Joe will scope the work and check availability on both sides if you want Territory exclusivity."],
+  ["Most of my work comes from builders, not homeowners. Does this still matter?", "Yes. Builders and general contractors use search to find crews when they need bids, extra capacity or a contractor in a new town. We make your services and coverage clear for those searches."],
+  ["Which states do you work in?", "Tell Joe your state and the counties you cover. He’ll confirm whether we can serve your area and which sides are open for Territory."],
+];
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://tankandtrench.com/#organization",
+      name: "Tank & Trench",
+      legalName: "Shellback Labs LLC",
+      url: "https://tankandtrench.com/",
+      logo: "https://tankandtrench.com/images/tank-and-trench-logo.svg",
+      email: "joe@tankandtrench.com",
+      telephone: contact.number,
+      description: pageDesc,
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://tankandtrench.com/#faq",
+      mainEntity: faqs.map(([name, text]) => ({
+        "@type": "Question",
+        name,
+        acceptedAnswer: { "@type": "Answer", text },
+      })),
+    },
+  ],
+};
 ---
 <BaseLayout title={pageTitle} description={pageDesc}>
   <Fragment slot="head">
-    <script type="application/ld+json" is:inline>
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Organization",
-          "@id": "https://tankandtrench.com/#organization",
-          "name": "Tank & Trench",
-          "legalName": "Shellback Labs LLC",
-          "alternateName": "Tank & Trench",
-          "url": "https://tankandtrench.com/",
-          "logo": "https://tankandtrench.com/images/tank-and-trench-logo.svg",
-          "email": "joe@tankandtrench.com",
-          "telephone": "+1-508-555-0198",
-          "description": "AI Search for Septic & Excavation. Making septic and excavation contractors the authoritative answer when homeowners ask AI assistants who to call."
-        },
-        {
-          "@type": "FAQPage",
-          "@id": "https://tankandtrench.com/#faq",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "What is AI search?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "When a homeowner asks ChatGPT, Perplexity or Google's AI who to call, the assistant names a few companies. AI search is making sure yours is one of them."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Do I own what you build?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes, your pages and profiles stay yours."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "How fast does it work?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "It depends on your county and your competition. We show you the calls every month, so you never have to guess."
-              }
-            }
-          ]
-        }
-      ]
-    }
-    </script>
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   </Fragment>
 
   <!-- SECTION 1: HERO -->
@@ -67,10 +54,10 @@ const pageDesc = "Homeowners don't just Google anymore. They ask ChatGPT, Perple
         <div class="hero-text-col">
           <div class="eyebrow cobalt" style="margin-bottom: 16px;">AI Search For Septic &amp; Excavation</div>
           <h1 class="display-xl hero-title" style="margin: 0 0 20px;">
-            When homeowners ask who to call, the answer should be you.
+            {headline}
           </h1>
           <p class="body-lg hero-desc" style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 32px; max-width: 580px;">
-            Homeowners don't just Google anymore. They ask ChatGPT, Perplexity and Google's AI answers who pumps septic tanks near them. We make sure they hear your name, and we measure it in phone calls and form fills, not rankings.
+            Homeowners and builders now ask ChatGPT, Claude and Google’s AI who pumps septic tanks, clears land or digs foundations near them. We help them hear your name and track the calls and form fills that follow.
           </p>
 
           <div class="hero-cta-group" style="margin-bottom: 24px;">
@@ -91,7 +78,7 @@ const pageDesc = "Homeowners don't just Google anymore. They ask ChatGPT, Perple
 
         <!-- Right: Hero Scene Visual (AI Search Recommends Contractor) -->
         <div class="hero-scene-wrapper">
-          <img src="/ai-hero-scene.svg" alt="AI search recommends a local septic company when a homeowner searches" width="600" height="640" class="hero-scene-img" loading="eager">
+          <img src="/ai-hero-scene.svg" alt="AI search recommends a local contractor, with a pump truck and excavator in the scene" width="600" height="640" class="hero-scene-img" loading="eager">
         </div>
       </div>
     </div>
@@ -104,10 +91,10 @@ const pageDesc = "Homeowners don't just Google anymore. They ask ChatGPT, Perple
         <div>
           <div class="eyebrow sun" style="margin-bottom: 12px;">The Shift</div>
           <h2 class="display-lg" style="color: var(--white); margin-bottom: 20px;">
-            Ask ChatGPT who pumps septic tanks in your town.
+            Ask ChatGPT who to call for septic or site work in your town.
           </h2>
-          <p class="body-lg" style="color: rgba(255, 255, 255, 0.85); line-height: 1.6; margin-bottom: 24px;">
-            If it names a competitor, that's a call you never knew you lost. AI assistants pull from a short list of companies they understand. Most septic companies aren't on it yet. Not because they're bad at the work, but because nobody built the information the AI reads.
+          <p class="body-lg shift-desc">
+            If it names a competitor, that could be a pump-out or a site prep bid you never hear about. We make it easier for AI assistants to find your services, the towns you cover and the kind of jobs you take.
           </p>
           <a href="/check/" class="btn btn-inverse btn-md">
             <span>Get your free AI check</span>
@@ -129,7 +116,7 @@ const pageDesc = "Homeowners don't just Google anymore. They ask ChatGPT, Perple
             </div>
             <div>
               <div style="font-weight: 700; font-size: 15px; color: var(--white); margin-bottom: 4px;">Competitor gets named</div>
-              <div style="font-size: 13px; color: rgba(255, 255, 255, 0.7); line-height: 1.5;">Homeowner clicks their number directly from the AI answer. You never even knew the job existed.</div>
+              <div style="font-size: 13px; color: rgba(255, 255, 255, 0.7); line-height: 1.5;">A homeowner or GC gets a name to call while looking for a crew.</div>
             </div>
           </div>
 
@@ -149,6 +136,32 @@ const pageDesc = "Homeowners don't just Google anymore. They ask ChatGPT, Perple
     </div>
   </section>
 
+  <section class="section-padding trades-section">
+    <div class="container">
+      <h2 class="display-lg">Tank side / Trench side</h2>
+      <div class="pricing-teaser-grid">
+        <article class="step-card">
+          <h3 class="step-title">Tank side</h3>
+          <p>Septic pumping, installation and repair, wells, and portable toilets.</p>
+          <ul>
+            <li>“Who pumps septic tanks near me?”</li>
+            <li>“Who installs septic systems for new construction in my county?”</li>
+            <li>“Who rents portable toilets for a jobsite near me?”</li>
+          </ul>
+        </article>
+        <article class="step-card">
+          <h3 class="step-title">Trench side</h3>
+          <p>Excavation, site work, land clearing, grading, drainage, sewer and water lines, and boring.</p>
+          <ul>
+            <li>“Who does land clearing in my town?”</li>
+            <li>“Which excavation crew can dig a foundation near me?”</li>
+            <li>“Who does directional boring for water lines in my county?”</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- SECTION 3: HOW IT WORKS -->
   <section class="section-padding" id="how-it-works">
     <div class="container">
@@ -158,7 +171,7 @@ const pageDesc = "Homeowners don't just Google anymore. They ask ChatGPT, Perple
           Three steps to make you the answer.
         </h2>
         <p class="body-lg section-intro">
-          We don't sell bloated retainers or jargon. We focus on one thing: getting homeowners to hear your name and call your phone.
+          We help homeowners, builders and general contractors find your company when they need a crew.
         </p>
       </div>
 
@@ -177,7 +190,7 @@ const pageDesc = "Homeowners don't just Google anymore. They ask ChatGPT, Perple
           <div class="step-num-badge">02</div>
           <h3 class="step-title">We build your Answer Map</h3>
           <p class="step-body">
-            Every service, town and homeowner question, mapped and connected. Built in your first 30 days, grown every month after.
+            We connect every service and town to the questions your customers ask, from homeowners to builders and general contractors. We build it in the first 30 days and expand it monthly.
           </p>
         </div>
 
@@ -202,16 +215,16 @@ const pageDesc = "Homeowners don't just Google anymore. They ask ChatGPT, Perple
     <div class="container">
       <div class="proof-banner">
         <div>
-          <div class="proof-big-stat">80 &rarr; 5,000+</div>
-          <div class="proof-stat-caption">Daily search impressions</div>
+          <div class="proof-big-stat">40+</div>
+          <div class="proof-stat-caption">Engagements in the past month</div>
         </div>
         <div>
           <div class="eyebrow mint" style="margin-bottom: 8px;">Real Proof</div>
           <p class="proof-quote-text">
-            A New England hardscape and paving contractor went from about 80 to 5,000+ daily search impressions on our approach.
+            A New England hardscape and paving contractor reported 40+ engagements in the past month. Daily search impressions grew from about 80 to 5,000+.
           </p>
           <p class="proof-disclaimer">
-            Built on the exact same Answer Map approach. Client kept anonymous per trade privacy policy.
+            We track phone calls and form fills alongside search impressions.
           </p>
         </div>
       </div>
@@ -224,7 +237,7 @@ const pageDesc = "Homeowners don't just Google anymore. They ask ChatGPT, Perple
       <div class="section-header text-center">
         <div class="eyebrow sun">Pricing Teaser</div>
         <h2 class="display-lg">
-          Two plans. One county each. Pro gets you found. Territory locks your county so we won't work with your competitors there.
+          Two plans. One county each.
         </h2>
       </div>
 
@@ -234,7 +247,7 @@ const pageDesc = "Homeowners don't just Google anymore. They ask ChatGPT, Perple
           <div>
             <div class="teaser-plan-header">
               <h3 class="teaser-plan-title">Pro</h3>
-              <div class="teaser-plan-price">$1,000 <span>/ mo</span></div>
+              <div class="teaser-plan-price">$750 <span>/ mo</span></div>
             </div>
             <p class="teaser-plan-body" style="margin-top: 14px;">
               Built for owners ready to own their county. Includes Google Business Profile cleanup, service and town pages, schema, the full Answer Map, monthly content, call tracking, and monthly call reporting.
@@ -251,10 +264,10 @@ const pageDesc = "Homeowners don't just Google anymore. They ask ChatGPT, Perple
           <div>
             <div class="teaser-plan-header">
               <h3 class="teaser-plan-title">Territory</h3>
-              <div class="teaser-plan-price">$1,500 <span>/ mo</span></div>
+              <div class="teaser-plan-price">$1,250 <span>/ mo</span></div>
             </div>
             <p class="teaser-plan-body" style="margin-top: 14px;">
-              Built for owners who want to lock out competitors. Everything in Pro, plus complete county exclusivity (we won't work with your competitors there) and leads from our county lead sites.
+              Everything in Pro, plus county exclusivity for your side, Tank or Trench, and leads from our county lead sites.
             </p>
           </div>
           <div>
@@ -280,7 +293,7 @@ const pageDesc = "Homeowners don't just Google anymore. They ask ChatGPT, Perple
         <div>
           <div class="eyebrow cobalt" style="margin-bottom: 8px;">A Note from Joe</div>
           <p class="joe-quote">
-            &ldquo;I'm Joe from Tank &amp; Trench. I've spent years figuring out what makes people click, search and call. Now I do it for one trade only. If a homeowner in your county asks who to call, I want the answer to be you.&rdquo;
+            &ldquo;I'm Joe from Tank &amp; Trench. I've spent years figuring out what makes people click, search and call. Now I do it for septic and excavation contractors. When a homeowner or builder in your county asks who to call, I want the answer to be you.&rdquo;
           </p>
           <div class="joe-sig">Joe &middot; Tank &amp; Trench</div>
         </div>
@@ -302,29 +315,12 @@ const pageDesc = "Homeowners don't just Google anymore. They ask ChatGPT, Perple
       </div>
 
       <div class="faq-list">
-        <!-- Q1 -->
-        <div class="faq-card">
-          <div class="faq-q">What is AI search?</div>
-          <div class="faq-a">
-            When a homeowner asks ChatGPT, Perplexity or Google's AI who to call, the assistant names a few companies. AI search is making sure yours is one of them.
-          </div>
-        </div>
-
-        <!-- Q2 -->
-        <div class="faq-card">
-          <div class="faq-q">Do I own what you build?</div>
-          <div class="faq-a">
-            Yes, your pages and profiles stay yours.
-          </div>
-        </div>
-
-        <!-- Q3 -->
-        <div class="faq-card">
-          <div class="faq-q">How fast does it work?</div>
-          <div class="faq-a">
-            It depends on your county and your competition. We show you the calls every month, so you never have to guess.
-          </div>
-        </div>
+        {faqs.map(([question, answer]) => (
+          <article class="faq-card">
+            <h3 class="faq-q">{question}</h3>
+            <p class="faq-a">{answer}</p>
+          </article>
+        ))}
       </div>
     </div>
   </section>

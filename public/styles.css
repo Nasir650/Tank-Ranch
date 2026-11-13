@@ -2790,3 +2790,68 @@
 .simple-footer-legal-links a:hover {
   color: var(--white);
 }
+.check-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: clamp(22px, 5vw, 48px);
+  align-items: start;
+  margin-top: 40px;
+}
+
+.check-field { margin-bottom: 20px; }
+.check-field label, .postcard-lookup label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+#check-form, #county-availability { scroll-margin-top: 100px; }
+.postcard-lookup { margin-top: 24px; }
+.postcard-lookup summary { cursor: pointer; font-weight: 700; }
+.postcard-lookup form { max-width: 360px; margin-top: 12px; }
+.postcard-lookup .btn { margin-top: 10px; }
+.county-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.pricing-plan-grid ul, .trades-section ul { padding-inline-start: 20px; }
+.pricing-plan-grid li + li, .trades-section li + li { margin-top: 8px; }
+.trades-section .pricing-teaser-grid { margin-top: 24px; }
+.shift-desc { color: #e2e8f0; line-height: 1.6; margin-bottom: 24px; }
+.personal-check { padding-top: clamp(28px, 5vw, 64px); }
+.personal-check h1 { margin: 8px 0 14px; }
+.personal-text { margin: 14px 0 20px; }
+.personal-result {
+  background: var(--ink-50);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: clamp(16px, 4vw, 28px);
+  margin-bottom: 24px;
+  overflow-wrap: anywhere;
+}
+.personal-result :is(blockquote, p, figure, ol) { margin: 8px 0 16px; }
+.personal-result img { width: 100%; height: auto; display: block; }
+.personal-result ol { padding-inline-start: 22px; }
+.personal-result li + li { margin-top: 8px; }
+
+@media (max-width: 768px) {
+  .check-grid, .pricing-plan-grid { grid-template-columns: minmax(0, 1fr); }
+  .hero-section .hero-split-grid .hero-text-col, .shift-section .shift-grid { text-align: left; }
+  .hero-section .hero-split-grid .hero-title, .shift-section .display-lg {
+    font-size: clamp(31px, 7.8vw, 46px);
+    line-height: 1.09;
+  }
+  .hero-section .hero-split-grid p.hero-desc, .shift-section p.shift-desc {
+    font-size: 16px;
+    line-height: 1.55;
+    margin-inline: 0;
+  }
+  .hero-section .hero-split-grid p.hero-desc { color: var(--ink-800) !important; }
+  .hero-section .hero-split-grid .hero-cta-group, .hero-section .hero-split-grid .hero-trust { justify-content: flex-start; }
+  .hero-section .hero-split-grid .eyebrow { justify-content: flex-start; }
+  .mobile-sticky-bar { padding-bottom: calc(10px + env(safe-area-inset-bottom)); }
+  .mobile-sticky-bar .mobile-sticky-btn { flex: 1 1 0; min-height: 44px; padding: 8px 4px; }
+  .mobile-sticky-form { background: var(--ink-100); color: var(--ink-900); }
+  body.has-mobile-bar { padding-bottom: calc(74px + env(safe-area-inset-bottom)); }
+}
+
+@media (max-width: 420px) {
+  .county-fields { grid-template-columns: minmax(0, 1fr); }
+}

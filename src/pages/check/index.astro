@@ -1,10 +1,11 @@
 ---
+import contact from '../../data/contact.json';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const pageTitle = "Does AI recommend you, or your competitor? | Free AI Check";
-const pageDesc = "Find out whether ChatGPT, Perplexity and Google's AI recommend you or your competitor. Free 5-minute video walkthrough for septic and excavation contractors.";
+const pageDesc = "Find out whether ChatGPT, Claude and Google's AI recommend you or your competitor. Free 5-minute video walkthrough for septic and excavation contractors.";
 ---
-<BaseLayout title={pageTitle} description={pageDesc}>
+<BaseLayout title={pageTitle} description={pageDesc} showCheckShortcut>
   <section class="section-padding">
     <div class="container">
       <div class="eyebrow cobalt" style="margin-bottom: 12px;">Free AI Check</div>
@@ -12,10 +13,69 @@ const pageDesc = "Find out whether ChatGPT, Perplexity and Google's AI recommend
         Does AI recommend you, or your competitor?
       </h1>
       <p class="body-lg" style="color: var(--text-secondary); max-width: 640px;">
-        Fill out the short form below. We'll run a live check on your town across ChatGPT, Perplexity, and Google's AI answers.
+        Fill out the short form below. We'll run a live check on your town across ChatGPT, Claude, and Google's AI answers.
       </p>
 
-      <div class="check-grid" style="display: grid; grid-template-columns: 1fr 1.15fr; gap: 48px; align-items: flex-start; margin-top: 40px;">
+      <div class="check-grid">
+        <!-- The Form Panel -->
+        <div id="check-form" class="check-form-panel" style="background: var(--white); border: 1px solid var(--border-default); border-radius: var(--radius-xl); padding: clamp(28px, 4vw, 44px); box-shadow: var(--shadow-md);">
+          <form id="checkForm" action="https://formspree.io/f/xbjnbqzz" method="POST">
+            <div style="margin-bottom: 20px;">
+              <label for="companyName" style="display: block; font-size: 14px; font-weight: 600; color: var(--ink-900); margin-bottom: 6px;">Company Name *</label>
+              <input type="text" id="companyName" name="company" class="form-input" placeholder="e.g. Apex Septic & Excavation" required>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+              <label for="townState" style="display: block; font-size: 14px; font-weight: 600; color: var(--ink-900); margin-bottom: 6px;">Town & State *</label>
+              <input type="text" id="townState" name="town_state" class="form-input" placeholder="e.g. Sanford, NC" required>
+            </div>
+
+            <div class="check-field">
+              <label for="mainTrade">What do you mainly do?</label>
+              <select id="mainTrade" name="main_trade" class="form-input" required>
+                <option value="">Choose your main trade</option>
+                <option>Septic</option>
+                <option>Excavation &amp; site work</option>
+                <option>Both</option>
+                <option>Wells or portable toilets</option>
+              </select>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+              <label for="ownerName" style="display: block; font-size: 14px; font-weight: 600; color: var(--ink-900); margin-bottom: 6px;">Your Name *</label>
+              <input type="text" id="ownerName" name="name" class="form-input" placeholder="e.g. Dale" required>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+              <label for="phone" style="display: block; font-size: 14px; font-weight: 600; color: var(--ink-900); margin-bottom: 6px;">Phone Number *</label>
+              <input type="tel" id="phone" name="phone" class="form-input" placeholder="e.g. (508) 555-0123" required>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+              <label for="email" style="display: block; font-size: 14px; font-weight: 600; color: var(--ink-900); margin-bottom: 6px;">Email Address *</label>
+              <input type="email" id="email" name="email" class="form-input" placeholder="e.g. dale@pineridgeseptic.com" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 8px;">
+              <span>Get your free AI check</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </form>
+
+          <div id="confirmationBox" style="display: none; background: #effdf4; border: 1px solid #86efac; border-radius: var(--radius-lg); padding: 24px; text-align: center; margin-top: 16px;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" style="margin-bottom: 8px;">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="9 12 11 14 15 10"></polyline>
+            </svg>
+            <h3 style="font-size: 18px; color: #166534; margin-bottom: 6px;">Check Request Received!</h3>
+            <p style="font-size: 14px; color: #14532d; line-height: 1.5; margin: 0;">
+              Joe is reviewing what ChatGPT and Google AI say about your town. You will receive your 5-minute video walkthrough by email and text within 2 business days.
+            </p>
+          </div>
+        </div>
         <!-- Deliverables / What You Get -->
         <div class="check-deliverables" style="background: var(--ink-50); border: 1px solid var(--border-default); border-radius: var(--radius-xl); padding: clamp(28px, 4vw, 40px); display: flex; flex-direction: column; gap: 20px;">
           <h2 class="heading-lg" style="color: var(--ink-900); margin-bottom: 4px;">What you get:</h2>
@@ -73,59 +133,69 @@ const pageDesc = "Find out whether ChatGPT, Perplexity and Google's AI recommend
           </div>
         </div>
 
-        <!-- The Form Panel -->
-        <div class="check-form-panel" style="background: var(--white); border: 1px solid var(--border-default); border-radius: var(--radius-xl); padding: clamp(28px, 4vw, 44px); box-shadow: var(--shadow-md);">
-          <form id="checkForm" action="https://formspree.io/f/xbjnbqzz" method="POST">
-            <div style="margin-bottom: 20px;">
-              <label for="companyName" style="display: block; font-size: 14px; font-weight: 600; color: var(--ink-900); margin-bottom: 6px;">Company Name *</label>
-              <input type="text" id="companyName" name="company" class="form-input" placeholder="e.g. Apex Septic & Excavation" required>
-            </div>
-
-            <div style="margin-bottom: 20px;">
-              <label for="townState" style="display: block; font-size: 14px; font-weight: 600; color: var(--ink-900); margin-bottom: 6px;">Town & State *</label>
-              <input type="text" id="townState" name="town_state" class="form-input" placeholder="e.g. Sanford, NC" required>
-            </div>
-
-            <div style="margin-bottom: 20px;">
-              <label for="ownerName" style="display: block; font-size: 14px; font-weight: 600; color: var(--ink-900); margin-bottom: 6px;">Your Name *</label>
-              <input type="text" id="ownerName" name="name" class="form-input" placeholder="e.g. Dale" required>
-            </div>
-
-            <div style="margin-bottom: 20px;">
-              <label for="phone" style="display: block; font-size: 14px; font-weight: 600; color: var(--ink-900); margin-bottom: 6px;">Phone Number *</label>
-              <input type="tel" id="phone" name="phone" class="form-input" placeholder="e.g. (508) 555-0123" required>
-            </div>
-
-            <div style="margin-bottom: 20px;">
-              <label for="email" style="display: block; font-size: 14px; font-weight: 600; color: var(--ink-900); margin-bottom: 6px;">Email Address *</label>
-              <input type="email" id="email" name="email" class="form-input" placeholder="e.g. dale@pineridgeseptic.com" required>
-            </div>
-
-            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 8px;">
-              <span>Get your free AI check</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </button>
-          </form>
-
-          <div id="confirmationBox" style="display: none; background: #effdf4; border: 1px solid #86efac; border-radius: var(--radius-lg); padding: 24px; text-align: center; margin-top: 16px;">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" style="margin-bottom: 8px;">
-              <circle cx="12" cy="12" r="10"></circle>
-              <polyline points="9 12 11 14 15 10"></polyline>
-            </svg>
-            <h3 style="font-size: 18px; color: #166534; margin-bottom: 6px;">Check Request Received!</h3>
-            <p style="font-size: 14px; color: #14532d; line-height: 1.5; margin: 0;">
-              Joe is reviewing what ChatGPT and Google AI say about your town. You will receive your 5-minute video walkthrough by email and text within 2 business days.
-            </p>
-          </div>
-        </div>
       </div>
+
+      <details class="postcard-lookup" id="postcard">
+        <summary>Have a postcard code?</summary>
+        <form id="postcardLookup">
+          <label for="cardCode">Enter the code on your postcard</label>
+          <input id="cardCode" class="form-input" name="c" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="GA123-AB4C" maxlength="20" required>
+          <button class="btn btn-secondary btn-md" type="submit">Open my results</button>
+          <p role="status" id="lookupStatus"></p>
+        </form>
+        <p>Need help? <a href={'sms:' + contact.number}>Text Joe at {contact.display}</a>.</p>
+      </details>
     </div>
   </section>
 
   <script is:inline>
+    const lookup = document.getElementById('postcardLookup');
+    const cardCode = document.getElementById('cardCode');
+    const lookupStatus = document.getElementById('lookupStatus');
+
+    async function openResults(value) {
+      const normalized = value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+      const match = normalized.match(/^([A-Z]{2})([0-9OIL]+)([A-Z0-9]{4})$/);
+      if (!match) {
+        lookupStatus.textContent = 'Enter the full code from your postcard.';
+        return;
+      }
+
+      const [, state, serial, suffix] = match;
+      const code = state + serial.replace(/O/g, '0').replace(/[IL]/g, '1') + '-' + suffix.toLowerCase();
+      const url = '/r/' + code + '/';
+      const button = lookup.querySelector('button');
+      button.disabled = true;
+      lookupStatus.textContent = 'Looking up your results…';
+      try {
+        const response = await fetch(url, { cache: 'no-store' });
+        if (response.ok) {
+          const legacyPage = new DOMParser().parseFromString(await response.text(), 'text/html');
+          const destination = legacyPage.querySelector('a[data-postcard-result]')?.getAttribute('href');
+          if (destination && /^\/check\/[a-z0-9-]+\/$/.test(destination)) {
+            window.location.assign(destination);
+            return;
+          }
+        }
+        lookupStatus.textContent = "We couldn't find that code. Check the characters and try again.";
+      } catch {
+        lookupStatus.textContent = "We couldn't check that code. Try again or text Joe for your link.";
+      } finally {
+        button.disabled = false;
+      }
+    }
+
+    lookup.addEventListener('submit', (event) => {
+      event.preventDefault();
+      openResults(cardCode.value);
+    });
+    const suppliedCode = new URLSearchParams(window.location.search).get('c');
+    if (suppliedCode) {
+      document.getElementById('postcard').open = true;
+      cardCode.value = suppliedCode;
+      openResults(suppliedCode);
+    }
+
     const checkForm = document.getElementById('checkForm');
     const confirmationBox = document.getElementById('confirmationBox');
 

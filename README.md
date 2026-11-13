@@ -1,5 +1,33 @@
 # Tank & Trench — Static Site Generator (Astro + Cloudflare Pages)
 
+## Postcard results and QR destinations
+
+The supplied `Tank & Trench - Results Pages.zip` is the source for the 3,590
+postcard results. Keep it at the repository root when deploying this batch.
+`npm run build` runs Astro and then uses Python 3 (available as `python`) to
+add the personalized pages and legacy code links to `dist`.
+
+- New QR destinations use `/check/<company-name>/`. Companies whose names
+  produce the same slug get their card code appended. Existing `/r/<code>/`
+  links and the postcard-code lookup on `/check/` continue to work.
+- Export the QR mapping after the build with
+  `python scripts/build-postcard-results.py postcard-qr-links.csv`.
+  Join the export to the mailing list by `card_code`. In Thanks.io, map
+  `custom1` to the full URL and set the message template's QR destination to
+  `~CUSTOM1~`. Preview individual recipients before sending. The export's
+  `proof_complete` column marks whether the page has a date, a screenshot,
+  and three company-specific fixes. The supplied archive has transcripts but
+  no screenshot files, check dates, or company-specific fixes.
+- To add missing evidence to an existing postcard, add a CSV row keyed by
+  `card_code` and fill `date_checked`, `screenshot`, and `fix_1` through
+  `fix_3`. Put the screenshot in `public/checks/`. A row for an existing
+  archive page can leave `slug` blank. The original prompt and transcripts
+  stay paired. Run a fresh check if the prompt itself needs to change.
+- For standalone CSV-driven checks, use `slug` and `Card line` for the URL
+  and trade. The question and proof fields should come from the same check.
+  The fictional rows in `postcards-sample.csv` illustrate the format.
+- Call and text links use `617-579-8197` from `src/data/contact.json`.
+
 Official agency website and automated postcard check page generator for **Tank & Trench** (`tankandtrench.com`), built with **Astro**.
 
 Category: **AI Search for Septic & Excavation**  
@@ -22,7 +50,7 @@ Measurement: **Inbound phone calls and form submissions**
      - **Version B** (`company_named == 'yes'`): *"[Company] was in the answer. Here's how to stay there as competitors catch on."*
    - Proof box with prompt question, screenshot, and AI-named competitors.
    - 3 actionable fixes per company.
-   - Form for 5-minute video audit + click-to-text Joe button (`sms:15085550198?...`).
+   - Form for 5-minute video audit and click-to-text Joe.
    - Strict `noindex, nofollow, noarchive` on all postcard pages.
 
 3. **Forms & Lead Handling**:
@@ -31,7 +59,7 @@ Measurement: **Inbound phone calls and form submissions**
 
 4. **CallRail Dynamic Number Insertion (DNI)**:
    - Ready for CallRail phone swapping script integration in `BaseLayout.astro`.
-   - General phone: `(508) 555-0198`.
+   - Postcard tracking number: `617-579-8197`.
 
 ---
 
@@ -56,7 +84,9 @@ Measurement: **Inbound phone calls and form submissions**
 | `date_checked` | Verification date (e.g. `2026-11-20`) |
 | `ai_named` | Competitors or companies returned in the answer |
 | `company_named` | `yes` or `no` (switches between Version A and Version B) |
-| `screenshot` | Filename in `public/checks/` (with automatic fallback visual) |
+| `screenshot` | Filename in `public/checks/` |
+| `Card line` | Trade wording for the page heading, such as `excavation and site work` |
+| `card_code` | Printed postcard code to attach evidence to an existing archive result |
 | `fix_1`, `fix_2`, `fix_3` | Three prioritized reasons from research |
 | `wave` | Campaign wave tracking ID |
 
@@ -67,7 +97,7 @@ Measurement: **Inbound phone calls and form submissions**
 - **Framework preset**: `Astro`
 - **Build command**: `npm run build`
 - **Build output directory**: `dist`
-- **Environment variables**: Node 18+ or 20+
+- **Build dependencies**: Node 20+ and Python 3
 
 ---
 
@@ -83,6 +113,6 @@ npm run dev
 # Build static output to dist/
 npm run build
 
-# Preview build locally
+# Preview the full build, including postcard pages
 npm run preview
 ```

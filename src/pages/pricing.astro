@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const pageTitle = "Pricing & Plans | Tank & Trench";
-const pageDesc = "Two plans. One county each. Pro gets you found. Territory locks your county so we won't work with your competitors there.";
+const pageDesc = "Pro is $750 a month. Territory is $1,250 a month and includes exclusivity for your side in your county.";
 ---
 <BaseLayout title={pageTitle} description={pageDesc}>
   <!-- Subpage Hero -->
@@ -13,7 +13,7 @@ const pageDesc = "Two plans. One county each. Pro gets you found. Territory lock
         Two plans. One county each.
       </h1>
       <p class="body-lg" style="max-width: 620px; margin: 0 auto; color: var(--text-secondary);">
-        Pro gets you found. Territory locks your county so we won't work with your competitors there.
+        Territory reserves one Tank company and one Trench company per county.
       </p>
     </div>
   </section>
@@ -27,68 +27,28 @@ const pageDesc = "Two plans. One county each. Pro gets you found. Territory lock
         </p>
       </div>
 
-      <div class="pricing-table-container">
-        <table class="pricing-table">
-          <thead>
-            <tr>
-              <th style="width: 34%;">Feature</th>
-              <th style="width: 33%;">Pro</th>
-              <th class="featured-col" style="width: 33%;">Territory</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Price</strong></td>
-              <td><strong style="font-size: 20px; color: var(--cobalt-600);">$1,000</strong> / month</td>
-              <td class="featured-col"><strong style="font-size: 20px; color: var(--ink-900);">$1,500</strong> / month</td>
-            </tr>
-            <tr>
-              <td><strong>Built for</strong></td>
-              <td>Owners ready to own their county</td>
-              <td class="featured-col"><strong>Owners who want to lock out competitors</strong></td>
-            </tr>
-            <tr>
-              <td><strong>Google Profile Cleanup</strong></td>
-              <td><span class="check-icon">✓</span> Included</td>
-              <td class="featured-col"><span class="check-icon">✓</span> Included</td>
-            </tr>
-            <tr>
-              <td><strong>Service &amp; Town Pages</strong></td>
-              <td><span class="check-icon">✓</span> Included</td>
-              <td class="featured-col"><span class="check-icon">✓</span> Included</td>
-            </tr>
-            <tr>
-              <td><strong>Full Answer Map &amp; Schema</strong></td>
-              <td><span class="check-icon">✓</span> Included</td>
-              <td class="featured-col"><span class="check-icon">✓</span> Included</td>
-            </tr>
-            <tr>
-              <td><strong>Call Tracking &amp; Monthly Report</strong></td>
-              <td><span class="check-icon">✓</span> Tracked calls first</td>
-              <td class="featured-col"><span class="check-icon">✓</span> Tracked calls first</td>
-            </tr>
-            <tr>
-              <td><strong>Review Program &amp; AI Monitoring</strong></td>
-              <td><span class="check-icon">✓</span> Included</td>
-              <td class="featured-col"><span class="check-icon">✓</span> Included</td>
-            </tr>
-            <tr>
-              <td><strong>County Exclusivity</strong></td>
-              <td><span class="cross-icon">No</span></td>
-              <td class="featured-col"><strong style="color: var(--mint-500);">Yes &mdash; Locked Territory</strong></td>
-            </tr>
-            <tr>
-              <td><strong>Leads from our county lead sites</strong></td>
-              <td><span class="cross-icon">No</span></td>
-              <td class="featured-col"><span class="check-icon">✓</span> Yes, where we have one</td>
-            </tr>
-            <tr>
-              <td><strong>Action</strong></td>
-              <td><a class="btn btn-secondary btn-sm" href="/check/" style="width: 100%; text-align: center;">Get free AI check</a></td>
-              <td class="featured-col"><a class="btn btn-primary btn-sm" href="#county-availability" style="width: 100%; text-align: center;">Is my county taken?</a></td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="pricing-teaser-grid pricing-plan-grid">
+        <article class="teaser-plan-card">
+          <h2 class="teaser-plan-title">Pro</h2>
+          <p class="teaser-plan-price">$750 <span>/ month</span></p>
+          <p>Build your local presence in one county and track the calls and inquiries it brings in.</p>
+          <ul>
+            <li>Full Answer Map, service and town pages, and schema</li>
+            <li>Google Business Profile cleanup, monthly content and review program</li>
+            <li>AI-answer monitoring, call tracking and monthly reporting</li>
+          </ul>
+          <a class="btn btn-secondary btn-md" href="/check/#check-form">Get free AI check</a>
+        </article>
+        <article class="teaser-plan-card featured">
+          <h2 class="teaser-plan-title">Territory</h2>
+          <p class="teaser-plan-price">$1,250 <span>/ month</span></p>
+          <p>Everything in Pro, plus exclusivity for your side in one county.</p>
+          <ul>
+            <li>One company per county per side, Tank or Trench</li>
+            <li>Leads from our county lead sites, where available</li>
+          </ul>
+          <a class="btn btn-primary btn-md" href="#county-availability">Check county availability</a>
+        </article>
       </div>
     </div>
   </section>
@@ -102,7 +62,7 @@ const pageDesc = "Two plans. One county each. Pro gets you found. Territory lock
           Is my county taken?
         </h2>
         <p class="body-lg section-intro">
-          Exclusivity goes to the first company in a county to sign Territory.
+          The first Territory client on each side reserves that side in the county. Cover more than one county? Ask Joe about adding counties.
         </p>
       </div>
 
@@ -113,7 +73,7 @@ const pageDesc = "Two plans. One county each. Pro gets you found. Territory lock
             <label for="cCompany" style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px;">Company Name *</label>
             <input id="cCompany" name="company" type="text" class="form-input" placeholder="e.g. Acme Septic Service" required>
           </div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+          <div class="county-fields" style="margin-bottom: 16px;">
             <div>
               <label for="cCounty" style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px;">County *</label>
               <input id="cCounty" name="county" type="text" class="form-input" placeholder="e.g. Worcester County" required>
@@ -123,7 +83,16 @@ const pageDesc = "Two plans. One county each. Pro gets you found. Territory lock
               <input id="cState" name="state" type="text" class="form-input" placeholder="e.g. MA" required>
             </div>
           </div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+          <div class="check-field">
+            <label for="cSide">Which side do you work on?</label>
+            <select id="cSide" name="territory_side" class="form-input" required>
+              <option value="">Choose your side</option>
+              <option>Tank</option>
+              <option>Trench</option>
+              <option>Both</option>
+            </select>
+          </div>
+          <div class="county-fields" style="margin-bottom: 20px;">
             <div>
               <label for="cPhone" style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px;">Phone *</label>
               <input id="cPhone" name="phone" type="tel" class="form-input" placeholder="e.g. (508) 555-0123" required>
@@ -184,7 +153,7 @@ const pageDesc = "Two plans. One county each. Pro gets you found. Territory lock
         <div class="step-card">
           <h3 class="step-title">First-Come Exclusivity</h3>
           <p class="step-body">
-            First septic or excavation company in a county to sign Territory locks out competitors. We never take two clients in the same county.
+            Territory is first come, first served for each side in each county. A Tank contractor and a Trench contractor can hold the same county.
           </p>
         </div>
       </div>
