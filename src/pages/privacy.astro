@@ -1,4 +1,5 @@
 ---
+import contact from '../data/contact.json';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const pageTitle = "Privacy Policy | Tank & Trench";
@@ -50,10 +51,13 @@ const pageDesc = "Privacy policy for Shellback Labs LLC, doing business as Tank 
             We use call tracking (CallRail) to count calls from our website and mailings. For each call we record the date, time, length, caller&rsquo;s number, and the page or mailing that led to it.
           </p>
           <p>
-            If you give us your phone number, you agree that we may call or text you about your request. Message and data rates may apply. Message frequency varies. Reply STOP to stop texts at any time, or HELP for help.
+            Shellback Labs LLC (dba Tank &amp; Trench) provides marketing services to septic and excavation contractors. Business owners text our number after seeing our mailer or website (tankandtrench.com) to request their free AI search report. We reply to their questions, send a link to their personalized results page, and schedule follow-up calls. We only text people who contact us first or who ask us to text them during a phone call. We do not purchase lists or send unsolicited texts.
           </p>
           <p>
-            <strong>Mobile information will not be shared with third parties or affiliates for marketing or promotional purposes.</strong> Mobile numbers and text opt-in consent will not be shared with third parties or affiliates for marketing or promotional purposes. All the above categories exclude text messaging originator opt-in data and consent; this information will not be shared with any third parties.
+            <strong>Mobile information will not be shared with third parties or affiliates for marketing or promotional purposes.</strong>
+          </p>
+          <p>
+            We respect your privacy. We use information you provide to send and respond to your mobile messages. This includes sharing it with platform providers, phone companies, and other vendors who help us deliver messages. We won&rsquo;t share mobile information with third parties for marketing. Text messaging originator opt-in data and consent are exempt from this. We may disclose information to satisfy legal, regulatory, or governmental requests, avoid liability, or protect our rights or property. This policy applies to your use of the Text Message Service and doesn&rsquo;t modify our general Privacy Policy, which may govern our relationship with you in other contexts.
           </p>
         </div>
 
@@ -131,7 +135,7 @@ const pageDesc = "Privacy policy for Shellback Labs LLC, doing business as Tank 
           <h2 class="legal-section-title">Contact</h2>
           <div class="contact-card-box">
             <div><strong style="color: var(--ink-900);">Email:</strong> <a href="mailto:joe@tankandtrench.com" style="color: var(--cobalt-600); text-decoration: none;">joe@tankandtrench.com</a></div>
-            <div><strong style="color: var(--ink-900);">Address:</strong> Shellback Labs LLC, PO Box 431, Westerly, RI 02891</div>
+            <div><strong style="color: var(--ink-900);">Phone:</strong> <a href={'tel:' + contact.number} style="color: var(--cobalt-600); text-decoration: none;">{contact.display}</a></div>
           </div>
         </div>
       </div>

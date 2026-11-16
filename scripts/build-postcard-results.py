@@ -3,6 +3,7 @@
 import csv
 import html
 import json
+import os
 import re
 import sys
 from collections import Counter
@@ -20,6 +21,8 @@ RESULT_LABEL = re.compile(r'<p class="label">(?:Who it recommended|Also on the l
 SITE = "https://tankandtrench.com"
 CONTACT = json.loads((ROOT / "src/data/contact.json").read_text(encoding="utf-8"))
 PHONE = html.escape(CONTACT["number"])
+GA_ID = os.environ.get("PUBLIC_GA_MEASUREMENT_ID", "").strip()
+CALLRAIL_ID = os.environ.get("PUBLIC_CALLRAIL_COMPANY_ID", "").strip()
 
 
 def company_name(source):
@@ -37,7 +40,7 @@ def evidence_panel(record):
     if screenshot and not (Path(screenshot).name == screenshot and (OUTPUT / "checks" / screenshot).is_file()):
         raise ValueError(f"Screenshot for {record['card_code']} is missing from public/checks")
 
-    evidence = f'<p class="small">Checked {html.escape(date)}</p>' if date else '<p class="small">Check date unavailable.</p>'
+    evidence = f'<p class="small">Checked {html.escape(date)}</p>' if date else ""
     if screenshot:
         image = f"/checks/{quote(screenshot)}"
         evidence += (
@@ -45,43 +48,73 @@ def evidence_panel(record):
             f'<img src="{image}" alt="Screenshot of the ChatGPT answer"></a>'
             '<figcaption><a href="' + image + '">Open full screenshot</a></figcaption></figure>'
         )
-    else:
-        evidence += '<p class="small">Screenshot unavailable. The original answers are below.</p>'
     return evidence
 
 
-def fixes_panel(record):
+def fixes_panel(record, no_website):
     fixes = [record.get(f"fix_{index}", "").strip() for index in range(1, 4)]
     if all(fixes):
         heading = "Three fixes for your company"
     elif any(fixes):
-        heading = "What to fix first"
+        heading = "What we’d fix first"
         fixes = [fix for fix in fixes if fix]
     else:
-        return ""
+        heading = "What we’d fix first"
+        if no_website:
+            fixes = [
+                "Build a custom WordPress website (service pages, town pages, and schema) in the first 30 days — included with both plans.",
+                "Add structured schema and an llms.txt file so ChatGPT, Claude, and Google’s AI can verify your services and towns.",
+                "Clean up your Google Business Profile categories, service areas, and local citations so AI answers match your company.",
+            ]
+        else:
+            fixes = [
+                "Add dedicated service and town pages answering the exact questions homeowners and builders ask in your county.",
+                "Wire up structured schema markup and an llms.txt file so AI assistants can cite your company with confidence.",
+                "Align your Google Business Profile, reviews, and local citations around your highest-value jobs.",
+            ]
     items = "".join(f"<li>{html.escape(fix)}</li>" for fix in fixes)
     return f'<section class="card result-fixes"><h2>{heading}</h2><ol>{items}</ol></section>'
 
 
+def head_tracking_snippets():
+    snippets = []
+    if GA_ID:
+        safe_ga = html.escape(GA_ID, quote=True)
+        snippets.append(
+            f'<script async src="https://www.googletagmanager.com/gtag/js?id={safe_ga}"></script>'
+            f'<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}'
+            f'window.gtag=gtag;gtag("js",new Date());gtag("config","{safe_ga}");</script>'
+        )
+    if CALLRAIL_ID:
+        safe_cr = html.escape(CALLRAIL_ID, quote=True)
+        snippets.append(
+            f'<script type="text/javascript" src="//cdn.callrail.com/companies/{safe_cr}/12/swap.js" async></script>'
+        )
+    return "".join(snippets)
+
+
 def build_page(source, code, record):
     company = company_name(source)
+    no_website = ("Without a website" in source) or ("A real website" in source)
     text_link = f"sms:{PHONE}?&amp;body={quote(f'Hi Joe, this is {company}. Ref {code.upper()}.')}"
-    text_button = f'<a class="btn" href="{text_link}" data-track="text">Text Joe</a>'
+    video_button = '<a class="btn" href="#video" data-track="video-scroll">Get my 5-minute video</a>'
+    text_button = f'<a class="btn ghost" href="{text_link}" data-track="text">Text Joe</a>'
     call_button = f'<a class="btn ghost" href="tel:{PHONE}" data-track="call">Call Joe</a>'
     source = source.replace(
         '<p class="eyebrow">Your ChatGPT results</p>',
         '<p class="eyebrow">Did it say your name?</p>',
         1,
     )
-    intro = (
-        "ChatGPT already named you. Here’s who else came up and what you can do to keep getting found."
-        if "didn't come up in any" not in source.split("</h1>", 1)[0]
-        else "When your name is missing, that could mean work going down the road. Here’s who ChatGPT named."
-    )
+    if "didn't come up in any" not in source.split("</h1>", 1)[0]:
+        intro = "ChatGPT already named you. Here’s who else came up and what you can do to keep getting found."
+    else:
+        intro = "When your name is missing, that could mean work going down the road. Here’s who ChatGPT named."
+    if no_website:
+        intro += " No website yet? Both plans include a custom WordPress site (service pages, town pages, and schema) built in the first 30 days."
+
     source = re.sub(
         r'<p class="lede">.*?</p>',
-        f'<p class="lede">{intro}</p><div class="btns result-top-actions">{text_button}'
-        '<a class="video-link" href="#video">Get my 5-minute video</a></div>',
+        f'<p class="lede">{intro}</p><div class="btns result-top-actions">{video_button}{text_button}</div>',
         source,
         count=1,
     )
@@ -101,12 +134,15 @@ def build_page(source, code, record):
         f'<input type="hidden" name="company" value="{html.escape(company, quote=True)}">'
         f'<input type="hidden" name="card_code" value="{code.upper()}">'
         '<label for="reply-phone">Your mobile number</label>'
-        '<input type="tel" name="phone" id="reply-phone" autocomplete="tel" required>'
+        '<input type="tel" inputmode="tel" name="phone" id="reply-phone" autocomplete="tel" required>'
         '<button class="btn" type="submit" data-track="video">Get my 5-minute video</button>'
         '</form><p role="status" tabindex="-1" hidden></p></section>'
     )
-    source = source[:start] + fixes_panel(record) + video + source[end:]
+    source = source[:start] + fixes_panel(record, no_website) + video + source[end:]
     source = source.replace('<details open>', '<details>', 1)
+    extra_head = head_tracking_snippets()
+    if extra_head:
+        source = source.replace('</head>', extra_head + '</head>', 1)
     source = source.replace(
         '</main></body>',
         f'</main><div class="result-mobile-bar" aria-label="Mobile quick actions">{text_button}{call_button}</div>'
@@ -164,6 +200,19 @@ def main():
     base_css = css.read_text(encoding="utf-8")
     base_css = re.sub(r"^@import[^\n]+\n", "", base_css, count=1)
     css.write_text(base_css + (ROOT / "src/styles/postcard-results.css").read_text(encoding="utf-8"), encoding="utf-8")
+
+    track_js = OUTPUT / "r/assets/track.js"
+    track_js.write_text(
+        "(function(){\n"
+        "  var s=document.currentScript; var CODE=s&&s.getAttribute('data-code');\n"
+        "  if(typeof window.gtag==='function'){window.gtag('event','results_page_view',{ref_code:CODE});}\n"
+        "  document.addEventListener('click',function(e){\n"
+        "    var a=e.target.closest&&e.target.closest('[data-track]'); if(!a) return;\n"
+        "    if(typeof window.gtag==='function'){window.gtag('event','results_'+a.getAttribute('data-track'),{ref_code:CODE});}\n"
+        "  });\n"
+        "})();\n",
+        encoding="utf-8",
+    )
 
     if len(links) != len({link[0] for link in links}) or not links:
         raise ValueError("Postcard archive must contain a unique page for each card code")

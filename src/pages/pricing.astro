@@ -1,10 +1,88 @@
 ---
+import contact from '../data/contact.json';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const pageTitle = "Pricing & Plans | Tank & Trench";
-const pageDesc = "Pro is $750 a month. Territory is $1,250 a month and includes exclusivity for your side in your county.";
+const pageDesc = "Pro is $750 a month. Territory is $1,250 a month and includes exclusivity for your side in your county. 6-month minimum, then month to month.";
+
+const pricingFaqs = [
+  [
+    "Do I need a website already?",
+    "No. If you don't have one, we build a custom WordPress site (service pages, town pages, and schema) in the first 30 days, included with both plans. Hosting is included while you're a client, and after 6 months it's yours."
+  ],
+  [
+    "What happens to my website if I cancel?",
+    "Both plans have a 6-month minimum, then continue month to month. If you leave after 6 months, you own the site we built and we hand it over so you can take over hosting. If you cancel before 6 months, you can pay the remaining months of the term or pay a one-time $1,500 website buyout to keep the site; otherwise the site comes down."
+  ],
+  [
+    "Do you run ads?",
+    "Yes, as an add-on for Pro and Territory clients. Ads bring in calls right away while AI search builds. Options include Google Local Services Ads ($300/mo), Google Search Ads ($500/mo), the Ads Bundle ($700/mo), Social media ($350/mo), and Meta ads ($350/mo)."
+  ],
+  [
+    "Which states do you work in?",
+    "Anywhere in the US. Tell Joe your state and the counties you cover, and he'll confirm which sides are open for Territory."
+  ],
+];
+
+const websiteTooltipText = "No website? We build one, included with your plan. 6-month minimum, then month to month. After 6 months, the site is yours. Leave earlier and you can keep it for a one-time $1,500 buyout.";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://tankandtrench.com/#organization",
+      name: "Tank & Trench",
+      legalName: "Shellback Labs LLC",
+      url: "https://tankandtrench.com/",
+      logo: "https://tankandtrench.com/images/tank-and-trench-logo.svg",
+      email: "joe@tankandtrench.com",
+      telephone: contact.number,
+    },
+    {
+      "@type": "Service",
+      "@id": "https://tankandtrench.com/pricing/#service",
+      name: "Tank & Trench AI Search Plans",
+      serviceType: "Local SEO, AI Search Optimization, and Contractor Website & Ads Management",
+      provider: { "@id": "https://tankandtrench.com/#organization" },
+      areaServed: {
+        "@type": "Country",
+        name: "United States",
+      },
+      offers: [
+        {
+          "@type": "Offer",
+          name: "Pro",
+          price: "750",
+          priceCurrency: "USD",
+          description: "Full Answer Map, service and town pages, schema, Google Business Profile cleanup, monthly content, review program, AI-answer monitoring, call tracking, and monthly call reporting.",
+        },
+        {
+          "@type": "Offer",
+          name: "Territory",
+          price: "1250",
+          priceCurrency: "USD",
+          description: "Everything in Pro, plus county exclusivity for your side (Tank or Trench).",
+        },
+      ],
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://tankandtrench.com/pricing/#faq",
+      mainEntity: pricingFaqs.map(([name, text]) => ({
+        "@type": "Question",
+        name,
+        acceptedAnswer: { "@type": "Answer", text },
+      })),
+    },
+  ],
+};
 ---
 <BaseLayout title={pageTitle} description={pageDesc}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </Fragment>
+
   <!-- Subpage Hero -->
   <section class="section-padding" style="padding-bottom: 24px;">
     <div class="container-narrow text-center">
@@ -18,7 +96,7 @@ const pageDesc = "Pro is $750 a month. Territory is $1,250 a month and includes 
     </div>
   </section>
 
-  <!-- Detailed Comparison Table -->
+  <!-- Core Plans -->
   <section class="section-padding" style="padding-top: 16px;">
     <div class="container">
       <div class="section-header text-center">
@@ -29,26 +107,131 @@ const pageDesc = "Pro is $750 a month. Territory is $1,250 a month and includes 
 
       <div class="pricing-teaser-grid pricing-plan-grid">
         <article class="teaser-plan-card">
-          <h2 class="teaser-plan-title">Pro</h2>
-          <p class="teaser-plan-price">$750 <span>/ month</span></p>
-          <p>Build your local presence in one county and track the calls and inquiries it brings in.</p>
-          <ul>
-            <li>Full Answer Map, service and town pages, and schema</li>
-            <li>Google Business Profile cleanup, monthly content and review program</li>
-            <li>AI-answer monitoring, call tracking and monthly reporting</li>
-          </ul>
+          <div>
+            <h2 class="teaser-plan-title">Pro</h2>
+            <p class="teaser-plan-price">$750 <span>/ month</span></p>
+            <p style="margin-top: 12px;">Build your local presence in one county and track the calls and inquiries it brings in.</p>
+            <ul style="margin-top: 14px;">
+              <li>Full Answer Map, service and town pages, and schema</li>
+              <li>Google Business Profile cleanup, monthly content and review program</li>
+              <li>AI-answer monitoring, call tracking and monthly reporting</li>
+              <li class="website-included-item">
+                <span>&#10003; Website included</span>
+                <span class="info-popover-wrap" data-info-wrap>
+                  <button type="button" class="info-trigger" aria-label="Website included details" aria-expanded="false" data-info-trigger>i</button>
+                  <span class="info-popover" role="tooltip" hidden>{websiteTooltipText}</span>
+                </span>
+              </li>
+            </ul>
+          </div>
           <a class="btn btn-secondary btn-md" href="/check/#check-form">Get free AI check</a>
         </article>
+
         <article class="teaser-plan-card featured">
-          <h2 class="teaser-plan-title">Territory</h2>
-          <p class="teaser-plan-price">$1,250 <span>/ month</span></p>
-          <p>Everything in Pro, plus exclusivity for your side in one county.</p>
-          <ul>
-            <li>One company per county per side, Tank or Trench</li>
-            <li>Leads from our county lead sites, where available</li>
-          </ul>
+          <div class="pricing-ribbon">County Exclusivity</div>
+          <div>
+            <h2 class="teaser-plan-title">Territory</h2>
+            <p class="teaser-plan-price">$1,250 <span>/ month</span></p>
+            <p style="margin-top: 12px;">Everything in Pro, plus we won&rsquo;t work with any other septic or excavation company in your county.</p>
+            <ul style="margin-top: 14px;">
+              <li>One company per county per side, Tank or Trench</li>
+              <li>Tank and Trench each reserve separately</li>
+              <li class="website-included-item">
+                <span>&#10003; Website included</span>
+                <span class="info-popover-wrap" data-info-wrap>
+                  <button type="button" class="info-trigger" aria-label="Website included details" aria-expanded="false" data-info-trigger>i</button>
+                  <span class="info-popover" role="tooltip" hidden>{websiteTooltipText}</span>
+                </span>
+              </li>
+            </ul>
+          </div>
           <a class="btn btn-primary btn-md" href="#county-availability">Check county availability</a>
         </article>
+      </div>
+
+      <p class="body-sm text-center" style="color: var(--ink-600); max-width: 720px; margin: 20px auto 0;">
+        <em>No website? We build one, included with both plans. 6-month minimum, then month to month. After 6 months, the site is yours.</em>
+      </p>
+
+      <!-- Add-ons Section (3-card layout below plans) -->
+      <div class="addons-section" id="add-ons">
+        <div class="addons-header">
+          <p class="addons-kicker">Add-ons (for Pro and Territory clients)</p>
+          <h2 class="addons-heading">Want calls sooner? Add ads while AI search builds.</h2>
+        </div>
+
+        <div class="addons-grid">
+          <!-- Card 1: Google Ads with 3-way toggle -->
+          <article class="addon-card addon-card-featured">
+            <div class="addon-card-top">
+              <h3 class="addon-card-title">Google Ads</h3>
+              <span class="addon-popular-tag" data-google-badge>Most popular</span>
+            </div>
+
+            <div class="addon-toggle" role="group" aria-label="Google Ads option">
+              <button type="button" class="addon-toggle-btn" data-ads-option="lsa" data-price="$300" data-line="Google Guaranteed badge above results" aria-pressed="false">LSA</button>
+              <button type="button" class="addon-toggle-btn" data-ads-option="search" data-price="$500" data-line="High-value jobs in your towns" aria-pressed="false">Search</button>
+              <button type="button" class="addon-toggle-btn active" data-ads-option="both" data-price="$700" data-line="LSA + Search managed together" aria-pressed="true">&#10003; Both</button>
+            </div>
+
+            <div class="addon-card-meta">
+              <div class="addon-price"><span data-google-price>$700</span><span>/mo</span></div>
+              <p class="addon-line">
+                <span data-google-line>LSA + Search managed together</span>
+                <span class="info-popover-wrap" data-info-wrap>
+                  <button type="button" class="info-trigger" aria-label="Google Ads details" aria-expanded="false" data-info-trigger>i</button>
+                  <span class="info-popover" role="tooltip" hidden>
+                    <strong>Local Services Ads ($300/mo):</strong> Google Guaranteed setup, lead disputes, budget and hours tuning, calls in the monthly report.<br><br>
+                    <strong>Google Search Ads ($500/mo):</strong> Campaign build, keywords by service and town, weekly bid and search-term cleanup.<br><br>
+                    <strong>Ads Bundle ($700/mo):</strong> Both managed together.
+                  </span>
+                </span>
+              </p>
+            </div>
+          </article>
+
+          <!-- Card 2: Social media -->
+          <article class="addon-card">
+            <div class="addon-card-top">
+              <h3 class="addon-card-title">Social media</h3>
+            </div>
+            <div class="addon-card-meta">
+              <div class="addon-price">$350<span>/mo</span></div>
+              <p class="addon-line">
+                <span>Job photos &rarr; posts</span>
+                <span class="info-popover-wrap" data-info-wrap>
+                  <button type="button" class="info-trigger" aria-label="Social media details" aria-expanded="false" data-info-trigger>i</button>
+                  <span class="info-popover" role="tooltip" hidden>
+                    12 posts a month across Facebook, Instagram, and Google Business Profile, built from your job photos.
+                  </span>
+                </span>
+              </p>
+            </div>
+          </article>
+
+          <!-- Card 3: Meta ads -->
+          <article class="addon-card">
+            <div class="addon-card-top">
+              <h3 class="addon-card-title">Meta ads</h3>
+            </div>
+            <div class="addon-card-meta">
+              <div class="addon-price">$350<span>/mo</span></div>
+              <p class="addon-line">
+                <span>Excavation &amp; retargeting</span>
+                <span class="info-popover-wrap" data-info-wrap>
+                  <button type="button" class="info-trigger" aria-label="Meta ads details" aria-expanded="false" data-info-trigger>i</button>
+                  <span class="info-popover" role="tooltip" hidden>
+                    One campaign for excavation and land clearing, plus retargeting of site visitors.
+                  </span>
+                </span>
+              </p>
+            </div>
+          </article>
+        </div>
+
+        <p class="addons-footnote">
+          Ad spend is paid directly to Google or Meta. Every ad call is tracked and in your monthly report.
+        </p>
       </div>
     </div>
   </section>
@@ -89,17 +272,18 @@ const pageDesc = "Pro is $750 a month. Territory is $1,250 a month and includes 
               <option value="">Choose your side</option>
               <option>Tank</option>
               <option>Trench</option>
-              <option>Both</option>
+              <option value="Both">Both (Tank &amp; Trench each reserve separately)</option>
             </select>
+            <p class="body-sm" style="color: var(--ink-500); margin-top: 6px;">Tank and Trench each reserve separately.</p>
           </div>
           <div class="county-fields" style="margin-bottom: 20px;">
             <div>
               <label for="cPhone" style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px;">Phone *</label>
-              <input id="cPhone" name="phone" type="tel" class="form-input" placeholder="e.g. (508) 555-0123" required>
+              <input id="cPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" class="form-input" placeholder="e.g. (508) 555-0123" required>
             </div>
             <div>
               <label for="cEmail" style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px;">Email *</label>
-              <input id="cEmail" name="email" type="email" class="form-input" placeholder="e.g. dave@acmeseptic.com" required>
+              <input id="cEmail" name="email" type="email" inputmode="email" autocomplete="email" class="form-input" placeholder="e.g. dave@acmeseptic.com" required>
             </div>
           </div>
           <button class="btn btn-primary btn-lg" type="submit" style="width: 100%;">
@@ -137,16 +321,16 @@ const pageDesc = "Pro is $750 a month. Territory is $1,250 a month and includes 
 
       <div class="how-it-works-grid">
         <div class="step-card">
-          <h3 class="step-title">6 to 12 Month Agreement</h3>
+          <h3 class="step-title">6-Month Minimum, Then Month to Month</h3>
           <p class="step-body">
-            Long enough to build authority, clean up profiles, and track call volume changes across seasonal cycles.
+            Long enough to build authority, clean up profiles, and track call volume changes across seasonal cycles. After 6 months, stay month to month.
           </p>
         </div>
 
         <div class="step-card">
           <h3 class="step-title">You Own Everything</h3>
           <p class="step-body">
-            Every page, schema entity, town hub, and profile cleanup stays yours. No rented pages or host lock-in.
+            Every page, schema entity, town hub, and profile cleanup stays yours. If we build your website, it&rsquo;s yours after 6 months (or earlier for a $1,500 buyout).
           </p>
         </div>
 
@@ -160,12 +344,31 @@ const pageDesc = "Pro is $750 a month. Territory is $1,250 a month and includes 
     </div>
   </section>
 
+  <!-- Pricing FAQ -->
+  <section class="section-padding" style="background: var(--bg-subtle); border-top: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="eyebrow cobalt">Pricing &amp; Website Questions</div>
+        <h2 class="display-lg">Common questions</h2>
+      </div>
+
+      <div class="faq-list">
+        {pricingFaqs.map(([question, answer]) => (
+          <article class="faq-card">
+            <h3 class="faq-q">{question}</h3>
+            <p class="faq-a">{answer}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- Final Call to Action -->
   <section class="section-padding" style="background: var(--white); text-align: center; border-top: 1px solid var(--border-subtle);">
     <div class="container-narrow">
       <div class="eyebrow sun" style="justify-content: center; margin-bottom: 12px;">Free AI Check</div>
       <h2 class="display-lg" style="margin-bottom: 20px;">
-        Find out what the AI says about you. Free, five minutes of your time, and you get a short video walkthrough.
+        Find out what the AI says about you.
       </h2>
       <div style="margin-top: 32px;">
         <a href="/check/" class="btn btn-primary btn-lg">
@@ -177,12 +380,13 @@ const pageDesc = "Pro is $750 a month. Territory is $1,250 a month and includes 
         </a>
       </div>
       <p class="body-sm" style="color: var(--text-tertiary); margin-top: 14px;">
-        Takes 30 seconds to request &middot; Delivered in two business days &middot; No sales pitch
+        Takes 30 seconds to request. Your 5-minute video arrives within 2 business days. No sales pitch.
       </p>
     </div>
   </section>
 
   <script is:inline>
+    // County availability form submission
     const cForm = document.getElementById('countyCheckForm');
     const cBox = document.getElementById('countyConfirmBox');
     if (cForm && cBox) {
@@ -208,5 +412,93 @@ const pageDesc = "Pro is $750 a month. Territory is $1,250 a month and includes 
         }
       });
     }
+
+    // Google Ads 3-way toggle
+    const adsButtons = document.querySelectorAll('[data-ads-option]');
+    const googlePriceEl = document.querySelector('[data-google-price]');
+    const googleLineEl = document.querySelector('[data-google-line]');
+    const googleBadgeEl = document.querySelector('[data-google-badge]');
+
+    adsButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        adsButtons.forEach((b) => {
+          b.classList.remove('active');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+
+        if (googlePriceEl) googlePriceEl.textContent = btn.getAttribute('data-price') || '$700';
+        if (googleLineEl) googleLineEl.textContent = btn.getAttribute('data-line') || '';
+        if (googleBadgeEl) {
+          googleBadgeEl.hidden = btn.getAttribute('data-ads-option') !== 'both';
+        }
+      });
+    });
+
+    // Accessible (i) popovers: hover on desktop + tap on mobile + close on tap outside
+    const infoWraps = document.querySelectorAll('[data-info-wrap]');
+
+    function closeAllPopovers(exceptWrap) {
+      infoWraps.forEach((wrap) => {
+        if (wrap === exceptWrap) return;
+        const trigger = wrap.querySelector('[data-info-trigger]');
+        const popover = wrap.querySelector('.info-popover');
+        wrap.classList.remove('open');
+        if (trigger) trigger.setAttribute('aria-expanded', 'false');
+        if (popover) popover.hidden = true;
+      });
+    }
+
+    infoWraps.forEach((wrap) => {
+      const trigger = wrap.querySelector('[data-info-trigger]');
+      const popover = wrap.querySelector('.info-popover');
+      if (!trigger || !popover) return;
+
+      trigger.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const isOpen = wrap.classList.contains('open');
+        closeAllPopovers(isOpen ? null : wrap);
+        if (isOpen) {
+          wrap.classList.remove('open');
+          trigger.setAttribute('aria-expanded', 'false');
+          popover.hidden = true;
+        } else {
+          wrap.classList.add('open');
+          trigger.setAttribute('aria-expanded', 'true');
+          popover.hidden = false;
+        }
+      });
+
+      wrap.addEventListener('mouseenter', () => {
+        if (window.matchMedia('(hover: hover)').matches) {
+          closeAllPopovers(wrap);
+          wrap.classList.add('open');
+          trigger.setAttribute('aria-expanded', 'true');
+          popover.hidden = false;
+        }
+      });
+
+      wrap.addEventListener('mouseleave', () => {
+        if (window.matchMedia('(hover: hover)').matches) {
+          wrap.classList.remove('open');
+          trigger.setAttribute('aria-expanded', 'false');
+          popover.hidden = true;
+        }
+      });
+    });
+
+    document.addEventListener('click', (event) => {
+      const target = event.target;
+      if (!(target instanceof Element) || !target.closest('[data-info-wrap]')) {
+        closeAllPopovers(null);
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeAllPopovers(null);
+      }
+    });
   </script>
 </BaseLayout>

@@ -1,7 +1,12 @@
 
-.result-top-actions { margin: 0 0 22px; }
+.result-top-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 14px;
+  margin: 0 0 22px;
+}
 .result-top-actions .btn { min-width: 148px; text-align: center; }
-.result-top-actions { align-items: center; column-gap: 16px; }
 .card h2.label { font-weight: 600; }
 .ref { color: var(--muted); }
 .video-link { color: var(--blue); font-weight: 600; padding-block: 10px; }

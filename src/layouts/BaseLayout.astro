@@ -20,7 +20,7 @@ const {
   textHref,
   showCheckShortcut = false,
   postcardOnly = false,
-  callrailId = "" // Set in environment or layout prop when CallRail account ID is active
+  callrailId = "" // Set via prop or PUBLIC_CALLRAIL_COMPANY_ID when active
 } = Astro.props;
 
 import Header from '../components/Header.astro';
@@ -28,7 +28,11 @@ import Footer from '../components/Footer.astro';
 import MobileStickyBar from '../components/MobileStickyBar.astro';
 
 const currentPath = Astro.url.pathname;
-const resolvedCanonical = canonicalUrl || new URL(currentPath, Astro.site || 'https://tankandtrench.com').href;
+const siteOrigin = Astro.site || 'https://tankandtrench.com';
+const resolvedCanonical = canonicalUrl || new URL(currentPath, siteOrigin).href;
+const ogImageUrl = new URL('/images/og-preview.png', siteOrigin).href;
+const resolvedCallrailId = callrailId || import.meta.env.PUBLIC_CALLRAIL_COMPANY_ID || "";
+const resolvedGaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID || "";
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -59,17 +63,38 @@ const resolvedCanonical = canonicalUrl || new URL(currentPath, Astro.site || 'ht
   <!-- Core Stylesheet -->
   <link rel="stylesheet" href="/styles.css">
 
-  <!-- OpenGraph -->
+  <!-- OpenGraph & Link Preview -->
   <meta property="og:title" content={title}>
   <meta property="og:description" content={description}>
   <meta property="og:url" content={resolvedCanonical}>
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Tank & Trench">
-  <meta property="og:image" content="/images/tank-and-trench-logo.svg">
+  <meta property="og:image" content={ogImageUrl}>
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Tank & Trench — AI Search for Septic & Excavation">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={ogImageUrl}>
+
+  <!-- Simple Visit Analytics (GA4) -->
+  {resolvedGaId && (
+    <Fragment>
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${resolvedGaId}`}></script>
+      <script is:inline define:vars={{ resolvedGaId }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        window.gtag = gtag;
+        gtag('js', new Date());
+        gtag('config', resolvedGaId);
+      </script>
+    </Fragment>
+  )}
 
   <!-- CallRail Dynamic Number Insertion (DNI) -->
-  {callrailId && (
-    <script type="text/javascript" src={`//cdn.callrail.com/companies/${callrailId}/12/swap.js`} async></script>
+  {resolvedCallrailId && (
+    <script type="text/javascript" src={`//cdn.callrail.com/companies/${resolvedCallrailId}/12/swap.js`} async></script>
   )}
 
   <slot name="head" />
@@ -105,24 +130,37 @@ const resolvedCanonical = canonicalUrl || new URL(currentPath, Astro.site || 'ht
     const drawerOpen = document.getElementById('drawerOpen');
     const drawerClose = document.getElementById('drawerClose');
 
-    if (drawerOpen && mobileDrawer && drawerClose) {
-      drawerOpen.addEventListener('click', () => {
-        mobileDrawer.classList.add('open');
-        mobileDrawer.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-      });
-
-      drawerClose.addEventListener('click', closeDrawer);
+    function openDrawer() {
+      if (!mobileDrawer) return;
+      mobileDrawer.hidden = false;
+      mobileDrawer.classList.add('open');
+      mobileDrawer.setAttribute('aria-hidden', 'false');
+      if (drawerOpen) drawerOpen.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
     }
 
     function closeDrawer() {
-      if (mobileDrawer) {
-        mobileDrawer.classList.remove('open');
-        mobileDrawer.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-      }
+      if (!mobileDrawer) return;
+      mobileDrawer.classList.remove('open');
+      mobileDrawer.setAttribute('aria-hidden', 'true');
+      mobileDrawer.hidden = true;
+      if (drawerOpen) drawerOpen.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
     }
     window.closeDrawer = closeDrawer;
+
+    if (drawerOpen && mobileDrawer && drawerClose) {
+      drawerOpen.addEventListener('click', openDrawer);
+      drawerClose.addEventListener('click', closeDrawer);
+      mobileDrawer.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', closeDrawer);
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && mobileDrawer.classList.contains('open')) {
+          closeDrawer();
+        }
+      });
+    }
   </script>
 </body>
 </html>

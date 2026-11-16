@@ -6,7 +6,7 @@ const phoneNumber = contact.display;
 const phoneTel = 'tel:' + contact.number;
 ---
 <!-- Mobile Drawer Menu -->
-<div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+<div class="mobile-drawer" id="mobileDrawer" aria-hidden="true" hidden>
   <div>
     <div class="drawer-header">
       <div class="nav-brand">
@@ -14,12 +14,12 @@ const phoneTel = 'tel:' + contact.number;
           <img class="brand-logo" src="/images/tank-and-trench-logo.svg" alt="Tank & Trench" width="200" height="38" onerror="this.onerror=null; this.src='/favicon.svg';">
         </a>
       </div>
-      <button class="drawer-close" id="drawerClose" aria-label="Close menu">&times;</button>
+      <button type="button" class="drawer-close" id="drawerClose" aria-label="Close menu">&times;</button>
     </div>
     <ul class="drawer-links">
-      <li><a href="/#how-it-works" class="drawer-link" onclick="closeDrawer()">How it works</a></li>
-      <li><a href="/pricing/" class="drawer-link" onclick="closeDrawer()">Pricing</a></li>
-      <li><a href="/about/" class="drawer-link" onclick="closeDrawer()">About</a></li>
+      <li><a href="/#how-it-works" class="drawer-link">How it works</a></li>
+      <li><a href="/pricing/" class="drawer-link">Pricing</a></li>
+      <li><a href="/about/" class="drawer-link">About</a></li>
     </ul>
   </div>
   <div class="drawer-footer">
@@ -30,7 +30,7 @@ const phoneTel = 'tel:' + contact.number;
       </svg>
       <span>Call Joe: {phoneNumber}</span>
     </a>
-    <a href={checkHref} class="btn btn-primary btn-lg" style="width: 100%;" onclick="closeDrawer()">Get your free AI check</a>
+    <a href={checkHref} class="btn btn-primary btn-lg" style="width: 100%;">Get your free AI check</a>
   </div>
 </div>
 
@@ -56,8 +56,11 @@ const phoneTel = 'tel:' + contact.number;
           </svg>
           <span>{phoneNumber}</span>
         </a>
-        <a href={checkHref} class="btn btn-primary btn-sm">Get your free AI check</a>
-        <button class="mobile-toggle" id="drawerOpen" aria-label="Open navigation menu">
+        <a href={checkHref} class="btn btn-primary btn-sm nav-primary-cta">
+          <span class="nav-cta-full">Get your free AI check</span>
+          <span class="nav-cta-short">Free AI Check</span>
+        </a>
+        <button type="button" class="mobile-toggle" id="drawerOpen" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileDrawer">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="3" y1="12" x2="21" y2="12"></line>
             <line x1="3" y1="6" x2="21" y2="6"></line>

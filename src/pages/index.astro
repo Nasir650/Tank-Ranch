@@ -11,7 +11,7 @@ const faqs = [
   ["How fast does it work?", "It depends on your county and your competition. We report tracked calls and form fills each month so you can follow the results."],
   ["I do septic and excavation. Is that one plan or two?", "Start with one conversation about both services. Joe will scope the work and check availability on both sides if you want Territory exclusivity."],
   ["Most of my work comes from builders, not homeowners. Does this still matter?", "Yes. Builders and general contractors use search to find crews when they need bids, extra capacity or a contractor in a new town. We make your services and coverage clear for those searches."],
-  ["Which states do you work in?", "Tell Joe your state and the counties you cover. He’ll confirm whether we can serve your area and which sides are open for Territory."],
+  ["Which states do you work in?", "Anywhere in the US. Tell Joe your state and the counties you cover, and he’ll confirm which sides are open for Territory."],
 ];
 const schema = {
   "@context": "https://schema.org",
@@ -23,9 +23,42 @@ const schema = {
       legalName: "Shellback Labs LLC",
       url: "https://tankandtrench.com/",
       logo: "https://tankandtrench.com/images/tank-and-trench-logo.svg",
+      image: "https://tankandtrench.com/images/og-preview.png",
       email: "joe@tankandtrench.com",
       telephone: contact.number,
+      areaServed: {
+        "@type": "Country",
+        name: "United States",
+      },
       description: pageDesc,
+    },
+    {
+      "@type": "Service",
+      "@id": "https://tankandtrench.com/#service",
+      name: "AI Search Optimization for Septic & Excavation Contractors",
+      serviceType: "Local SEO and AI Search Optimization",
+      provider: { "@id": "https://tankandtrench.com/#organization" },
+      areaServed: {
+        "@type": "Country",
+        name: "United States",
+      },
+      description: "Answer Map, service and town pages, structured schema, Google Business Profile cleanup, call tracking, and optional ad management for septic and excavation contractors.",
+      offers: [
+        {
+          "@type": "Offer",
+          name: "Pro",
+          price: "750",
+          priceCurrency: "USD",
+          url: "https://tankandtrench.com/pricing/",
+        },
+        {
+          "@type": "Offer",
+          name: "Territory",
+          price: "1250",
+          priceCurrency: "USD",
+          url: "https://tankandtrench.com/pricing/",
+        },
+      ],
     },
     {
       "@type": "FAQPage",
@@ -69,6 +102,15 @@ const schema = {
               </svg>
             </a>
           </div>
+
+          <form class="hero-postcard-bar" data-postcard-lookup>
+            <label for="heroCardCode" class="hero-postcard-label">Got a postcard? Enter your code</label>
+            <div class="hero-postcard-row">
+              <input id="heroCardCode" name="c" type="text" class="form-input" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="e.g. GA127-XD6T" maxlength="20" required>
+              <button type="submit" class="btn btn-secondary btn-md">Open results</button>
+            </div>
+            <p class="postcard-status" role="status" aria-live="polite"></p>
+          </form>
 
           <div class="hero-trust">
             <span class="badge-dot"></span>
@@ -216,12 +258,12 @@ const schema = {
       <div class="proof-banner">
         <div>
           <div class="proof-big-stat">40+</div>
-          <div class="proof-stat-caption">Engagements in the past month</div>
+          <div class="proof-stat-caption">Calls / form fills in one month</div>
         </div>
         <div>
           <div class="eyebrow mint" style="margin-bottom: 8px;">Real Proof</div>
           <p class="proof-quote-text">
-            A New England hardscape and paving contractor reported 40+ engagements in the past month. Daily search impressions grew from about 80 to 5,000+.
+            A New England paving contractor reported 40+ calls/form fills in one month. Daily search impressions grew from about 80 to 5,000+ in 3 months.
           </p>
           <p class="proof-disclaimer">
             We track phone calls and form fills alongside search impressions.
@@ -267,7 +309,7 @@ const schema = {
               <div class="teaser-plan-price">$1,250 <span>/ mo</span></div>
             </div>
             <p class="teaser-plan-body" style="margin-top: 14px;">
-              Everything in Pro, plus county exclusivity for your side, Tank or Trench, and leads from our county lead sites.
+              Everything in Pro, plus we won’t work with any other septic or excavation company in your county.
             </p>
           </div>
           <div>
@@ -330,7 +372,7 @@ const schema = {
     <div class="container-narrow">
       <div class="eyebrow sun" style="justify-content: center; margin-bottom: 12px;">Free AI Check</div>
       <h2 class="display-lg" style="margin-bottom: 20px;">
-        Find out what the AI says about you. Free, five minutes of your time, and you get a short video walkthrough.
+        Find out what the AI says about you.
       </h2>
       <div style="margin-top: 32px;">
         <a href="/check/" class="btn btn-primary btn-lg">
@@ -342,8 +384,10 @@ const schema = {
         </a>
       </div>
       <p class="body-sm" style="color: var(--text-tertiary); margin-top: 14px;">
-        Takes 30 seconds to request &middot; Delivered in two business days &middot; No sales pitch
+        Takes 30 seconds to request. Your 5-minute video arrives within 2 business days. No sales pitch.
       </p>
     </div>
   </section>
+
+  <script is:inline src="/postcard-lookup.js" defer></script>
 </BaseLayout>

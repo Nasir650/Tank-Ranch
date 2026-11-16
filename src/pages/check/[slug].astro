@@ -30,7 +30,13 @@ const aiAssistant = record.ai_assistant || 'ChatGPT';
 const trade = record['Card line'] || record.card_line || 'local contractors';
 const questionAsked = record.question_asked;
 const screenshot = record.screenshot;
-const fixes = [record.fix_1, record.fix_2, record.fix_3].filter(Boolean);
+const customFixes = [record.fix_1, record.fix_2, record.fix_3].filter(Boolean);
+const defaultFixes = [
+  `Build clear service and town pages for ${location || 'your service area'} so AI assistants verify what you do.`,
+  'Add structured schema markup and answer blocks so ChatGPT, Claude, and Google AI cite your company.',
+  'Align your Google Business Profile categories, service areas, and local citations around your highest-value jobs.',
+];
+const fixes = customFixes.length > 0 ? customFixes : defaultFixes;
 const rawDate = record.date_checked;
 const date = rawDate && new Date(rawDate + 'T00:00:00Z');
 const displayDate = date && !Number.isNaN(date.valueOf())
@@ -48,34 +54,35 @@ const pageDesc = "The postcard check for " + company + " in " + location + ".";
       <p class="eyebrow cobalt">Did it say your name?</p>
       <h1 class="display-lg">{heading}</h1>
       <p class="body-md">This check is for {company}. When your name is missing, that could mean work going down the road.</p>
-      <a href={textJoe} class="btn btn-primary btn-lg personal-text">Text Joe</a>
-      <a href="#video-request" class="personal-video-link">Get my 5-minute video</a>
+      <div class="personal-actions">
+        <a href="#video-request" class="btn btn-primary btn-lg">Get my 5-minute video</a>
+        <a href={textJoe} class="btn btn-secondary btn-lg personal-text">Text Joe</a>
+      </div>
 
       <section class="personal-result">
         <h2 class="heading-lg">The question we asked</h2>
         {questionAsked ? <blockquote>{questionAsked}</blockquote> : <p>Question unavailable.</p>}
-        <p>{displayDate ? <time datetime={rawDate}>Checked {displayDate}</time> : 'Check date unavailable.'}</p>
-        {screenshot ? (
-          <figure>
-            <a href={'/checks/' + encodeURIComponent(screenshot)}>
-              <img src={'/checks/' + encodeURIComponent(screenshot)} alt={'Screenshot of the ' + aiAssistant + ' answer'} onerror="this.closest('figure').hidden = true; this.closest('figure').nextElementSibling.hidden = false;">
-            </a>
-            <figcaption><a href={'/checks/' + encodeURIComponent(screenshot)}>Open full screenshot</a></figcaption>
-          </figure>
-          <p hidden>Screenshot unavailable.</p>
-        ) : <p>Screenshot unavailable.</p>}
+        {displayDate && <p><time datetime={rawDate}>Checked {displayDate}</time></p>}
+        {screenshot && (
+          <Fragment>
+            <figure>
+              <a href={'/checks/' + encodeURIComponent(screenshot)}>
+                <img src={'/checks/' + encodeURIComponent(screenshot)} alt={'Screenshot of the ' + aiAssistant + ' answer'} onerror="this.closest('figure').hidden = true;">
+              </a>
+              <figcaption><a href={'/checks/' + encodeURIComponent(screenshot)}>Open full screenshot</a></figcaption>
+            </figure>
+          </Fragment>
+        )}
         <h2 class="heading-lg">Who {aiAssistant} named</h2>
         <p>{record.ai_named || 'Results are unavailable for this question.'}</p>
         {result === 'yes' && <p><strong>{company} appeared in the answer.</strong></p>}
         {result === 'no' && <p><strong>{company} did not appear in the answer.</strong></p>}
       </section>
 
-      {fixes.length > 0 && (
-        <section class="personal-result">
-          <h2 class="heading-lg">{fixes.length === 3 ? 'Three fixes for your company' : 'What to fix first'}</h2>
-          <ol>{fixes.map((fix: string) => <li>{fix}</li>)}</ol>
-        </section>
-      )}
+      <section class="personal-result">
+        <h2 class="heading-lg">{customFixes.length === 3 ? 'Three fixes for your company' : 'What we’d fix first'}</h2>
+        <ol>{fixes.map((fix: string) => <li>{fix}</li>)}</ol>
+      </section>
 
       <section class="personal-result" id="video-request">
         <h2 class="heading-lg">Get my 5-minute video</h2>
@@ -90,7 +97,7 @@ const pageDesc = "The postcard check for " + company + " in " + location + ".";
           <input type="hidden" name="source" value="postcard-check-page">
           <div class="check-field">
             <label for="auditPhone">Your mobile number</label>
-            <input type="tel" id="auditPhone" name="phone" class="form-input" autocomplete="tel" required>
+            <input type="tel" inputmode="tel" id="auditPhone" name="phone" class="form-input" autocomplete="tel" required>
           </div>
           <button type="submit" class="btn btn-primary btn-lg">Get my 5-minute video</button>
         </form>

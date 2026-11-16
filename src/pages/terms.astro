@@ -1,4 +1,5 @@
 ---
+import contact from '../data/contact.json';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const pageTitle = "Terms of Use | Tank & Trench";
@@ -63,15 +64,27 @@ const pageDesc = "Terms of Use for tankandtrench.com, operated by Shellback Labs
         </div>
 
         <div class="legal-section-block">
-          <h2 class="legal-section-title">Calls and text messaging</h2>
+          <h2 class="legal-section-title">Tank &amp; Trench text updates (Calls and text messaging)</h2>
           <p>
-            If you provide your phone number to Tank &amp; Trench, you agree that Shellback Labs LLC d/b/a Tank &amp; Trench may call or send SMS/MMS text messages regarding your request, check page, or account. You can contact us or get help by calling or texting <strong>(617) 579-8197</strong>.
+            Shellback Labs LLC (dba Tank &amp; Trench) provides marketing services to septic and excavation contractors through our <strong>Tank &amp; Trench text updates</strong> messaging program. Business owners text our number after seeing our mailer or website (tankandtrench.com) to request their free AI search report. We reply to their questions, send a link to their personalized results page, and schedule follow-up calls. We only text people who contact us first or who ask us to text them during a phone call. We do not purchase lists or send unsolicited texts.
           </p>
           <p>
-            Consent to receive text messages is not a condition of purchasing any services. Message and data rates may apply. Message frequency varies. You may unsubscribe or opt out at any time by replying <strong>STOP</strong> to any text message. Reply <strong>HELP</strong> for help, or email <a href="mailto:joe@tankandtrench.com" style="color: var(--cobalt-600); text-decoration: none;">joe@tankandtrench.com</a>.
+            When you opt in to Tank &amp; Trench text updates, we may send you a message to confirm your signup. Consent to receive text messages is not a condition of purchasing any services. Message and data rates may apply. Message frequency varies. Text <strong>HELP</strong> for help. Text <strong>STOP</strong> to cancel.
           </p>
           <p>
-            For information on how we handle and protect your personal information, please view our <a href="/privacy/" style="color: var(--cobalt-600); text-decoration: underline;">Privacy Policy</a>. Mobile information will not be shared with third parties or affiliates for marketing or promotional purposes.
+            You can cancel this service at any time. Just text <strong>STOP</strong> to <strong>{contact.display}</strong>. After you send the message &ldquo;STOP&rdquo; to us, we will reply to confirm that you have been unsubscribed. After this, you will no longer receive messages from us. If you want to join again, just sign up as you did the first time, and we will start sending you messages again.
+          </p>
+          <p>
+            If at any time you forget what keywords are supported, just text <strong>HELP</strong> to <strong>{contact.display}</strong> (or email <a href="mailto:joe@tankandtrench.com" style="color: var(--cobalt-600); text-decoration: none;">joe@tankandtrench.com</a>). After you send the message &ldquo;HELP&rdquo; to us, we will respond with instructions on how to use our service and how to unsubscribe.
+          </p>
+          <p>
+            Participating carriers: AT&amp;T, Verizon Wireless, Sprint, T-Mobile, U.S. Cellular, Boost Mobile, MetroPCS, Virgin Mobile, Alaska Communications Systems (ACS), Appalachian Wireless (EKN), Bluegrass Cellular, Cellular One of East Central, IL (ECIT), Cellular One of Northeast Pennsylvania, Cricket, Coral Wireless (Mobi PCS), COX, Cross, Element Mobile (Flat Wireless), Epic Touch (Elkhart Telephone), GCI, Golden State, Hawkeye (Chat Mobility), Hawkeye (NW Missouri), Illinois Valley Cellular, Inland Cellular, iWireless (Iowa Wireless), Keystone Wireless (Immix Wireless/PC Man), Mosaic (Consolidated or CTC Telecom), Nex-Tech Wireless, NTelos, Panhandle Communications, Pioneer, Plateau (Texas RSA 3 Ltd), Revol, RINA, Simmetry (TMP Corporation), Thumb Cellular, Union Wireless, United Wireless, Viaero Wireless, and West Central (WCC or 5 Star Wireless).
+          </p>
+          <p>
+            Carriers are not liable for delayed or undelivered messages.
+          </p>
+          <p>
+            If you have any questions regarding privacy, please read our <a href="/privacy/" style="color: var(--cobalt-600); text-decoration: underline;">Privacy Policy</a>. Mobile information will not be shared with third parties or affiliates for marketing or promotional purposes.
           </p>
         </div>
 
@@ -128,7 +141,7 @@ const pageDesc = "Terms of Use for tankandtrench.com, operated by Shellback Labs
           <h2 class="legal-section-title">Contact</h2>
           <div class="contact-card-box">
             <div><strong style="color: var(--ink-900);">Email:</strong> <a href="mailto:joe@tankandtrench.com" style="color: var(--cobalt-600); text-decoration: none;">joe@tankandtrench.com</a></div>
-            <div><strong style="color: var(--ink-900);">Address:</strong> Shellback Labs LLC, PO Box 431, Westerly, RI 02891</div>
+            <div><strong style="color: var(--ink-900);">Phone:</strong> <a href={'tel:' + contact.number} style="color: var(--cobalt-600); text-decoration: none;">{contact.display}</a></div>
           </div>
         </div>
       </div>

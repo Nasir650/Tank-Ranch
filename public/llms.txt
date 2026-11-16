@@ -1,0 +1,37 @@
+# Tank & Trench
+
+> AI search optimization for septic and excavation contractors across the United States. Operated by Shellback Labs LLC.
+
+Tank & Trench helps septic pumping, septic installation, excavation, land clearing, grading, drainage, and site work contractors get recommended when homeowners, builders, and general contractors ask ChatGPT, Claude, Perplexity, and Google AI who to call.
+
+## Core Pages
+
+- [Home](https://tankandtrench.com/): Overview of AI search for septic and excavation contractors, proof metrics, and plan teaser.
+- [Free AI Check](https://tankandtrench.com/check/): Enter a printed postcard code or request a free 5-minute video check of what ChatGPT, Claude, and Google AI say about your company.
+- [Pricing & Plans](https://tankandtrench.com/pricing/): Pro ($750/mo) and Territory ($1,250/mo) plans, county exclusivity availability check, 6-month minimum terms, website included option, and ad management add-ons.
+- [About & Contact](https://tankandtrench.com/about/): About Joe and Tank & Trench, direct contact details ((617) 579-8197, joe@tankandtrench.com).
+- [The Answer Map](https://tankandtrench.com/answer-map/): How services, towns, equipment, and local regulations are mapped into structured entity data.
+- [Methodology](https://tankandtrench.com/methodology/): Technical architecture including Google Business Profile cleanup, JSON-LD schema, llms.txt, and CallRail call tracking.
+- [Results & Reporting](https://tankandtrench.com/results/): Sample monthly call and form-fill reporting.
+- [Knowledge Library](https://tankandtrench.com/library/): Septic and excavation canonical terms and concepts.
+
+## Plans & Terms
+
+- **Pro ($750/month)**: Full Answer Map, service and town pages, schema, Google Business Profile cleanup, monthly content, review program, AI-answer monitoring, call tracking, and monthly call reporting.
+- **Territory ($1,250/month)**: Everything in Pro, plus county exclusivity — we will not work with any other septic (Tank) or excavation (Trench) company in your county. Tank and Trench reserve separately.
+- **Website Included**: No website? We build a custom WordPress site (service pages, town pages, schema) in the first 30 days, included with both plans. 6-month minimum, then month to month. After 6 months, the site is yours. Leave earlier and you can keep it for a one-time $1,500 buyout.
+- **Optional Add-ons (for Pro and Territory clients)**:
+  - Google Local Services Ads: $300/month
+  - Google Search Ads: $500/month
+  - Ads Bundle (LSA + Search): $700/month
+  - Social Media Management: $350/month
+  - Meta Ads: $350/month
+
+## Coverage & Contact
+
+- **Service Area**: Anywhere in the United States.
+- **Phone / Text**: (617) 579-8197
+- **Email**: joe@tankandtrench.com
+- **Legal**: Shellback Labs LLC (Tank & Trench is a brand of Shellback Labs LLC)
+- [Privacy Policy](https://tankandtrench.com/privacy/)
+- [Terms of Use](https://tankandtrench.com/terms/)
