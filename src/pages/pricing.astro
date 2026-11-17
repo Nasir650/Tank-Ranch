@@ -16,7 +16,7 @@ const pricingFaqs = [
   ],
   [
     "Do you run ads?",
-    "Yes, as an add-on for Pro and Territory clients. Ads bring in calls right away while AI search builds. Options include Google Local Services Ads ($300/mo), Google Search Ads ($500/mo), the Ads Bundle ($700/mo), Social media ($350/mo), and Meta ads ($350/mo)."
+    "Yes, as an add-on for Pro and Territory clients. Ads bring in calls right away while AI search builds. Options include Local Services Ads ($300/mo), Google Search Ads ($500/mo), Ads Bundle: LSA + Search ($700/mo), Social media ($350/mo), and Meta ads ($350/mo)."
   ],
   [
     "Which states do you work in?",
@@ -161,17 +161,17 @@ const schema = {
         </div>
 
         <div class="addons-grid">
-          <!-- Card 1: Google Ads with 3-way toggle -->
+          <!-- Card 1: Ads Bundle: LSA + Search with 3-way toggle -->
           <article class="addon-card addon-card-featured">
             <div class="addon-card-top">
-              <h3 class="addon-card-title">Google Ads</h3>
+              <h3 class="addon-card-title" data-google-title>Ads Bundle: LSA + Search</h3>
               <span class="addon-popular-tag" data-google-badge>Most popular</span>
             </div>
 
             <div class="addon-toggle" role="group" aria-label="Google Ads option">
-              <button type="button" class="addon-toggle-btn" data-ads-option="lsa" data-price="$300" data-line="Google Guaranteed badge above results" aria-pressed="false">LSA</button>
-              <button type="button" class="addon-toggle-btn" data-ads-option="search" data-price="$500" data-line="High-value jobs in your towns" aria-pressed="false">Search</button>
-              <button type="button" class="addon-toggle-btn active" data-ads-option="both" data-price="$700" data-line="LSA + Search managed together" aria-pressed="true">&#10003; Both</button>
+              <button type="button" class="addon-toggle-btn" data-ads-option="lsa" data-title="Local Services Ads" data-price="$300" data-line="Google Guaranteed badge above results" aria-pressed="false">LSA</button>
+              <button type="button" class="addon-toggle-btn" data-ads-option="search" data-title="Google Search Ads" data-price="$500" data-line="High-value jobs in your towns" aria-pressed="false">Search</button>
+              <button type="button" class="addon-toggle-btn active" data-ads-option="both" data-title="Ads Bundle: LSA + Search" data-price="$700" data-line="LSA + Search managed together" aria-pressed="true">&#10003; Both</button>
             </div>
 
             <div class="addon-card-meta">
@@ -415,6 +415,7 @@ const schema = {
 
     // Google Ads 3-way toggle
     const adsButtons = document.querySelectorAll('[data-ads-option]');
+    const googleTitleEl = document.querySelector('[data-google-title]');
     const googlePriceEl = document.querySelector('[data-google-price]');
     const googleLineEl = document.querySelector('[data-google-line]');
     const googleBadgeEl = document.querySelector('[data-google-badge]');
@@ -428,6 +429,7 @@ const schema = {
         btn.classList.add('active');
         btn.setAttribute('aria-pressed', 'true');
 
+        if (googleTitleEl) googleTitleEl.textContent = btn.getAttribute('data-title') || 'Ads Bundle: LSA + Search';
         if (googlePriceEl) googlePriceEl.textContent = btn.getAttribute('data-price') || '$700';
         if (googleLineEl) googleLineEl.textContent = btn.getAttribute('data-line') || '';
         if (googleBadgeEl) {

@@ -7,6 +7,14 @@
   margin: 0 0 22px;
 }
 .result-top-actions .btn { min-width: 148px; text-align: center; }
+.result-top-actions .btn.ghost {
+  color: var(--ink);
+  background: #fff;
+  border-color: var(--ink);
+}
+.result-top-actions .btn.ghost:hover {
+  background: var(--chip);
+}
 .card h2.label { font-weight: 600; }
 .ref { color: var(--muted); }
 .video-link { color: var(--blue); font-weight: 600; padding-block: 10px; }
@@ -46,6 +54,10 @@
     z-index: 10;
   }
   .result-mobile-bar .btn { flex: 1; text-align: center; }
+  .result-mobile-bar .btn.ghost {
+    color: #fff;
+    border-color: #8E8EA0;
+  }
 }
 @media (max-width: 360px) {
   .comps li { flex-wrap: wrap; gap: 2px 12px; }
