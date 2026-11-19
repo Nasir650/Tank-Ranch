@@ -26,18 +26,54 @@
 .result-screenshot a { color: var(--blue); }
 .result-video h2 { margin: 0 0 8px; font-size: 22px; }
 .result-video label { display: block; font-weight: 600; }
+.result-video-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 10px;
+  margin: 6px 0 0;
+}
 .result-video input {
   display: block;
-  width: 100%;
-  max-width: 360px;
-  min-height: 44px;
-  margin: 6px 0 12px;
+  flex: 1 1 220px;
+  max-width: 340px;
+  min-height: 46px;
+  margin: 0;
   padding: 8px 12px;
-  border: 1px solid #787880;
-  border-radius: 8px;
+  border: 1px solid #D7DAE0;
+  border-radius: 10px;
   font: inherit;
 }
-.result-video button { border: 0; font: inherit; font-weight: 700; cursor: pointer; }
+.result-video button {
+  border: 0;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.sms-consent {
+  margin: 12px 0 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.sms-consent a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+@media (max-width: 560px) {
+  .result-video-row {
+    flex-direction: column;
+  }
+  .result-video input {
+    max-width: none;
+    width: 100%;
+  }
+  .result-video button {
+    width: 100%;
+  }
+}
 .result-video { scroll-margin-top: 16px; }
 .result-video [role="status"] { margin-bottom: 0; }
 .brand, .ref { overflow-wrap: anywhere; }

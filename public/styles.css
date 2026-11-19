@@ -3326,3 +3326,15 @@
     grid-template-columns: 1fr;
   }
 }
+
+.sms-consent {
+  margin-top: 12px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-500);
+}
+.sms-consent a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

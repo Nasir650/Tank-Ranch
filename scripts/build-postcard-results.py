@@ -134,8 +134,11 @@ def build_page(source, code, record):
         f'<input type="hidden" name="company" value="{html.escape(company, quote=True)}">'
         f'<input type="hidden" name="card_code" value="{code.upper()}">'
         '<label for="reply-phone">Your mobile number</label>'
+        '<div class="result-video-row">'
         '<input type="tel" inputmode="tel" name="phone" id="reply-phone" autocomplete="tel" required>'
         '<button class="btn" type="submit" data-track="video">Get my 5-minute video</button>'
+        '</div>'
+        '<p class="sms-consent">By submitting, you agree to receive texts from Tank &amp; Trench about your results. Msg &amp; data rates may apply. Reply STOP to opt out. <a href="/privacy/">Privacy Policy</a> &middot; <a href="/terms/">Terms</a></p>'
         '</form><p role="status" tabindex="-1" hidden></p></section>'
     )
     source = source[:start] + fixes_panel(record, no_website) + video + source[end:]
