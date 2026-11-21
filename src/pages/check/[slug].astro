@@ -87,7 +87,7 @@ const pageDesc = "The postcard check for " + company + " in " + location + ".";
       <section class="personal-result" id="video-request">
         <h2 class="heading-lg">Get my 5-minute video</h2>
         <p>Joe will walk through what came up and what to fix first.</p>
-        <form data-video-request action="https://formspree.io/f/xbjnbqzz" method="POST">
+        <form data-video-request action={contact.formEndpoint} method="POST">
           <input type="hidden" name="company" value={company}>
           <input type="hidden" name="slug" value={record.slug}>
           <input type="hidden" name="city" value={town}>
@@ -102,11 +102,10 @@ const pageDesc = "The postcard check for " + company + " in " + location + ".";
           <button type="submit" class="btn btn-primary btn-lg">Get my 5-minute video</button>
           <p class="sms-consent">By submitting, you agree to receive texts from Tank &amp; Trench about your results. Msg &amp; data rates may apply. Reply STOP to opt out. <a href="/privacy/">Privacy Policy</a> &middot; <a href="/terms/">Terms</a></p>
         </form>
-        <p role="status" tabindex="-1" hidden></p>
       </section>
 
     </div>
   </section>
 
-  <script is:inline src="/postcard-video.js" defer></script>
+  <script is:inline src="/contact-forms.js" defer></script>
 </BaseLayout>

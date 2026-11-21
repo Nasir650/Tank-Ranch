@@ -1,6 +1,7 @@
 ---
 import contact from '../data/contact.json';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import TradeSelect from '../components/TradeSelect.astro';
 
 const pageTitle = "Pricing & Plans | Tank & Trench";
 const pageDesc = "Pro is $750 a month. Territory is $1,250 a month and includes exclusivity for your side in your county. 6-month minimum, then month to month.";
@@ -250,7 +251,7 @@ const schema = {
       </div>
 
       <div class="county-checker-card" id="county-availability">
-        <form id="countyCheckForm" action="https://formspree.io/f/xbjnbqzz" method="POST">
+        <form id="countyCheckForm" action={contact.formEndpoint} method="POST" data-contact-form data-confirmation="countyConfirmBox">
           <input type="hidden" name="source" value="county-availability-check">
           <div style="margin-bottom: 16px;">
             <label for="cCompany" style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px;">Company Name *</label>
@@ -267,14 +268,9 @@ const schema = {
             </div>
           </div>
           <div class="check-field">
-            <label for="cSide">Which side do you work on?</label>
-            <select id="cSide" name="territory_side" class="form-input" required>
-              <option value="">Choose your side</option>
-              <option>Tank</option>
-              <option>Trench</option>
-              <option value="Both">Both (Tank &amp; Trench each reserve separately)</option>
-            </select>
-            <p class="body-sm" style="color: var(--ink-500); margin-top: 6px;">Tank and Trench each reserve separately.</p>
+            <label for="cSide">What do you mainly do? *</label>
+            <TradeSelect id="cSide" />
+            <p class="body-sm" style="color: var(--ink-500); margin-top: 6px;">Septic and excavation territories each reserve separately.</p>
           </div>
           <div class="county-fields" style="margin-bottom: 20px;">
             <div>
@@ -385,34 +381,8 @@ const schema = {
     </div>
   </section>
 
+  <script is:inline src="/contact-forms.js" defer></script>
   <script is:inline>
-    // County availability form submission
-    const cForm = document.getElementById('countyCheckForm');
-    const cBox = document.getElementById('countyConfirmBox');
-    if (cForm && cBox) {
-      cForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const btn = cForm.querySelector('button[type="submit"]');
-        btn.disabled = true;
-        btn.innerHTML = 'Checking...';
-        try {
-          const res = await fetch(cForm.action, {
-            method: 'POST',
-            body: new FormData(cForm),
-            headers: { 'Accept': 'application/json' }
-          });
-          if (res.ok) {
-            cForm.style.display = 'none';
-            cBox.style.display = 'block';
-          } else {
-            cForm.submit();
-          }
-        } catch(err) {
-          cForm.submit();
-        }
-      });
-    }
-
     // Google Ads 3-way toggle
     const adsButtons = document.querySelectorAll('[data-ads-option]');
     const googleTitleEl = document.querySelector('[data-google-title]');

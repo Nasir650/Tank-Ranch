@@ -54,8 +54,10 @@ Measurement: **Inbound phone calls and form submissions**
    - Strict `noindex, nofollow, noarchive` on all postcard pages.
 
 3. **Forms & Lead Handling**:
-   - Pre-configured for Formspree (or any form backend service).
-   - Smooth asynchronous submission with instant inline confirmation.
+   - All contact, county availability, free AI check, and postcard video forms use `formEndpoint` in `src/data/contact.json`, including generated archive pages.
+   - The intended recipient is `joe@tankandtrench.com`. Configure and verify that recipient in the Formspree account for form `xbjnbqzz`; changing the email in the site's contact data does not change Formspree notification routing.
+   - `public/contact-forms.js` shows confirmation after Formspree accepts a request. Failed requests retain the visitor's entries and offer retry or direct email without automatically submitting a second time.
+   - To verify delivery, check the Formspree submission log and confirm the matching notification arrives in Joe's inbox.
 
 4. **CallRail Dynamic Number Insertion (DNI)**:
    - Ready for CallRail phone swapping script integration in `BaseLayout.astro`.

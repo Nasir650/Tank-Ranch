@@ -160,7 +160,7 @@ const pageDesc = "Joe and Tank & Trench: AI search exclusively for septic and ex
         <!-- Right: Short Form -->
         <div class="contact-card-box">
           <h3 class="heading-lg" style="margin-bottom: 20px;">Send a message to Joe</h3>
-          <form id="aboutContactForm" action="https://formspree.io/f/xbjnbqzz" method="POST">
+          <form id="aboutContactForm" action={contact.formEndpoint} method="POST" data-contact-form data-confirmation="aboutConfirmBox">
             <input type="hidden" name="source" value="about-page-form">
             <div style="margin-bottom: 16px;">
               <label for="contactName" style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px;">Your Name *</label>
@@ -202,33 +202,7 @@ const pageDesc = "Joe and Tank & Trench: AI search exclusively for septic and ex
     </div>
   </section>
 
-  <script is:inline>
-    const aForm = document.getElementById('aboutContactForm');
-    const aBox = document.getElementById('aboutConfirmBox');
-    if (aForm && aBox) {
-      aForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const btn = aForm.querySelector('button[type="submit"]');
-        btn.disabled = true;
-        btn.innerHTML = 'Sending...';
-        try {
-          const res = await fetch(aForm.action, {
-            method: 'POST',
-            body: new FormData(aForm),
-            headers: { 'Accept': 'application/json' }
-          });
-          if (res.ok) {
-            aForm.style.display = 'none';
-            aBox.style.display = 'block';
-          } else {
-            aForm.submit();
-          }
-        } catch(err) {
-          aForm.submit();
-        }
-      });
-    }
-  </script>
+  <script is:inline src="/contact-forms.js" defer></script>
 </BaseLayout>
 
 <style>

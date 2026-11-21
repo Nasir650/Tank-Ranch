@@ -129,7 +129,7 @@ def build_page(source, code, record):
     video = (
         '<section class="card result-video" id="video"><h2>Get my 5-minute video</h2>'
         '<p>Joe will walk through what came up and what to fix first.</p>'
-        '<form action="https://formspree.io/f/xbjnbqzz" method="post" data-video-request>'
+        f'<form action="{html.escape(CONTACT["formEndpoint"], quote=True)}" method="post" data-video-request>'
         '<input type="hidden" name="source" value="postcard-video-request">'
         f'<input type="hidden" name="company" value="{html.escape(company, quote=True)}">'
         f'<input type="hidden" name="card_code" value="{code.upper()}">'
@@ -139,7 +139,7 @@ def build_page(source, code, record):
         '<button class="btn" type="submit" data-track="video">Get my 5-minute video</button>'
         '</div>'
         '<p class="sms-consent">By submitting, you agree to receive texts from Tank &amp; Trench about your results. Msg &amp; data rates may apply. Reply STOP to opt out. <a href="/privacy/">Privacy Policy</a> &middot; <a href="/terms/">Terms</a></p>'
-        '</form><p role="status" tabindex="-1" hidden></p></section>'
+        '</form></section>'
     )
     source = source[:start] + fixes_panel(record, no_website) + video + source[end:]
     source = source.replace('<details open>', '<details>', 1)
@@ -149,7 +149,7 @@ def build_page(source, code, record):
     source = source.replace(
         '</main></body>',
         f'</main><div class="result-mobile-bar" aria-label="Mobile quick actions">{text_button}{call_button}</div>'
-        '<script src="/postcard-video.js" defer></script></body>',
+        '<script src="/contact-forms.js" defer></script></body>',
     )
     return source
 

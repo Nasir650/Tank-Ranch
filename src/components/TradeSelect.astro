@@ -1,0 +1,13 @@
+---
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+---
+<select id={id} name="main_trade" class="form-input" required>
+  <option value="">Choose your main trade</option>
+  <option value="Septic">Septic</option>
+  <option value="Excavation">Excavation</option>
+  <option value="Both">Both</option>
+</select>
