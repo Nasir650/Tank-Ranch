@@ -130,6 +130,7 @@ def build_page(source, code, record):
         '<section class="card result-video" id="video"><h2>Get my 5-minute video</h2>'
         '<p>Joe will walk through what came up and what to fix first.</p>'
         f'<form action="{html.escape(CONTACT["formEndpoint"], quote=True)}" method="post" data-video-request>'
+        '<input type="hidden" name="_subject" value="Tank &amp; Trench: 5-Minute Video Request (Postcard)">'
         '<input type="hidden" name="source" value="postcard-video-request">'
         f'<input type="hidden" name="company" value="{html.escape(company, quote=True)}">'
         f'<input type="hidden" name="card_code" value="{code.upper()}">'

@@ -43,6 +43,7 @@ const pageDesc = "Find out whether ChatGPT, Claude and Google's AI recommend you
           <p class="body-sm" style="color: var(--text-secondary); margin-bottom: 22px;">Takes 30 seconds to request. Your 5-minute video arrives within 2 business days.</p>
 
           <form id="checkForm" action={contact.formEndpoint} method="POST" data-contact-form data-confirmation="confirmationBox">
+            <input type="hidden" name="_subject" value="Tank & Trench: Free AI Check Request">
             <input type="hidden" name="source" value="free-ai-check-form">
             <div class="check-form-grid">
               <div class="check-field">

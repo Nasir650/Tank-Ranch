@@ -252,6 +252,7 @@ const schema = {
 
       <div class="county-checker-card" id="county-availability">
         <form id="countyCheckForm" action={contact.formEndpoint} method="POST" data-contact-form data-confirmation="countyConfirmBox">
+          <input type="hidden" name="_subject" value="Tank & Trench: County Availability Check">
           <input type="hidden" name="source" value="county-availability-check">
           <div style="margin-bottom: 16px;">
             <label for="cCompany" style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px;">Company Name *</label>

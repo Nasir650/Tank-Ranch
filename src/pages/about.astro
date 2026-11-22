@@ -161,6 +161,7 @@ const pageDesc = "Joe and Tank & Trench: AI search exclusively for septic and ex
         <div class="contact-card-box">
           <h3 class="heading-lg" style="margin-bottom: 20px;">Send a message to Joe</h3>
           <form id="aboutContactForm" action={contact.formEndpoint} method="POST" data-contact-form data-confirmation="aboutConfirmBox">
+            <input type="hidden" name="_subject" value="Tank & Trench: About Page Message">
             <input type="hidden" name="source" value="about-page-form">
             <div style="margin-bottom: 16px;">
               <label for="contactName" style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px;">Your Name *</label>
